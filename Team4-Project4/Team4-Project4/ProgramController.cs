@@ -749,8 +749,12 @@ namespace Team4_Project4
                     {
                         Instruction BRLT = new Instruction(progCount += 4, 1, 1, 1, 1, instructions[i + 1], instLit);
                         pipeInts.Add(BRLT);
-                        i = stringLoc;          //set jump point as next instruction
+                        i = stringLoc + 2;          //set jump point as next instruction
                     }
+
+                    (pipeInts, progCount, i, stopF) = ProgramController.fetch(instructions, pipeInts, progCount, i);
+                    pipeInts.RemoveAt(0);
+
                     break;
 
                 case string n when (n == "BRGT"):
@@ -767,8 +771,12 @@ namespace Team4_Project4
                     {
                         Instruction BRGT = new Instruction(progCount += 4, 1, 1, 1, 1, instructions[i + 1], instLit);
                         pipeInts.Add(BRGT);
-                        i = stringLoc;          //set jump point as next instruction
+                        i = stringLoc + 2;          //set jump point as next instruction
                     }
+
+                    (pipeInts, progCount, i, stopF) = ProgramController.fetch(instructions, pipeInts, progCount, i);
+                    pipeInts.RemoveAt(0);
+
                     break;
 
                 case string n when (n == "BREQ"):
@@ -785,8 +793,12 @@ namespace Team4_Project4
                     {
                         Instruction BREQ = new Instruction(progCount += 4, 1, 1, 1, 1, instructions[i + 1], instLit);
                         pipeInts.Add(BREQ);
-                        i = stringLoc;          //set jump point as next instruction
+                        i = stringLoc + 2;          //set jump point as next instruction
                     }
+
+                    (pipeInts, progCount, i, stopF) = ProgramController.fetch(instructions, pipeInts, progCount, i);
+                    pipeInts.RemoveAt(0);
+
                     break;
 
                 case string n when (n == "BRAN"):
@@ -803,8 +815,11 @@ namespace Team4_Project4
                     {
                         Instruction BRAN = new Instruction(progCount += 4, 1, 1, 1, 1, instructions[i + 1], instLit);
                         pipeInts.Add(BRAN);
-                        i = stringLoc;          //set jump point as next instruction
+                        i = stringLoc + 2;          //set jump point as next instruction
                     }
+
+                    (pipeInts, progCount, i, stopF) = ProgramController.fetch(instructions, pipeInts, progCount, i);
+                    pipeInts.RemoveAt(0);
 
                     break;
 
@@ -1590,4 +1605,4 @@ namespace Team4_Project4
 
     }//end ProgramController class
 
-}//end Team4_Project4 namespace
+}//end Team4_Project3 namespace
