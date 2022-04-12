@@ -130,6 +130,7 @@ namespace Team4_Project4
         Queue<Station> resIntExec1 = new Queue<Station>(2);
         Queue<Station> resLoadStoreExec1 = new Queue<Station>(2);
         Queue<Station> resMem = new Queue<Station>(2);
+
         String[] Qi = new String[16];
         int destinationCounter = 0;
 
@@ -809,19 +810,6 @@ namespace Team4_Project4
             //Sort ROB (Reorder Buffer)
             reorderBuffer.Sort((x, y) => x.dest.CompareTo(y.dest));
 
-            //Output Dynamic Pipeline Simulation Final Statistics
-            pipeLineOutText.Text = ProgramController.outputDynamicPipelineStats(structHCount,
-                                                         dataHCount,
-                                                         controlHCount,
-                                                         rawCount,
-                                                         warCount,
-                                                         wawCount,
-                                                         bufferD,
-                                                         stationD,
-                                                         conflictD,
-                                                         dependenceD,
-                                                         cycleCounter);
-
         }//end nextDynamicCycle()
         #endregion
 
@@ -969,17 +957,6 @@ namespace Team4_Project4
                 if (ifStop == true && pipeStore.Count == 0)
                 {
                     nextCycleButton.Enabled = false;
-                    pipeLineOutText.Text = ProgramController.outputStaticPipelineStats(structHCount,
-                                                                                       dataHCount,
-                                                                                       controlHCount,
-                                                                                       rawCount,
-                                                                                       warCount,
-                                                                                       wawCount,
-                                                                                       fStall,
-                                                                                       dStall,
-                                                                                       eStall,
-                                                                                       sStall,
-                                                                                       cycleCounter);
                 }
             }
 
@@ -1264,6 +1241,7 @@ namespace Team4_Project4
         }//end incrementCycleCounter()
         #endregion    
 
+
         //Register Methods
         #region updateReg Method
         /// <summary>
@@ -1489,7 +1467,7 @@ namespace Team4_Project4
         }//end storeMemoryInString()
         #endregion
 
-        #region storeMemoryInString32nd() Method
+        #region displayMemoryInString32nd() Method
         /// <summary>
         /// Method for displaying 1/32 of memory array to reduce lag
         /// </summary>
@@ -1630,6 +1608,276 @@ namespace Team4_Project4
         }//end storeMemoryInString32nd()
         #endregion 
 
+        #region displayMemoryInString64th() Method
+        /// <summary>
+        /// Method for displaying 1/32 of memory array to reduce lag
+        /// </summary>
+        public void displayMemoryInString64th(int sliderValue)
+        {
+            //Store all 1/32 of memory into memory textbox
+            switch (sliderValue)
+            {
+                case 1:
+                    memOutputText.Text = returnMemoryBetweenValues(0,1023);
+                    break;
+
+                case 2:
+                    memOutputText.Text = returnMemoryBetweenValues(1024, 2047);
+                    break;
+
+                case 3:
+                    memOutputText.Text = returnMemoryBetweenValues(2048, 3071);
+                    break;
+
+                case 4:
+                    memOutputText.Text = returnMemoryBetweenValues(3072, 4095);
+                    break;
+
+                case 5:
+                    memOutputText.Text = returnMemoryBetweenValues(4096, 5119);
+                    break;
+
+                case 6:
+                    memOutputText.Text = returnMemoryBetweenValues(5120, 6143);
+                    break;
+
+                case 7:
+                    memOutputText.Text = returnMemoryBetweenValues(6144, 7167);
+                    break;
+
+                case 8:
+                    memOutputText.Text = returnMemoryBetweenValues(7168, 8191);
+                    break;
+
+                case 9:
+                    memOutputText.Text = returnMemoryBetweenValues(8192, 9215);
+                    break;
+
+                case 10:
+                    memOutputText.Text = returnMemoryBetweenValues(9216, 10239);
+                    break;
+
+                case 11:
+                    memOutputText.Text = returnMemoryBetweenValues(10240, 11263);
+                    break;
+
+                case 12:
+                    memOutputText.Text = returnMemoryBetweenValues(11264, 12287);
+                    break;
+
+                case 13:
+                    memOutputText.Text = returnMemoryBetweenValues(12288, 13311);
+                    break;
+
+                case 14:
+                    memOutputText.Text = returnMemoryBetweenValues(13312, 14335);
+                    break;
+
+                case 15:
+                    memOutputText.Text = returnMemoryBetweenValues(14336, 15359);
+                    break;
+
+                case 16:
+                    memOutputText.Text = returnMemoryBetweenValues(15360, 16383);
+                    break;
+
+                case 17:
+                    memOutputText.Text = returnMemoryBetweenValues(16384, 17407);
+                    break;
+
+                case 18:
+                    memOutputText.Text = returnMemoryBetweenValues(17408, 18431);
+                    break;
+
+                case 19:
+                    memOutputText.Text = returnMemoryBetweenValues(18432, 19455);
+                    break;
+
+                case 20:
+                    memOutputText.Text = returnMemoryBetweenValues(19456, 20479);
+                    break;
+
+                case 21:
+                    memOutputText.Text = returnMemoryBetweenValues(20480, 21503);
+                    break;
+
+                case 22:
+                    memOutputText.Text = returnMemoryBetweenValues(21504, 22527);
+                    break;
+
+                case 23:
+                    memOutputText.Text = returnMemoryBetweenValues(22528, 23551);
+                    break;
+
+                case 24:
+                    memOutputText.Text = returnMemoryBetweenValues(23552, 24575);
+                    break;
+
+                case 25:
+                    memOutputText.Text = returnMemoryBetweenValues(24576, 25599);
+                    break;
+
+                case 26:
+                    memOutputText.Text = returnMemoryBetweenValues(25600, 26623);
+                    break;
+
+                case 27:
+                    memOutputText.Text = returnMemoryBetweenValues(26624, 27647);
+                    break;
+
+                case 28:
+                    memOutputText.Text = returnMemoryBetweenValues(27648, 28671);
+                    break;
+
+                case 29:
+                    memOutputText.Text = returnMemoryBetweenValues(28672, 29695);
+                    break;
+
+                case 30:
+                    memOutputText.Text = returnMemoryBetweenValues(29696, 30719);
+                    break;
+
+                case 31:
+                    memOutputText.Text = returnMemoryBetweenValues(30720, 31743);
+                    break;
+
+                case 32:
+                    memOutputText.Text = returnMemoryBetweenValues(31744, 32767);
+                    break;
+
+                case 33:
+                    memOutputText.Text = returnMemoryBetweenValues(32768, 33791);
+                    break;
+
+                case 34:
+                    memOutputText.Text = returnMemoryBetweenValues(33792, 34815);
+                    break;
+
+                case 35:
+                    memOutputText.Text = returnMemoryBetweenValues(34816, 35839);
+                    break;
+
+                case 36:
+                    memOutputText.Text = returnMemoryBetweenValues(35840, 36863);
+                    break;
+
+                case 37:
+                    memOutputText.Text = returnMemoryBetweenValues(36864, 37887);
+                    break;
+
+                case 38:
+                    memOutputText.Text = returnMemoryBetweenValues(37888, 38911);
+                    break;
+
+                case 39:
+                    memOutputText.Text = returnMemoryBetweenValues(38912, 39935);
+                    break;
+
+                case 40:
+                    memOutputText.Text = returnMemoryBetweenValues(39936, 40959);
+                    break;
+
+                case 41:
+                    memOutputText.Text = returnMemoryBetweenValues(40960, 41983);
+                    break;
+
+                case 42:
+                    memOutputText.Text = returnMemoryBetweenValues(41984, 43007);
+                    break;
+
+                case 43:
+                    memOutputText.Text = returnMemoryBetweenValues(43008, 44031);
+                    break;
+
+                case 44:
+                    memOutputText.Text = returnMemoryBetweenValues(44032, 45055);
+                    break;
+
+                case 45:
+                    memOutputText.Text = returnMemoryBetweenValues(45056, 46079);
+                    break;
+
+                case 46:
+                    memOutputText.Text = returnMemoryBetweenValues(46080, 47103);
+                    break;
+
+                case 47:
+                    memOutputText.Text = returnMemoryBetweenValues(47104, 48127);
+                    break;
+
+                case 48:
+                    memOutputText.Text = returnMemoryBetweenValues(48128, 49151);
+                    break;
+
+                case 49:
+                    memOutputText.Text = returnMemoryBetweenValues(49152, 50175);
+                    break;
+
+                case 50:
+                    memOutputText.Text = returnMemoryBetweenValues(50176, 51199);
+                    break;
+
+                case 51:
+                    memOutputText.Text = returnMemoryBetweenValues(51200, 52223);
+                    break;
+
+                case 52:
+                    memOutputText.Text = returnMemoryBetweenValues(52224, 53247);
+                    break;
+
+                case 53:
+                    memOutputText.Text = returnMemoryBetweenValues(53248, 54271);
+                    break;
+
+                case 54:
+                    memOutputText.Text = returnMemoryBetweenValues(54272, 55295);
+                    break;
+
+                case 55:
+                    memOutputText.Text = returnMemoryBetweenValues(55296, 56319);
+                    break;
+
+                case 56:
+                    memOutputText.Text = returnMemoryBetweenValues(56320, 57343);
+                    break;
+
+                case 57:
+                    memOutputText.Text = returnMemoryBetweenValues(57344, 58367);
+                    break;
+
+                case 58:
+                    memOutputText.Text = returnMemoryBetweenValues(58368, 59391);
+                    break;
+
+                case 59:
+                    memOutputText.Text = returnMemoryBetweenValues(59392, 60415);
+                    break;
+
+                case 60:
+                    memOutputText.Text = returnMemoryBetweenValues(60416, 61439);
+                    break;
+
+                case 61:
+                    memOutputText.Text = returnMemoryBetweenValues(61440, 62463);
+                    break;
+
+                case 62:
+                    memOutputText.Text = returnMemoryBetweenValues(62464, 63487);
+                    break;
+
+                case 63:
+                    memOutputText.Text = returnMemoryBetweenValues(63488, 64511);
+                    break;
+
+                case 64:
+                    memOutputText.Text = returnMemoryBetweenValues(64512, 65535);
+                    break;
+
+            }
+
+        }//end displayMemoryInString64th()
+        #endregion 
+
         #region returnMemoryBetweenValues() Method
         /// <summary>
         /// Method for returning memory between 2 values
@@ -1723,9 +1971,6 @@ namespace Team4_Project4
             decodeStallTextbox.Text = "0";
             executeStallTextbox.Text = "0";
             storeStallTextbox.Text = "0";
-
-            //Reset Pipeline Output textboxe
-            pipeLineOutText.Text = string.Empty;
 
             //Re-enables Assembly textbox and Start Simulation buttons
             assemblyTextBox.Enabled = true;

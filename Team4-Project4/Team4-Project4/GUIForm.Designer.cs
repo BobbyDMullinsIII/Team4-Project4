@@ -138,20 +138,17 @@
             this.startStaticButton = new System.Windows.Forms.Button();
             this.executeLabel = new System.Windows.Forms.Label();
             this.outputPanel = new System.Windows.Forms.Panel();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.pipelineOutput = new System.Windows.Forms.TabPage();
-            this.pipeLineOutText = new System.Windows.Forms.TextBox();
+            this.memSlider = new System.Windows.Forms.TrackBar();
             this.memoryOutput = new System.Windows.Forms.TabPage();
             this.memOutputText = new System.Windows.Forms.TextBox();
-            this.memSlider = new System.Windows.Forms.TrackBar();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.menuStrip1.SuspendLayout();
             this.assemblyPanel.SuspendLayout();
             this.simulationPanel.SuspendLayout();
             this.outputPanel.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.pipelineOutput.SuspendLayout();
-            this.memoryOutput.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memSlider)).BeginInit();
+            this.memoryOutput.SuspendLayout();
+            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // MNAWLabel
@@ -218,7 +215,7 @@
             this.assemblyPanel.Controls.Add(this.assemblyLabel);
             this.assemblyPanel.Location = new System.Drawing.Point(0, 79);
             this.assemblyPanel.Name = "assemblyPanel";
-            this.assemblyPanel.Size = new System.Drawing.Size(312, 625);
+            this.assemblyPanel.Size = new System.Drawing.Size(312, 640);
             this.assemblyPanel.TabIndex = 2;
             // 
             // saveAssemblyButton
@@ -395,7 +392,7 @@
             this.simulationPanel.Controls.Add(this.executeLabel);
             this.simulationPanel.Location = new System.Drawing.Point(318, 79);
             this.simulationPanel.Name = "simulationPanel";
-            this.simulationPanel.Size = new System.Drawing.Size(946, 631);
+            this.simulationPanel.Size = new System.Drawing.Size(946, 640);
             this.simulationPanel.TabIndex = 3;
             // 
             // label3
@@ -1444,39 +1441,19 @@
             this.outputPanel.Controls.Add(this.tabControl1);
             this.outputPanel.Location = new System.Drawing.Point(1272, 80);
             this.outputPanel.Name = "outputPanel";
-            this.outputPanel.Size = new System.Drawing.Size(312, 604);
+            this.outputPanel.Size = new System.Drawing.Size(312, 639);
             this.outputPanel.TabIndex = 17;
             // 
-            // tabControl1
+            // memSlider
             // 
-            this.tabControl1.Controls.Add(this.pipelineOutput);
-            this.tabControl1.Controls.Add(this.memoryOutput);
-            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(3, 3);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(312, 598);
-            this.tabControl1.TabIndex = 18;
-            // 
-            // pipelineOutput
-            // 
-            this.pipelineOutput.Controls.Add(this.pipeLineOutText);
-            this.pipelineOutput.Location = new System.Drawing.Point(4, 25);
-            this.pipelineOutput.Name = "pipelineOutput";
-            this.pipelineOutput.Padding = new System.Windows.Forms.Padding(3);
-            this.pipelineOutput.Size = new System.Drawing.Size(304, 569);
-            this.pipelineOutput.TabIndex = 0;
-            this.pipelineOutput.Text = "Pipeline Output";
-            this.pipelineOutput.UseVisualStyleBackColor = true;
-            // 
-            // pipeLineOutText
-            // 
-            this.pipeLineOutText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pipeLineOutText.Location = new System.Drawing.Point(0, 0);
-            this.pipeLineOutText.Multiline = true;
-            this.pipeLineOutText.Name = "pipeLineOutText";
-            this.pipeLineOutText.Size = new System.Drawing.Size(304, 602);
-            this.pipeLineOutText.TabIndex = 0;
+            this.memSlider.Location = new System.Drawing.Point(0, 716);
+            this.memSlider.Maximum = 64;
+            this.memSlider.Minimum = 1;
+            this.memSlider.Name = "memSlider";
+            this.memSlider.Size = new System.Drawing.Size(1584, 45);
+            this.memSlider.TabIndex = 18;
+            this.memSlider.Value = 1;
+            this.memSlider.Scroll += new System.EventHandler(this.memSlider_Scroll);
             // 
             // memoryOutput
             // 
@@ -1484,7 +1461,7 @@
             this.memoryOutput.Location = new System.Drawing.Point(4, 25);
             this.memoryOutput.Name = "memoryOutput";
             this.memoryOutput.Padding = new System.Windows.Forms.Padding(3);
-            this.memoryOutput.Size = new System.Drawing.Size(304, 569);
+            this.memoryOutput.Size = new System.Drawing.Size(304, 604);
             this.memoryOutput.TabIndex = 1;
             this.memoryOutput.Text = " Memory Output";
             this.memoryOutput.UseVisualStyleBackColor = true;
@@ -1498,26 +1475,25 @@
             this.memOutputText.Name = "memOutputText";
             this.memOutputText.ReadOnly = true;
             this.memOutputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.memOutputText.Size = new System.Drawing.Size(302, 572);
+            this.memOutputText.Size = new System.Drawing.Size(302, 608);
             this.memOutputText.TabIndex = 0;
             // 
-            // memSlider
+            // tabControl1
             // 
-            this.memSlider.Location = new System.Drawing.Point(1270, 35);
-            this.memSlider.Maximum = 32;
-            this.memSlider.Minimum = 1;
-            this.memSlider.Name = "memSlider";
-            this.memSlider.Size = new System.Drawing.Size(309, 45);
-            this.memSlider.TabIndex = 18;
-            this.memSlider.Value = 1;
-            this.memSlider.Scroll += new System.EventHandler(this.memSlider_Scroll);
+            this.tabControl1.Controls.Add(this.memoryOutput);
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Location = new System.Drawing.Point(3, 3);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(312, 633);
+            this.tabControl1.TabIndex = 18;
             // 
             // GUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1584, 716);
+            this.ClientSize = new System.Drawing.Size(1584, 761);
             this.Controls.Add(this.memSlider);
             this.Controls.Add(this.outputPanel);
             this.Controls.Add(this.simulationPanel);
@@ -1537,12 +1513,10 @@
             this.simulationPanel.ResumeLayout(false);
             this.simulationPanel.PerformLayout();
             this.outputPanel.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
-            this.pipelineOutput.ResumeLayout(false);
-            this.pipelineOutput.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.memSlider)).EndInit();
             this.memoryOutput.ResumeLayout(false);
             this.memoryOutput.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.memSlider)).EndInit();
+            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1628,11 +1602,6 @@
         private System.Windows.Forms.TextBox r3TextBox;
         private System.Windows.Forms.TextBox r2TextBox;
         private System.Windows.Forms.TextBox r1TextBox;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage pipelineOutput;
-        private System.Windows.Forms.TabPage memoryOutput;
-        private System.Windows.Forms.TextBox memOutputText;
-        private System.Windows.Forms.TextBox pipeLineOutText;
         private System.Windows.Forms.Label issueLabel;
         private System.Windows.Forms.Label commitLabel;
         private System.Windows.Forms.Label writeLabel;
@@ -1666,6 +1635,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox dynamicFExecTextBox;
         private System.Windows.Forms.TextBox dynamicLSExecTBox;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage memoryOutput;
+        private System.Windows.Forms.TextBox memOutputText;
     }
 }
 
