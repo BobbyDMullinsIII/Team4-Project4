@@ -56,5 +56,6 @@ Store/Finish	4
 =Dynamic Pipeline Phases=
 Issue		1
 Execute		2
-Write		3
-Commit		4
+Memory Read	3
+Write		4
+Commit		5

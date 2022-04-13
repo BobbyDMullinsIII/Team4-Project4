@@ -35,6 +35,12 @@ namespace Team4_Project4
         //Cycle Counter
         int cycleCounter = 0;
 
+        //Delay Counters (Dynamic)
+        int bufferD = 0;
+        int stationD = 0;
+        int conflictD = 0;
+        int dependenceD = 0;
+
         //Hazard Counters (Both Static & Dynamic)
         int structHCount = 0;
         int dataHCount = 0;
@@ -44,12 +50,6 @@ namespace Team4_Project4
         int rawCount = 0;
         int warCount = 0;
         int wawCount = 0;
-
-        //Delay Counters (Dynamic)
-        int bufferD = 0;
-        int stationD = 0;
-        int conflictD = 0;
-        int dependenceD = 0;
 
         //Stall Counters (Static)
         int fStall = 0;
@@ -426,6 +426,7 @@ namespace Team4_Project4
                 //}
 
             }
+
             //Issue Phase
             //Gets instruction pneumonic from instructionlit in instruction object
             if (ifStop != true && instructionQueue.Count > 0)
@@ -582,6 +583,7 @@ namespace Team4_Project4
                     }
                 }
             }
+
             //Execute Phase
             if (resLoadStoreExec1.Count > 0)
             {
@@ -729,6 +731,7 @@ namespace Team4_Project4
                     resIntExec1.Peek().instruction.fetch--;
                 }
             }
+
             //Memory Read Phase
             if (memExec1.Count > 0)
             {
@@ -1955,6 +1958,12 @@ namespace Team4_Project4
 
             //Reset Cycle Counter textbox
             counterTextBox.Text = "0";
+
+            //Reset Delays textboxes
+            reorderBufferTextBox.Text = "0";
+            resStationTextBox.Text = "0";
+            memConflictTextBox.Text = "0";
+            trueDependenceTextBox.Text = "0";
 
             //Reset Hazards textboxes
             structHTextBox.Text = "0";
