@@ -254,8 +254,8 @@ namespace Team4_Project4
             //Instantiate initial memory
             instantiateMemory();
 
-            //Display first 32nd of memory to GUI
-            displayMemoryInString32nd(1);
+            //Display first 64th of memory to GUI
+            displayMemoryInString64th(1);
 
             //Start dynamic pipeline simulation
             startSimulation();
@@ -274,8 +274,8 @@ namespace Team4_Project4
             //Instantiate initial memory
             instantiateMemory();
 
-            //Display first 32nd of memory to GUI
-            displayMemoryInString32nd(1);
+            //Display first 64th of memory to GUI
+            displayMemoryInString64th(1);
 
             //Start static pipeline simulation
             startSimulation();
@@ -299,13 +299,13 @@ namespace Team4_Project4
         }
 
         /// <summary>
-        ///  Slider for going through each 1/32 of 1MB memory array
+        ///  Slider for going through each 1/64 of 1MB memory array
         /// </summary>
         /// <param name="sender">object that raised the event (auto-generated, unused here)</param>
         /// <param name="e">arguments for event (auto-generated, unused here)</param>
         private void memSlider_Scroll(object sender, EventArgs e)
         {
-            displayMemoryInString32nd(memSlider.Value);
+            displayMemoryInString64th(memSlider.Value);
         }
         #endregion
 
