@@ -216,7 +216,7 @@ namespace Team4_Project4
         /// <param name="e">arguments for event (auto-generated, unused here)</param>
         private void clearPipelineOutputButton_Click(object sender, EventArgs e)
         {
-            pipelineOutput.Text = "";
+
         }
 
         /// <summary>
@@ -226,7 +226,7 @@ namespace Team4_Project4
         /// <param name="e">arguments for event (auto-generated, unused here)</param>
         private void loadPipelineOutputButton_Click(object sender, EventArgs e)
         {
-            pipelineOutput.Text = ProgramController.openFile();
+
         }
 
         /// <summary>
@@ -236,7 +236,7 @@ namespace Team4_Project4
         /// <param name="e">arguments for event (auto-generated, unused here)</param>
         private void savePipelineOutputButton_Click(object sender, EventArgs e)
         {
-            ProgramController.saveFile(pipelineOutput.Text);
+
         }
         #endregion
 
