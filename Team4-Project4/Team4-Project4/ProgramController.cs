@@ -1395,10 +1395,53 @@ namespace Team4_Project4
         /// Method for COMP R,R,R instruction
         /// </summary>
         /// <param name="pipeInts">Instruction to currently execute</param>
+        /// <param name="nextInst">Nest instruction to check for branch</param>
         /// <returns>Value to store in sRegister</returns>
-        public static void COMP(Instruction pipeInts)
+        public static void COMP(Instruction pipeInts, string nextInst)
         {
-            if (guiForm.getReg(pipeInts.p1Register) < guiForm.getReg(pipeInts.p2Register))
+            if (nextInst.Contains("BR"))
+            {
+                switch (nextInst)
+                {
+                    case "BREQ":
+                        if(guiForm.getReg(pipeInts.p1Register) == guiForm.getReg(pipeInts.p2Register))
+                        {
+                            guiForm.updateRegister("R1", 1);
+                        }
+
+                        else
+                        {
+                            guiForm.updateRegister("R1", 0);
+                        }
+                        break;
+
+                    case "BRLT":
+                        if(guiForm.getReg(pipeInts.p1Register) < guiForm.getReg(pipeInts.p2Register))
+                        {
+                            guiForm.updateRegister("R1", 1);
+                        }
+
+                        else
+                        {
+                            guiForm.updateRegister("R1", 0);
+                        }
+                        break;
+
+                    case "BRGT":
+                        if(guiForm.getReg(pipeInts.p1Register) > guiForm.getReg(pipeInts.p2Register))
+                        {
+                            guiForm.updateRegister("R1", 1);
+                        }
+
+                        else
+                        {
+                            guiForm.updateRegister("R1", 0);
+                        }
+                        break;
+                }
+            }
+
+            /*if (guiForm.getReg(pipeInts.p1Register) < guiForm.getReg(pipeInts.p2Register))
             {
                 guiForm.updateRegister(pipeInts.SRegister, -1);  //Return -1 if p1Register less than p2Register
                 guiForm.updateRegister("R1", 0);    //De-activates Z (Zero) flag if operands are not equal
@@ -1412,7 +1455,7 @@ namespace Team4_Project4
             {
                 guiForm.updateRegister(pipeInts.SRegister, 1);   //Return 1 if p1Register more than p2Register
                 guiForm.updateRegister("R1", 0);    //De-activates Z (Zero) flag if operands are not equal
-            }
+            }*/
 
         }//end COMP()
         #endregion
