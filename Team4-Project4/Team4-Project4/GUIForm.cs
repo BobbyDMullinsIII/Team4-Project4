@@ -376,7 +376,7 @@ namespace Team4_Project4
                 {
                     if (instructions[i].Contains(":"))
                     {
-                        i++;
+                        i += 2;
                     }
 
                     else
