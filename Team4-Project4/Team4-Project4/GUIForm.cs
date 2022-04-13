@@ -1981,6 +1981,9 @@ namespace Team4_Project4
             executeStallTextbox.Text = "0";
             storeStallTextbox.Text = "0";
 
+            //Reset Memory textbox
+            memOutputText.Text = "";
+
             //Re-enables Assembly textbox and Start Simulation buttons
             assemblyTextBox.Enabled = true;
             startDynamicButton.Enabled = true;
