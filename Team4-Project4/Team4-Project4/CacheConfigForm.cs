@@ -103,7 +103,7 @@ namespace Team4_Project4
         }
         #endregion
 
-
+        //Event handlers to prevent user from typing inside boxes
         #region KeyPress Event Handlers
         /// <summary>
         /// Event handler to prevent text from being types into entriesComboBox
