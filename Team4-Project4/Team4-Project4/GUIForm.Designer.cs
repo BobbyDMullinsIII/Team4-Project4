@@ -138,17 +138,18 @@
             this.startStaticButton = new System.Windows.Forms.Button();
             this.executeLabel = new System.Windows.Forms.Label();
             this.outputPanel = new System.Windows.Forms.Panel();
-            this.memSlider = new System.Windows.Forms.TrackBar();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.memoryOutput = new System.Windows.Forms.TabPage();
             this.memOutputText = new System.Windows.Forms.TextBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.memSlider = new System.Windows.Forms.TrackBar();
+            this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.assemblyPanel.SuspendLayout();
             this.simulationPanel.SuspendLayout();
             this.outputPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.memSlider)).BeginInit();
-            this.memoryOutput.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.memoryOutput.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.memSlider)).BeginInit();
             this.SuspendLayout();
             // 
             // MNAWLabel
@@ -157,11 +158,11 @@
             this.MNAWLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MNAWLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MNAWLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MNAWLabel.Location = new System.Drawing.Point(533, 35);
+            this.MNAWLabel.Location = new System.Drawing.Point(479, 35);
             this.MNAWLabel.Name = "MNAWLabel";
-            this.MNAWLabel.Size = new System.Drawing.Size(519, 33);
+            this.MNAWLabel.Size = new System.Drawing.Size(626, 33);
             this.MNAWLabel.TabIndex = 0;
-            this.MNAWLabel.Text = "MNAW Instruction Set Pipeline Simulation";
+            this.MNAWLabel.Text = "MNAW Instruction Set Pipeline Caching Simulation";
             // 
             // menuStrip1
             // 
@@ -177,6 +178,7 @@
             // 
             this.filesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.instructionsToolStripMenuItem,
+            this.configToolStripMenuItem,
             this.resetToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.filesToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
@@ -1444,16 +1446,15 @@
             this.outputPanel.Size = new System.Drawing.Size(312, 639);
             this.outputPanel.TabIndex = 17;
             // 
-            // memSlider
+            // tabControl1
             // 
-            this.memSlider.Location = new System.Drawing.Point(0, 716);
-            this.memSlider.Maximum = 64;
-            this.memSlider.Minimum = 1;
-            this.memSlider.Name = "memSlider";
-            this.memSlider.Size = new System.Drawing.Size(1584, 45);
-            this.memSlider.TabIndex = 18;
-            this.memSlider.Value = 1;
-            this.memSlider.Scroll += new System.EventHandler(this.memSlider_Scroll);
+            this.tabControl1.Controls.Add(this.memoryOutput);
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Location = new System.Drawing.Point(3, 3);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(312, 633);
+            this.tabControl1.TabIndex = 18;
             // 
             // memoryOutput
             // 
@@ -1478,15 +1479,23 @@
             this.memOutputText.Size = new System.Drawing.Size(302, 608);
             this.memOutputText.TabIndex = 0;
             // 
-            // tabControl1
+            // memSlider
             // 
-            this.tabControl1.Controls.Add(this.memoryOutput);
-            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(3, 3);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(312, 633);
-            this.tabControl1.TabIndex = 18;
+            this.memSlider.Location = new System.Drawing.Point(0, 716);
+            this.memSlider.Maximum = 64;
+            this.memSlider.Minimum = 1;
+            this.memSlider.Name = "memSlider";
+            this.memSlider.Size = new System.Drawing.Size(1584, 45);
+            this.memSlider.TabIndex = 18;
+            this.memSlider.Value = 1;
+            this.memSlider.Scroll += new System.EventHandler(this.memSlider_Scroll);
+            // 
+            // configToolStripMenuItem
+            // 
+            this.configToolStripMenuItem.Name = "configToolStripMenuItem";
+            this.configToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.configToolStripMenuItem.Text = "Config";
+            this.configToolStripMenuItem.Click += new System.EventHandler(this.configToolStripMenuItem_Click);
             // 
             // GUIForm
             // 
@@ -1505,7 +1514,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "GUIForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Pipeline Simulation";
+            this.Text = "Pipeline Caching Simulation";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.assemblyPanel.ResumeLayout(false);
@@ -1513,10 +1522,10 @@
             this.simulationPanel.ResumeLayout(false);
             this.simulationPanel.PerformLayout();
             this.outputPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.memSlider)).EndInit();
+            this.tabControl1.ResumeLayout(false);
             this.memoryOutput.ResumeLayout(false);
             this.memoryOutput.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.memSlider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1638,6 +1647,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage memoryOutput;
         private System.Windows.Forms.TextBox memOutputText;
+        private System.Windows.Forms.ToolStripMenuItem configToolStripMenuItem;
     }
 }
 

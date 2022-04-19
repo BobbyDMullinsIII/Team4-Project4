@@ -1018,7 +1018,7 @@ namespace Team4_Project4
                     break;
 
                 case string n when (n == "COMP"):
-                    COMP(pipeInts);
+                    //COMP(pipeInts);
                     break;
 
                 case string n when (n == "ANDD"):

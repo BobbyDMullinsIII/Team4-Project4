@@ -141,6 +141,16 @@ namespace Team4_Project4
         int intCounter = 0;
         int fCounter = 0;
 
+        //==Cache Variables==//
+        //============================================================//
+        //Set associativity of cache
+        public CacheType cacheType = CacheType.FOURWAY;
+
+        public int hitCycles = 1;      //Cycles for cache hit
+        public int missCycles = 50;    //Cycles for cache miss
+        public int cacheEntries = 8;   //Number of entries on cache
+        public int cacheLineSize = 8;  //Line word size of cache
+
         //GUIForm Constructor
         #region GUIForm Constructor
         /// <summary>
@@ -163,6 +173,16 @@ namespace Team4_Project4
         private void informationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ProgramController.openInformation();
+        }
+
+        /// <summary>
+        /// Opens CacheConfigForm to set cache options
+        /// </summary>
+        /// <param name="sender">object that raised the event (auto-generated, unused here)</param>
+        /// <param name="e">arguments for event (auto-generated, unused here)</param>
+        private void configToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new CacheConfigForm().Show();
         }
 
         /// <summary>
