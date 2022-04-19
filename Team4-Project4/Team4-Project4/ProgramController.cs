@@ -736,68 +736,93 @@ namespace Team4_Project4
                     break;
 
                 case string n when (n == "BRLT"):
-                    instLit += instructions[i];
-                    instLit += instructions[i + 1];
-
-                    stringLoc = instructions.IndexOf(instructions[i + 1] + ":");    //looks for jump point
-
-                    if (stringLoc == -1)
+                    if (guiForm.getReg("R0") == 1)
                     {
-                        //error
+                        instLit += instructions[i];
+                        instLit += instructions[i + 1];
+
+                        stringLoc = instructions.IndexOf(instructions[i + 1] + ":");    //looks for jump point
+
+                        if (stringLoc == -1)
+                        {
+                            //error
+                        }
+                        else
+                        {
+                            Instruction BRLT = new Instruction(progCount += 4, 1, 1, 1, 1, instructions[i + 1], instLit);
+                            pipeInts.Add(BRLT);
+                            i = stringLoc + 2;          //set jump point as next instruction
+                        }
+
+                        (pipeInts, progCount, i, stopF) = ProgramController.fetch(instructions, pipeInts, progCount, i);
+                        pipeInts.RemoveAt(0);
                     }
+
                     else
                     {
-                        Instruction BRLT = new Instruction(progCount += 4, 1, 1, 1, 1, instructions[i + 1], instLit);
-                        pipeInts.Add(BRLT);
-                        i = stringLoc + 2;          //set jump point as next instruction
+                        i += 3;
+                        (pipeInts, progCount, i, stopF) = ProgramController.fetch(instructions, pipeInts, progCount, i);
                     }
-
-                    (pipeInts, progCount, i, stopF) = ProgramController.fetch(instructions, pipeInts, progCount, i);
-                    pipeInts.RemoveAt(0);
-
                     break;
 
                 case string n when (n == "BRGT"):
-                    instLit += instructions[i];
-                    instLit += instructions[i + 1];
-
-                    stringLoc = instructions.IndexOf(instructions[i + 1] + ":");    //looks for jump point
-
-                    if (stringLoc == -1)
+                    if (guiForm.getReg("R0") == 1)
                     {
-                        //error
+                        instLit += instructions[i];
+                        instLit += instructions[i + 1];
+
+                        stringLoc = instructions.IndexOf(instructions[i + 1] + ":");    //looks for jump point
+
+                        if (stringLoc == -1)
+                        {
+                            //error
+                        }
+                        else
+                        {
+                            Instruction BRGT = new Instruction(progCount += 4, 1, 1, 1, 1, instructions[i + 1], instLit);
+                            pipeInts.Add(BRGT);
+                            i = stringLoc + 2;          //set jump point as next instruction
+                        }
+
+                        (pipeInts, progCount, i, stopF) = ProgramController.fetch(instructions, pipeInts, progCount, i);
+                        pipeInts.RemoveAt(0);
                     }
+
                     else
                     {
-                        Instruction BRGT = new Instruction(progCount += 4, 1, 1, 1, 1, instructions[i + 1], instLit);
-                        pipeInts.Add(BRGT);
-                        i = stringLoc + 2;          //set jump point as next instruction
+                        i += 3;
+                        (pipeInts, progCount, i, stopF) = ProgramController.fetch(instructions, pipeInts, progCount, i);
                     }
-
-                    (pipeInts, progCount, i, stopF) = ProgramController.fetch(instructions, pipeInts, progCount, i);
-                    pipeInts.RemoveAt(0);
-
                     break;
 
                 case string n when (n == "BREQ"):
-                    instLit += instructions[i];
-                    instLit += instructions[i + 1];
-
-                    stringLoc = instructions.IndexOf(instructions[i + 1] + ":");    //looks for jump point
-
-                    if (stringLoc == -1)
+                    Boolean test = false;
+                    if (guiForm.getReg("R0") == 1)
                     {
-                        //error
+                        instLit += instructions[i];
+                        instLit += instructions[i + 1];
+
+                        stringLoc = instructions.IndexOf(instructions[i + 1] + ":");    //looks for jump point
+
+                        if (stringLoc == -1)
+                        {
+                            //error
+                        }
+                        else
+                        {
+                            Instruction BREQ = new Instruction(progCount += 4, 1, 1, 1, 1, instructions[i + 1], instLit);
+                            pipeInts.Add(BREQ);
+                            i = stringLoc + 2;          //set jump point as next instruction
+                        }
+
+                        (pipeInts, progCount, i, stopF) = ProgramController.fetch(instructions, pipeInts, progCount, i);
+                        pipeInts.RemoveAt(0);
                     }
                     else
                     {
-                        Instruction BREQ = new Instruction(progCount += 4, 1, 1, 1, 1, instructions[i + 1], instLit);
-                        pipeInts.Add(BREQ);
-                        i = stringLoc + 2;          //set jump point as next instruction
+                        i += 3;
+                        (pipeInts, progCount, i, stopF) = ProgramController.fetch(instructions, pipeInts, progCount, i);
                     }
-
-                    (pipeInts, progCount, i, stopF) = ProgramController.fetch(instructions, pipeInts, progCount, i);
-                    pipeInts.RemoveAt(0);
 
                     break;
 
@@ -1390,24 +1415,67 @@ namespace Team4_Project4
         /// Method for COMP R,R,R instruction
         /// </summary>
         /// <param name="pipeInts">Instruction to currently execute</param>
+        /// <param name="nextInst">Nest instruction to check for branch</param>
         /// <returns>Value to store in sRegister</returns>
-        public static void COMP(Instruction pipeInts)
+        public static void COMP(Instruction pipeInts, string nextInst)
         {
-            if (guiForm.getReg(pipeInts.p1Register) < guiForm.getReg(pipeInts.p2Register))
+            if (nextInst.Contains("BR"))
+            {
+                switch (nextInst)
+                {
+                    case "BREQ":
+                        if(guiForm.getReg(pipeInts.p1Register) == guiForm.getReg(pipeInts.p2Register))
+                        {
+                            guiForm.updateRegister("R1", 1);
+                        }
+
+                        else
+                        {
+                            guiForm.updateRegister("R1", 0);
+                        }
+                        break;
+
+                    case "BRLT":
+                        if(guiForm.getReg(pipeInts.p1Register) < guiForm.getReg(pipeInts.p2Register))
+                        {
+                            guiForm.updateRegister("R1", 1);
+                        }
+
+                        else
+                        {
+                            guiForm.updateRegister("R1", 0);
+                        }
+                        break;
+
+                    case "BRGT":
+                        if(guiForm.getReg(pipeInts.p1Register) > guiForm.getReg(pipeInts.p2Register))
+                        {
+                            guiForm.updateRegister("R1", 1);
+                        }
+
+                        else
+                        {
+                            guiForm.updateRegister("R1", 0);
+                        }
+                        break;
+                }
+            }
+
+            /*if (guiForm.getReg(pipeInts.p1Register) < guiForm.getReg(pipeInts.p2Register))
             {
                 guiForm.updateRegister(pipeInts.SRegister, -1);  //Return -1 if p1Register less than p2Register
-                guiForm.updateRegister("R0", 0);    //De-activates Z (Zero) flag if operands are not equal
+                guiForm.updateRegister("R1", 0);    //De-activates Z (Zero) flag if operands are not equal
             }
             else if (guiForm.getReg(pipeInts.p1Register) == guiForm.getReg(pipeInts.p2Register))
             {
                 guiForm.updateRegister(pipeInts.SRegister, 0);   //Return 0 if p1Register equal to p2Register
-                guiForm.updateRegister("R0", 1);    //Activates Z (Zero) flag if operands are equal
+                guiForm.updateRegister("R1", 1);    //Activates Z (Zero) flag if operands are equal
             }
             else
             {
                 guiForm.updateRegister(pipeInts.SRegister, 1);   //Return 1 if p1Register more than p2Register
-                guiForm.updateRegister("R0", 0);    //De-activates Z (Zero) flag if operands are not equal
-            }
+                guiForm.updateRegister("R1", 0);    //De-activates Z (Zero) flag if operands are not equal
+            }*/
 
         }//end COMP()
         #endregion
