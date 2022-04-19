@@ -974,60 +974,80 @@ namespace Team4_Project4
             switch ($"{pipeInts.InstLit[0]}{pipeInts.InstLit[1]}{pipeInts.InstLit[2]}{pipeInts.InstLit[3]}")
             {
                 case string n when (n == "LDRE"):
-                    if (pipeInts.InstLit[7] == 'R')
+                    if (pipeInts.p1Register[0] == 'R')
                     {
                         LDRER(pipeInts);
                     }
-                    else if (pipeInts.InstLit[7] == 'R')
-                    { }
+                    else if (pipeInts.p1Register[0] == '#')
+                    {
+                        LDREI(pipeInts);
+                    }
                     else
-                    { }
+                    {
+                        LDREM(pipeInts);
+                    }
                     break;
+
                 case string n when (n == "STRE"):
-
+                    STRE(pipeInts);
                     break;
+
                 case string n when (n == "COMP"):
-
+                    COMP(pipeInts);
                     break;
+
                 case string n when (n == "ANDD"):
-
+                    ANDD(pipeInts);
                     break;
+
                 case string n when (n == "OORR"):
-
+                    OORR(pipeInts);
                     break;
+
                 case string n when (n == "BRLT"):
 
                     break;
+
                 case string n when (n == "BRGT"):
 
                     break;
+
                 case string n when (n == "BREQ"):
 
                     break;
+
                 case string n when (n == "BRAN"):
 
                     break;
+
                 case string n when (n == "ADDI"):
 
                     break;
+
                 case string n when (n == "SUBT"):
 
                     break;
+
                 case string n when (n == "FADD"):
-
+                    FADD(pipeInts);
                     break;
+
                 case string n when (n == "FSUB"):
-
+                    FSUB(pipeInts);
                     break;
+
                 case string n when (n == "FMUL"):
-
+                    FMUL(pipeInts);
                     break;
+
                 case string n when (n == "FDIV"):
-
+                    FDIV(pipeInts);
                     break;
+
                 case string n when (n == "NOOP"):
 
                     break;
+
                 case string n when (n == "STOP"):
 
                     break;
@@ -1315,7 +1335,7 @@ namespace Team4_Project4
         /// <returns>Value to store in sRegister</returns>
         public static void LDREI(Instruction pipeInts)
         {
-            float ret = guiForm.getReg(pipeInts.p1Register);
+            float ret = float.Parse(pipeInts.p1Register.Remove(0, 1));
 
             guiForm.updateRegister(pipeInts.sRegister, ret);
 
