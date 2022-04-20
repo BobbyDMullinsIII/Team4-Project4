@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CacheConfigForm));
             this.cacheConfigLabel = new System.Windows.Forms.Label();
             this.hitCyclesNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.missCyclesNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -44,9 +45,9 @@
             this.missCycleslabel = new System.Windows.Forms.Label();
             this.cyclesLabel = new System.Windows.Forms.Label();
             this.configPanel = new System.Windows.Forms.Panel();
+            this.optionsLabel = new System.Windows.Forms.Label();
             this.lineSizeLabel = new System.Windows.Forms.Label();
             this.entriesLabel = new System.Windows.Forms.Label();
-            this.optionsLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.hitCyclesNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.missCyclesNumericUpDown)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -198,7 +199,7 @@
             // resetToolStripMenuItem
             // 
             this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
-            this.resetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.resetToolStripMenuItem.Text = "Reset";
             this.resetToolStripMenuItem.Click += new System.EventHandler(this.resetToolStripMenuItem_Click);
             // 
@@ -292,6 +293,19 @@
             this.configPanel.Size = new System.Drawing.Size(607, 294);
             this.configPanel.TabIndex = 127;
             // 
+            // optionsLabel
+            // 
+            this.optionsLabel.AutoSize = true;
+            this.optionsLabel.BackColor = System.Drawing.Color.Black;
+            this.optionsLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.optionsLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.optionsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.optionsLabel.Location = new System.Drawing.Point(461, 89);
+            this.optionsLabel.Name = "optionsLabel";
+            this.optionsLabel.Size = new System.Drawing.Size(82, 27);
+            this.optionsLabel.TabIndex = 130;
+            this.optionsLabel.Text = "Options";
+            // 
             // lineSizeLabel
             // 
             this.lineSizeLabel.AutoSize = true;
@@ -318,19 +332,6 @@
             this.entriesLabel.TabIndex = 128;
             this.entriesLabel.Text = "Cache Entries";
             // 
-            // optionsLabel
-            // 
-            this.optionsLabel.AutoSize = true;
-            this.optionsLabel.BackColor = System.Drawing.Color.Black;
-            this.optionsLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.optionsLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.optionsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.optionsLabel.Location = new System.Drawing.Point(461, 89);
-            this.optionsLabel.Name = "optionsLabel";
-            this.optionsLabel.Size = new System.Drawing.Size(82, 27);
-            this.optionsLabel.TabIndex = 130;
-            this.optionsLabel.Text = "Options";
-            // 
             // CacheConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -344,6 +345,7 @@
             this.Controls.Add(this.configPanel);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "CacheConfigForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
