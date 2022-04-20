@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GUIForm));
             this.MNAWLabel = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.filesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.instructionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.assemblyPanel = new System.Windows.Forms.Panel();
@@ -142,7 +144,6 @@
             this.memoryOutput = new System.Windows.Forms.TabPage();
             this.memOutputText = new System.Windows.Forms.TextBox();
             this.memSlider = new System.Windows.Forms.TrackBar();
-            this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.assemblyPanel.SuspendLayout();
             this.simulationPanel.SuspendLayout();
@@ -192,6 +193,13 @@
             this.instructionsToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.instructionsToolStripMenuItem.Text = "Information";
             this.instructionsToolStripMenuItem.Click += new System.EventHandler(this.informationToolStripMenuItem_Click);
+            // 
+            // configToolStripMenuItem
+            // 
+            this.configToolStripMenuItem.Name = "configToolStripMenuItem";
+            this.configToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.configToolStripMenuItem.Text = "Config";
+            this.configToolStripMenuItem.Click += new System.EventHandler(this.configToolStripMenuItem_Click);
             // 
             // resetToolStripMenuItem
             // 
@@ -547,6 +555,7 @@
             this.trueDependenceTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.trueDependenceTextBox.Location = new System.Drawing.Point(836, 114);
             this.trueDependenceTextBox.Name = "trueDependenceTextBox";
+            this.trueDependenceTextBox.ReadOnly = true;
             this.trueDependenceTextBox.Size = new System.Drawing.Size(100, 26);
             this.trueDependenceTextBox.TabIndex = 115;
             this.trueDependenceTextBox.Text = "0";
@@ -556,6 +565,7 @@
             this.resStationTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resStationTextBox.Location = new System.Drawing.Point(836, 62);
             this.resStationTextBox.Name = "resStationTextBox";
+            this.resStationTextBox.ReadOnly = true;
             this.resStationTextBox.Size = new System.Drawing.Size(100, 26);
             this.resStationTextBox.TabIndex = 114;
             this.resStationTextBox.Text = "0";
@@ -565,6 +575,7 @@
             this.memConflictTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.memConflictTextBox.Location = new System.Drawing.Point(836, 88);
             this.memConflictTextBox.Name = "memConflictTextBox";
+            this.memConflictTextBox.ReadOnly = true;
             this.memConflictTextBox.Size = new System.Drawing.Size(100, 26);
             this.memConflictTextBox.TabIndex = 113;
             this.memConflictTextBox.Text = "0";
@@ -574,6 +585,7 @@
             this.reorderBufferTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reorderBufferTextBox.Location = new System.Drawing.Point(836, 36);
             this.reorderBufferTextBox.Name = "reorderBufferTextBox";
+            this.reorderBufferTextBox.ReadOnly = true;
             this.reorderBufferTextBox.Size = new System.Drawing.Size(100, 26);
             this.reorderBufferTextBox.TabIndex = 112;
             this.reorderBufferTextBox.Text = "0";
@@ -937,6 +949,7 @@
             this.f15TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.f15TextBox.Location = new System.Drawing.Point(438, 602);
             this.f15TextBox.Name = "f15TextBox";
+            this.f15TextBox.ReadOnly = true;
             this.f15TextBox.Size = new System.Drawing.Size(100, 26);
             this.f15TextBox.TabIndex = 77;
             this.f15TextBox.Text = "0.0";
@@ -946,6 +959,7 @@
             this.f14TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.f14TextBox.Location = new System.Drawing.Point(438, 576);
             this.f14TextBox.Name = "f14TextBox";
+            this.f14TextBox.ReadOnly = true;
             this.f14TextBox.Size = new System.Drawing.Size(100, 26);
             this.f14TextBox.TabIndex = 76;
             this.f14TextBox.Text = "0.0";
@@ -955,6 +969,7 @@
             this.f13TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.f13TextBox.Location = new System.Drawing.Point(438, 550);
             this.f13TextBox.Name = "f13TextBox";
+            this.f13TextBox.ReadOnly = true;
             this.f13TextBox.Size = new System.Drawing.Size(100, 26);
             this.f13TextBox.TabIndex = 75;
             this.f13TextBox.Text = "0.0";
@@ -964,6 +979,7 @@
             this.f12TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.f12TextBox.Location = new System.Drawing.Point(438, 524);
             this.f12TextBox.Name = "f12TextBox";
+            this.f12TextBox.ReadOnly = true;
             this.f12TextBox.Size = new System.Drawing.Size(100, 26);
             this.f12TextBox.TabIndex = 74;
             this.f12TextBox.Text = "0.0";
@@ -973,6 +989,7 @@
             this.r11TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.r11TextBox.Location = new System.Drawing.Point(327, 602);
             this.r11TextBox.Name = "r11TextBox";
+            this.r11TextBox.ReadOnly = true;
             this.r11TextBox.Size = new System.Drawing.Size(60, 26);
             this.r11TextBox.TabIndex = 73;
             this.r11TextBox.Text = "0";
@@ -982,6 +999,7 @@
             this.r10TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.r10TextBox.Location = new System.Drawing.Point(327, 576);
             this.r10TextBox.Name = "r10TextBox";
+            this.r10TextBox.ReadOnly = true;
             this.r10TextBox.Size = new System.Drawing.Size(60, 26);
             this.r10TextBox.TabIndex = 72;
             this.r10TextBox.Text = "0";
@@ -991,6 +1009,7 @@
             this.r9TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.r9TextBox.Location = new System.Drawing.Point(327, 550);
             this.r9TextBox.Name = "r9TextBox";
+            this.r9TextBox.ReadOnly = true;
             this.r9TextBox.Size = new System.Drawing.Size(60, 26);
             this.r9TextBox.TabIndex = 71;
             this.r9TextBox.Text = "0";
@@ -1000,6 +1019,7 @@
             this.r8TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.r8TextBox.Location = new System.Drawing.Point(327, 524);
             this.r8TextBox.Name = "r8TextBox";
+            this.r8TextBox.ReadOnly = true;
             this.r8TextBox.Size = new System.Drawing.Size(60, 26);
             this.r8TextBox.TabIndex = 70;
             this.r8TextBox.Text = "0";
@@ -1009,6 +1029,7 @@
             this.r7TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.r7TextBox.Location = new System.Drawing.Point(214, 602);
             this.r7TextBox.Name = "r7TextBox";
+            this.r7TextBox.ReadOnly = true;
             this.r7TextBox.Size = new System.Drawing.Size(60, 26);
             this.r7TextBox.TabIndex = 69;
             this.r7TextBox.Text = "0";
@@ -1018,6 +1039,7 @@
             this.r6TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.r6TextBox.Location = new System.Drawing.Point(214, 576);
             this.r6TextBox.Name = "r6TextBox";
+            this.r6TextBox.ReadOnly = true;
             this.r6TextBox.Size = new System.Drawing.Size(60, 26);
             this.r6TextBox.TabIndex = 68;
             this.r6TextBox.Text = "0";
@@ -1027,6 +1049,7 @@
             this.r5TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.r5TextBox.Location = new System.Drawing.Point(214, 550);
             this.r5TextBox.Name = "r5TextBox";
+            this.r5TextBox.ReadOnly = true;
             this.r5TextBox.Size = new System.Drawing.Size(60, 26);
             this.r5TextBox.TabIndex = 67;
             this.r5TextBox.Text = "0";
@@ -1036,6 +1059,7 @@
             this.r4TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.r4TextBox.Location = new System.Drawing.Point(214, 524);
             this.r4TextBox.Name = "r4TextBox";
+            this.r4TextBox.ReadOnly = true;
             this.r4TextBox.Size = new System.Drawing.Size(60, 26);
             this.r4TextBox.TabIndex = 66;
             this.r4TextBox.Text = "0";
@@ -1045,6 +1069,7 @@
             this.r3TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.r3TextBox.Location = new System.Drawing.Point(102, 603);
             this.r3TextBox.Name = "r3TextBox";
+            this.r3TextBox.ReadOnly = true;
             this.r3TextBox.Size = new System.Drawing.Size(60, 26);
             this.r3TextBox.TabIndex = 65;
             this.r3TextBox.Text = "0";
@@ -1054,6 +1079,7 @@
             this.r2TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.r2TextBox.Location = new System.Drawing.Point(102, 577);
             this.r2TextBox.Name = "r2TextBox";
+            this.r2TextBox.ReadOnly = true;
             this.r2TextBox.Size = new System.Drawing.Size(60, 26);
             this.r2TextBox.TabIndex = 64;
             this.r2TextBox.Text = "0";
@@ -1063,6 +1089,7 @@
             this.r1TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.r1TextBox.Location = new System.Drawing.Point(102, 551);
             this.r1TextBox.Name = "r1TextBox";
+            this.r1TextBox.ReadOnly = true;
             this.r1TextBox.Size = new System.Drawing.Size(60, 26);
             this.r1TextBox.TabIndex = 63;
             this.r1TextBox.Text = "0";
@@ -1072,6 +1099,7 @@
             this.r0TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.r0TextBox.Location = new System.Drawing.Point(102, 525);
             this.r0TextBox.Name = "r0TextBox";
+            this.r0TextBox.ReadOnly = true;
             this.r0TextBox.Size = new System.Drawing.Size(60, 26);
             this.r0TextBox.TabIndex = 62;
             this.r0TextBox.Text = "0";
@@ -1249,6 +1277,7 @@
             this.storeStallTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.storeStallTextbox.Location = new System.Drawing.Point(836, 477);
             this.storeStallTextbox.Name = "storeStallTextbox";
+            this.storeStallTextbox.ReadOnly = true;
             this.storeStallTextbox.Size = new System.Drawing.Size(100, 26);
             this.storeStallTextbox.TabIndex = 47;
             this.storeStallTextbox.Text = "0";
@@ -1258,6 +1287,7 @@
             this.decodeStallTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.decodeStallTextbox.Location = new System.Drawing.Point(836, 425);
             this.decodeStallTextbox.Name = "decodeStallTextbox";
+            this.decodeStallTextbox.ReadOnly = true;
             this.decodeStallTextbox.Size = new System.Drawing.Size(100, 26);
             this.decodeStallTextbox.TabIndex = 46;
             this.decodeStallTextbox.Text = "0";
@@ -1267,6 +1297,7 @@
             this.executeStallTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.executeStallTextbox.Location = new System.Drawing.Point(836, 451);
             this.executeStallTextbox.Name = "executeStallTextbox";
+            this.executeStallTextbox.ReadOnly = true;
             this.executeStallTextbox.Size = new System.Drawing.Size(100, 26);
             this.executeStallTextbox.TabIndex = 45;
             this.executeStallTextbox.Text = "0";
@@ -1276,6 +1307,7 @@
             this.fetchStallTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fetchStallTextbox.Location = new System.Drawing.Point(836, 399);
             this.fetchStallTextbox.Name = "fetchStallTextbox";
+            this.fetchStallTextbox.ReadOnly = true;
             this.fetchStallTextbox.Size = new System.Drawing.Size(100, 26);
             this.fetchStallTextbox.TabIndex = 44;
             this.fetchStallTextbox.Text = "0";
@@ -1285,6 +1317,7 @@
             this.warTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.warTextBox.Location = new System.Drawing.Point(836, 313);
             this.warTextBox.Name = "warTextBox";
+            this.warTextBox.ReadOnly = true;
             this.warTextBox.Size = new System.Drawing.Size(100, 26);
             this.warTextBox.TabIndex = 43;
             this.warTextBox.Text = "0";
@@ -1294,6 +1327,7 @@
             this.wawTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.wawTextBox.Location = new System.Drawing.Point(836, 339);
             this.wawTextBox.Name = "wawTextBox";
+            this.wawTextBox.ReadOnly = true;
             this.wawTextBox.Size = new System.Drawing.Size(100, 26);
             this.wawTextBox.TabIndex = 42;
             this.wawTextBox.Text = "0";
@@ -1303,6 +1337,7 @@
             this.rawTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rawTextBox.Location = new System.Drawing.Point(836, 287);
             this.rawTextBox.Name = "rawTextBox";
+            this.rawTextBox.ReadOnly = true;
             this.rawTextBox.Size = new System.Drawing.Size(100, 26);
             this.rawTextBox.TabIndex = 41;
             this.rawTextBox.Text = "0";
@@ -1312,6 +1347,7 @@
             this.dataHTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataHTextBox.Location = new System.Drawing.Point(836, 199);
             this.dataHTextBox.Name = "dataHTextBox";
+            this.dataHTextBox.ReadOnly = true;
             this.dataHTextBox.Size = new System.Drawing.Size(100, 26);
             this.dataHTextBox.TabIndex = 40;
             this.dataHTextBox.Text = "0";
@@ -1321,6 +1357,7 @@
             this.controlHTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.controlHTextBox.Location = new System.Drawing.Point(836, 225);
             this.controlHTextBox.Name = "controlHTextBox";
+            this.controlHTextBox.ReadOnly = true;
             this.controlHTextBox.Size = new System.Drawing.Size(100, 26);
             this.controlHTextBox.TabIndex = 39;
             this.controlHTextBox.Text = "0";
@@ -1330,6 +1367,7 @@
             this.structHTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.structHTextBox.Location = new System.Drawing.Point(836, 173);
             this.structHTextBox.Name = "structHTextBox";
+            this.structHTextBox.ReadOnly = true;
             this.structHTextBox.Size = new System.Drawing.Size(100, 26);
             this.structHTextBox.TabIndex = 38;
             this.structHTextBox.Text = "0";
@@ -1339,6 +1377,7 @@
             this.counterTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.counterTextBox.Location = new System.Drawing.Point(595, 557);
             this.counterTextBox.Name = "counterTextBox";
+            this.counterTextBox.ReadOnly = true;
             this.counterTextBox.Size = new System.Drawing.Size(150, 68);
             this.counterTextBox.TabIndex = 37;
             this.counterTextBox.Text = "0";
@@ -1490,13 +1529,6 @@
             this.memSlider.Value = 1;
             this.memSlider.Scroll += new System.EventHandler(this.memSlider_Scroll);
             // 
-            // configToolStripMenuItem
-            // 
-            this.configToolStripMenuItem.Name = "configToolStripMenuItem";
-            this.configToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.configToolStripMenuItem.Text = "Config";
-            this.configToolStripMenuItem.Click += new System.EventHandler(this.configToolStripMenuItem_Click);
-            // 
             // GUIForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1511,6 +1543,7 @@
             this.Controls.Add(this.menuStrip1);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "GUIForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

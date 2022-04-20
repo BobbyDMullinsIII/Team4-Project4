@@ -121,7 +121,7 @@ namespace Team4_Project4
         bool rF1 = true;
         bool rF2 = true;
 
-        int i = 0;
+        int index = 0;
 
         //==Dynamic Pipeline Variables==//
         //============================================================//
@@ -401,14 +401,14 @@ namespace Team4_Project4
                 List<Instruction> fetchedIntructs = new List<Instruction>();
                 if (instructionQueue.Count < 9)
                 {
-                    if (instructions[i].Contains(":"))
+                    if (instructions[index].Contains(":"))
                     {
-                        i += 2;
+                        index += 2;
                     }
 
                     else
                     {
-                        (fetchedIntructs, regArray[0], i, stopF) = ProgramController.fetch(instructions, fetchedIntructs, (int)regArray[0], i);
+                        (fetchedIntructs, regArray[0], index, stopF) = ProgramController.fetch(instructions, fetchedIntructs, (int)regArray[0], index);
                         instructionQueue.Enqueue(fetchedIntructs[fetchedIntructs.Count - 1]);
                         if (stopF == 1)
                         {
@@ -456,7 +456,7 @@ namespace Team4_Project4
             }
 
             //Issue Phase
-            //Gets instruction pneumonic from instructionlit in instruction object
+            //Gets instruction pneumonic from instructions list in instruction object
             if (ifStop != true && instructionQueue.Count > 0)
             {
                 string name = $"{instructionQueue.Peek().InstLit[0]}{instructionQueue.Peek().InstLit[1]}{instructionQueue.Peek().InstLit[2]}{instructionQueue.Peek().InstLit[3]}";
@@ -2111,7 +2111,7 @@ namespace Team4_Project4
             rF1 = true;
             rF2 = true;
 
-            i = 0;
+            index = 0;
 
             //==Reset Dynamic Pipeline Variables==//
             //============================================================//

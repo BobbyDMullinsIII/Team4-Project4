@@ -950,7 +950,7 @@ namespace Team4_Project4
                     break;
             }
 
-            return (pipeInts: pipeInts, progCount: progCount, i: i, stopF: stopF);
+            return (pipeInts, progCount, i, stopF);
 
         }//end fetch()
         #endregion
@@ -969,7 +969,7 @@ namespace Team4_Project4
                 param2 = pipeInts.P2Register;
             }
 
-            return (store: pipeInts.SRegister, param1: pipeInts.P1Register, param2: pipeInts.P2Register);
+            return (pipeInts.SRegister, pipeInts.P1Register, pipeInts.P2Register);
 
         }//end decode()
         #endregion
