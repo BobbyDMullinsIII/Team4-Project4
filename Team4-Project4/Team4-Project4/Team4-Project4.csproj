@@ -96,6 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Files\Information.txt" />
+    <Content Include="Files\number4.ico" />
     <Content Include="TestFiles\Examples.txt" />
     <Content Include="TestFiles\TestAssemblyCode.txt" />
     <Content Include="TestFiles\TextMachineCode.txt" />
