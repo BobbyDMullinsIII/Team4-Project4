@@ -26,8 +26,15 @@ namespace Team4_Project4
         //Conducting Static or Dynamic Simulation Bool
         bool isDynamic = false;
 
-        //CDB (Common Data Bus)
-        string name, Qj, Qk, Vj, Vk, A = string.Empty;
+        //==CDB (Common Data Bus)==//
+        //=========================//
+        string name = string.Empty; 
+        string Qj = string.Empty;
+        string Qk = string.Empty; 
+        string Vj = string.Empty;
+        string Vk = string.Empty;
+        string A = string.Empty;
+        //=========================//
 
 
         //==Counters==//
