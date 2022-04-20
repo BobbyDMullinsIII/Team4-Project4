@@ -1416,49 +1416,23 @@ namespace Team4_Project4
         /// <param name="pipeInts">Instruction to currently execute</param>
         /// <param name="nextInst">Nest instruction to check for branch</param>
         /// <returns>Value to store in sRegister</returns>
-        public static void COMP(Instruction pipeInts, string nextInst)
+        public static void COMP(Instruction pipeInts)
         {
-            if (nextInst.Contains("BR"))
-            {
-                switch (nextInst)
+            int temp = Convert.ToInt32(pipeInts.p1Register.Remove(0,1)) - Convert.ToInt32(pipeInts.p2Register.Remove(0,1));
+                switch (temp)
                 {
-                    case "BREQ":
-                        if(guiForm.getReg(pipeInts.p1Register) == guiForm.getReg(pipeInts.p2Register))
-                        {
-                            guiForm.updateRegister("R1", 1);
-                        }
+                    case int n when (n > 0):
+                    break;
 
-                        else
-                        {
-                            guiForm.updateRegister("R1", 0);
-                        }
+                    case int n when (n < 0):
+                    guiForm.updateRegister("R2", 1);
                         break;
 
-                    case "BRLT":
-                        if(guiForm.getReg(pipeInts.p1Register) < guiForm.getReg(pipeInts.p2Register))
-                        {
-                            guiForm.updateRegister("R1", 1);
-                        }
-
-                        else
-                        {
-                            guiForm.updateRegister("R1", 0);
-                        }
-                        break;
-
-                    case "BRGT":
-                        if(guiForm.getReg(pipeInts.p1Register) > guiForm.getReg(pipeInts.p2Register))
-                        {
-                            guiForm.updateRegister("R1", 1);
-                        }
-
-                        else
-                        {
-                            guiForm.updateRegister("R1", 0);
-                        }
-                        break;
+                    case int n when( n ==0):
+                    guiForm.updateRegister("R1", 1);
+                    break;
                 }
-            }
+            
 
             /*if (guiForm.getReg(pipeInts.p1Register) < guiForm.getReg(pipeInts.p2Register))
             {
@@ -1516,23 +1490,17 @@ namespace Team4_Project4
         /// <param name="reg1">First register to be compared</param>
         /// <param name="reg2">Second register to be compared</param>
         /// <returns>hether or not reg1 is greater than reg2</returns>
-        public static bool BRGT(int reg1, int reg2)
+        public static void BRGT(Instruction pipeInts)
         {
 
-            /* pass return reg from compare
-             * check value for 1
-             * if 1, get location from passed register
-             * 
-             * br loop
-             * a
-             * a
-             * a
-             * a
-             * loop:
-             * 
-             * file.
-             */
-            return reg1 > reg2;
+            if (guiForm.getReg("R1") == 0 && guiForm.getReg("R2") == 0)
+            {
+                guiForm.updateRegister("R0", float.Parse(pipeInts.sRegister.Remove(0,1)));
+            }
+            else
+            {
+               
+            }
 
         }//end BRGT()
         #endregion
@@ -1544,25 +1512,38 @@ namespace Team4_Project4
         /// <param name="reg1">First register to be compared</param>
         /// <param name="reg2">Second register to be compared</param>
         /// <returns>Whether or not reg1 is less than reg2</returns>
-        public static bool BRLT(int reg1, int reg2)
+        public static void BRLT(Instruction pipeInts)
         {
-            return reg1 < reg2;
+            if (guiForm.getReg("R1") == 0 && guiForm.getReg("R2") == 1)
+            {
+                guiForm.updateRegister("R0", float.Parse(pipeInts.sRegister.Remove(0, 1)));
+            }
+            else
+            {
 
-        }//end BRLT()
-        #endregion
+            }//end BRLT()
+        }
+            #endregion
 
-        #region BREQ() Method
-        /// <summary>
-        /// Method for BREQ R,R instruction
-        /// </summary>
-        /// <param name="reg1">First register to be compared</param>
-        /// <param name="reg2">Second register to be compared</param>
-        /// <returns>Whether or not reg1 is equal to reg2</returns>
-        public static bool BREQ(int reg1, int reg2)
-        {
-            return reg1 == reg2;
+            #region BREQ() Method
+            /// <summary>
+            /// Method for BREQ R,R instruction
+            /// </summary>
+            /// <param name="reg1">First register to be compared</param>
+            /// <param name="reg2">Second register to be compared</param>
+            /// <returns>Whether or not reg1 is equal to reg2</returns>
+            public static void BREQ(Instruction pipeInts)
+            { 
+                if (guiForm.getReg("R1") == 1 && guiForm.getReg("R2") == 0)
+                {
+                    guiForm.updateRegister("R0", float.Parse(pipeInts.sRegister.Remove(0, 1)));
+                }
+                else
+                {
 
-        }//end BREQ()
+                }
+
+            }//end BREQ()
         #endregion
 
         #region BRAN() Method
@@ -1572,10 +1553,10 @@ namespace Team4_Project4
         /// <param name="reg1">First register to be compared</param>
         /// <param name="reg2">Second register to be compared</param>
         /// <returns>???</returns>
-        public static void BRAN(int reg1, int reg2)
+        public static void BRAN(Instruction pipeInts)
         {
             //NOT SURE WHAT TO PUT HERE (We may not need registers for this instruction in the first place)
-
+            guiForm.updateRegister("R0", float.Parse(pipeInts.sRegister.Remove(0, 1)));
         }//end BRAN()
         #endregion
 
