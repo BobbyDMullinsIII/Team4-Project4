@@ -796,7 +796,6 @@ namespace Team4_Project4
                     break;
 
                 case string n when (n == "BREQ"):
-                    Boolean test = false;
                     if (guiForm.getReg("R0") == 1)
                     {
                         instLit += instructions[i];
