@@ -81,6 +81,7 @@
             0,
             0});
             this.hitCyclesNumericUpDown.Name = "hitCyclesNumericUpDown";
+            this.hitCyclesNumericUpDown.ReadOnly = true;
             this.hitCyclesNumericUpDown.Size = new System.Drawing.Size(70, 32);
             this.hitCyclesNumericUpDown.TabIndex = 113;
             this.hitCyclesNumericUpDown.Value = new decimal(new int[] {
@@ -110,6 +111,7 @@
             0,
             0});
             this.missCyclesNumericUpDown.Name = "missCyclesNumericUpDown";
+            this.missCyclesNumericUpDown.ReadOnly = true;
             this.missCyclesNumericUpDown.Size = new System.Drawing.Size(70, 32);
             this.missCyclesNumericUpDown.TabIndex = 114;
             this.missCyclesNumericUpDown.Value = new decimal(new int[] {
