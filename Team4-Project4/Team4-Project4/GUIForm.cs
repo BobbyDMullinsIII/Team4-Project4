@@ -2139,5 +2139,7 @@ namespace Team4_Project4
 
         }//end resetAllVariables()
         #endregion
-    }
-}
+
+    }//end GUIForm class
+
+}//end Team4_Project4 namespace
