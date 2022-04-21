@@ -28,9 +28,9 @@ namespace Team4_Project4
 
         //==CDB (Common Data Bus)==//
         //=========================//
-        string name = string.Empty; 
+        string name = string.Empty;
         string Qj = string.Empty;
-        string Qk = string.Empty; 
+        string Qk = string.Empty;
         string Vj = string.Empty;
         string Vk = string.Empty;
         string A = string.Empty;
@@ -1649,7 +1649,7 @@ namespace Team4_Project4
             switch (sliderValue)
             {
                 case 1:
-                    memOutputText.Text = returnMemoryBetweenValues(0,1023);
+                    memOutputText.Text = returnMemoryBetweenValues(0, 1023);
                     break;
 
                 case 2:

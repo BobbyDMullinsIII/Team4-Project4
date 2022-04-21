@@ -1418,21 +1418,21 @@ namespace Team4_Project4
         /// <returns>Value to store in sRegister</returns>
         public static void COMP(Instruction pipeInts)
         {
-            int temp = Convert.ToInt32(pipeInts.p1Register.Remove(0,1)) - Convert.ToInt32(pipeInts.p2Register.Remove(0,1));
-                switch (temp)
-                {
-                    case int n when (n > 0):
+            int temp = Convert.ToInt32(pipeInts.p1Register.Remove(0, 1)) - Convert.ToInt32(pipeInts.p2Register.Remove(0, 1));
+            switch (temp)
+            {
+                case int n when (n > 0):
                     break;
 
-                    case int n when (n < 0):
+                case int n when (n < 0):
                     guiForm.updateRegister("R2", 1);
-                        break;
+                    break;
 
-                    case int n when( n ==0):
+                case int n when (n == 0):
                     guiForm.updateRegister("R1", 1);
                     break;
-                }
-            
+            }
+
 
             /*if (guiForm.getReg(pipeInts.p1Register) < guiForm.getReg(pipeInts.p2Register))
             {
@@ -1495,11 +1495,11 @@ namespace Team4_Project4
 
             if (guiForm.getReg("R1") == 0 && guiForm.getReg("R2") == 0)
             {
-                guiForm.updateRegister("R0", float.Parse(pipeInts.sRegister.Remove(0,1)));
+                guiForm.updateRegister("R0", float.Parse(pipeInts.sRegister.Remove(0, 1)));
             }
             else
             {
-               
+
             }
 
         }//end BRGT()
@@ -1523,27 +1523,27 @@ namespace Team4_Project4
 
             }//end BRLT()
         }
-            #endregion
+        #endregion
 
-            #region BREQ() Method
-            /// <summary>
-            /// Method for BREQ R,R instruction
-            /// </summary>
-            /// <param name="reg1">First register to be compared</param>
-            /// <param name="reg2">Second register to be compared</param>
-            /// <returns>Whether or not reg1 is equal to reg2</returns>
-            public static void BREQ(Instruction pipeInts)
-            { 
-                if (guiForm.getReg("R1") == 1 && guiForm.getReg("R2") == 0)
-                {
-                    guiForm.updateRegister("R0", float.Parse(pipeInts.sRegister.Remove(0, 1)));
-                }
-                else
-                {
+        #region BREQ() Method
+        /// <summary>
+        /// Method for BREQ R,R instruction
+        /// </summary>
+        /// <param name="reg1">First register to be compared</param>
+        /// <param name="reg2">Second register to be compared</param>
+        /// <returns>Whether or not reg1 is equal to reg2</returns>
+        public static void BREQ(Instruction pipeInts)
+        {
+            if (guiForm.getReg("R1") == 1 && guiForm.getReg("R2") == 0)
+            {
+                guiForm.updateRegister("R0", float.Parse(pipeInts.sRegister.Remove(0, 1)));
+            }
+            else
+            {
 
-                }
+            }
 
-            }//end BREQ()
+        }//end BREQ()
         #endregion
 
         #region BRAN() Method
