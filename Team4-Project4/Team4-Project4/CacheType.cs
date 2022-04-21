@@ -23,5 +23,7 @@ namespace Team4_Project4
     {
         TWOWAY,   //2-Way Set Associative
         FOURWAY   //4-Way Set Associative
-    }
-}
+
+    }//end CacheType enum
+
+}//end Team4_Project4 namespace

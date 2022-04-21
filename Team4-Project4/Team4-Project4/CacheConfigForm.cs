@@ -145,5 +145,7 @@ namespace Team4_Project4
             e.Handled = true;
         }
         #endregion
-    }
-}
+
+    }//end CacheConfigForm class
+
+}//end Team4_Project4 namespace
