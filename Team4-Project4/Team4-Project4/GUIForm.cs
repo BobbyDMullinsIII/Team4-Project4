@@ -169,24 +169,41 @@ namespace Team4_Project4
         }
         #endregion
 
+        //Cache Methods
         #region InitializeCache() Method
+        /// <summary>
+        /// Method for initializing cache
+        /// </summary>
         public void initializeCache()
         {
             int sets = cacheEntries / (cacheLineSize * cacheType);
             Math.Log(cacheLineSize, 2);
             Cache = new String[sets + 1, (cacheType * 2) + 3];
+
             for (int i = 0; i < (cacheType * 2) + 3; i++)
             {
                 if (i == 0)
+                {
                     Cache[0, i] = "            ";
+                }
+
                 if (i == 1)
+                {
                     Cache[0, i] = " LRU(LRU)";
+                }
+
                 if (i == 2)
+                {
                     Cache[0, i] = " LRU";
+                }
                 else if (i != 0 && i != 1 && i != 2 && (i % 2) == 0)
+                {
                     Cache[0, i] = " Tag ";
+                }
                 else if (i != 0 && i != 1 && i != 2 && (i % 2) == 1)
-                    Cache[0,i] = " V ";
+                {
+                    Cache[0, i] = " V ";
+                }
             }
             for (int i = 1; i < sets + 1; i++)
             {
@@ -197,24 +214,34 @@ namespace Team4_Project4
                         Cache[i, j] = $"set {i}:";
                     }
                     if (j == 1)
-                        Cache[i,j] = "                      ";
+                    {
+                        Cache[i, j] = "                      ";
+                    }
                     if (j == 2)
+                    {
                         Cache[i, j] = "             ";
+                    }
                     else if (j != 0 && j != 1 && j != 2 && (j % 2) == 0)
+                    {
                         Cache[i, j] = "             ";
+                    }
                     else if (j != 0 && j != 1 && j != 2 && (j % 2) == 1)
+                    {
                         Cache[i, j] = "0";
+                    }
                 }
             }
-        }
+
+        }//end initializeCache()
         #endregion
+
         #region displayCache() Method
         /// <summary>
-        /// Method for storing memory into single string for a textbox
+        /// Method for storing cache into single string for a cache textbox
         /// </summary>
         public void displayCache()
         {
-            //Store all memory into single string
+            //Store cache into single string
             int sets = cacheEntries / (cacheLineSize * cacheType);
             StringBuilder cacheBuild = new StringBuilder();
             for (int k = 0; k < sets + 1; k++)
@@ -233,11 +260,13 @@ namespace Team4_Project4
                 }
             }
 
-            //Output memString to Textbox
+            //Output cacheBuild to Textbox
             cacheText.Text = Convert.ToString(cacheBuild);
 
-        }//end storeMemoryInString()
+        }//end displayCache()
         #endregion
+
+
         //GUIForm Button Methods
         #region Dropdown Menu Buttons
         /// <summary>
@@ -1510,6 +1539,7 @@ namespace Team4_Project4
             return Memory[row, col];
         }
         #endregion
+
         #region storeByte() Method
         public void storeByte(string mem, string val)
         {
@@ -1521,6 +1551,8 @@ namespace Team4_Project4
             Memory[row, col] = val;
         }
         #endregion
+
+
         //Memory Methods
         #region instantiateMemory() Method
         /// <summary>
