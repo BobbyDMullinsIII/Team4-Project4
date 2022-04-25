@@ -232,7 +232,7 @@
             this.lineSizeComboBox.Name = "lineSizeComboBox";
             this.lineSizeComboBox.Size = new System.Drawing.Size(121, 33);
             this.lineSizeComboBox.TabIndex = 123;
-            this.lineSizeComboBox.Text = "8";
+            this.lineSizeComboBox.Text = "4";
             this.lineSizeComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.lineSizeComboBox_KeyPress);
             // 
             // hitCyclesLabel
