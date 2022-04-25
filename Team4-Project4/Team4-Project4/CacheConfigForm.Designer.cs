@@ -125,11 +125,13 @@
             // 
             this.twoSetAssocRadiobutton.AutoSize = true;
             this.twoSetAssocRadiobutton.BackColor = System.Drawing.Color.Black;
+            this.twoSetAssocRadiobutton.Checked = true;
             this.twoSetAssocRadiobutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.twoSetAssocRadiobutton.Location = new System.Drawing.Point(180, 3);
             this.twoSetAssocRadiobutton.Name = "twoSetAssocRadiobutton";
             this.twoSetAssocRadiobutton.Size = new System.Drawing.Size(249, 30);
             this.twoSetAssocRadiobutton.TabIndex = 115;
+            this.twoSetAssocRadiobutton.TabStop = true;
             this.twoSetAssocRadiobutton.Text = "2-Way Set Associative";
             this.twoSetAssocRadiobutton.UseVisualStyleBackColor = false;
             // 
@@ -137,13 +139,11 @@
             // 
             this.fourSetAssocRadiobutton.AutoSize = true;
             this.fourSetAssocRadiobutton.BackColor = System.Drawing.Color.Black;
-            this.fourSetAssocRadiobutton.Checked = true;
             this.fourSetAssocRadiobutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fourSetAssocRadiobutton.Location = new System.Drawing.Point(180, 39);
             this.fourSetAssocRadiobutton.Name = "fourSetAssocRadiobutton";
             this.fourSetAssocRadiobutton.Size = new System.Drawing.Size(249, 30);
             this.fourSetAssocRadiobutton.TabIndex = 116;
-            this.fourSetAssocRadiobutton.TabStop = true;
             this.fourSetAssocRadiobutton.Text = "4-Way Set Associative";
             this.fourSetAssocRadiobutton.UseVisualStyleBackColor = false;
             // 
