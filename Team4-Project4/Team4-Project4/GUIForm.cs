@@ -176,7 +176,7 @@ namespace Team4_Project4
         /// </summary>
         public void initializeCache()
         {
-            int sets = cacheEntries / (cacheLineSize * cacheType);
+            int sets = (cacheLineSize * cacheEntries) / (cacheLineSize * cacheType);
             Math.Log(cacheLineSize, 2);
             Cache = new String[sets + 1, (cacheType * 2) + 3];
 
@@ -242,7 +242,7 @@ namespace Team4_Project4
         public void displayCache()
         {
             //Store cache into single string
-            int sets = cacheEntries / (cacheLineSize * cacheType);
+            int sets = (cacheLineSize * cacheEntries) / (cacheLineSize * cacheType);
             StringBuilder cacheBuild = new StringBuilder();
             for (int k = 0; k < sets + 1; k++)
             {
