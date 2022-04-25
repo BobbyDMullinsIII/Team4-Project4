@@ -33,12 +33,12 @@ namespace Team4_Project4
             entriesComboBox.Text = Convert.ToString(ProgramController.guiForm.cacheEntries);
             lineSizeComboBox.Text = Convert.ToString(ProgramController.guiForm.cacheLineSize);
 
-            if (ProgramController.guiForm.cacheType == CacheType.TWOWAY)
+            if (ProgramController.guiForm.cacheType == 2)
             {
                 twoSetAssocRadiobutton.Checked = true;
                 fourSetAssocRadiobutton.Checked = false;
             }
-            else if (ProgramController.guiForm.cacheType == CacheType.FOURWAY)
+            else if (ProgramController.guiForm.cacheType == 4)
             {
                 twoSetAssocRadiobutton.Checked = false;
                 fourSetAssocRadiobutton.Checked = true;
@@ -74,11 +74,11 @@ namespace Team4_Project4
 
             if (twoSetAssocRadiobutton.Checked == true)
             {
-                ProgramController.guiForm.cacheType = CacheType.TWOWAY;
+                ProgramController.guiForm.cacheType = 2;
             }
             else if (fourSetAssocRadiobutton.Checked == true)
             {
-                ProgramController.guiForm.cacheType = CacheType.FOURWAY;
+                ProgramController.guiForm.cacheType = 4;
             }
         }
         #endregion

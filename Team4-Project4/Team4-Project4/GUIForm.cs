@@ -90,7 +90,7 @@ namespace Team4_Project4
         //==1MB Memory Array==//
         //============================================================//
         String[,] Memory = new String[65536, 17];
-
+        String[,] Cache; 
 
         //List of all assembly instructions
         List<string> instructions = new List<string>();
@@ -151,12 +151,12 @@ namespace Team4_Project4
         //==Cache Variables==//
         //============================================================//
         //Set associativity of cache
-        public CacheType cacheType = CacheType.FOURWAY;
 
+        public int cacheType=2;
         public int hitCycles = 1;      //Cycles for cache hit
         public int missCycles = 50;    //Cycles for cache miss
         public int cacheEntries = 8;   //Number of entries on cache
-        public int cacheLineSize = 8;  //Line word size of cache
+        public int cacheLineSize = 4;  //Line word size of cache
 
         //GUIForm Constructor
         #region GUIForm Constructor
@@ -169,7 +169,75 @@ namespace Team4_Project4
         }
         #endregion
 
+        #region InitializeCache() Method
+        public void initializeCache()
+        {
+            int sets = cacheEntries / (cacheLineSize * cacheType);
+            Math.Log(cacheLineSize, 2);
+            Cache = new String[sets + 1, (cacheType * 2) + 3];
+            for (int i = 0; i < (cacheType * 2) + 3; i++)
+            {
+                if (i == 0)
+                    Cache[0, i] = "            ";
+                if (i == 1)
+                    Cache[0, i] = " LRU(LRU)";
+                if (i == 2)
+                    Cache[0, i] = " LRU";
+                else if (i != 0 && i != 1 && i != 2 && (i % 2) == 0)
+                    Cache[0, i] = " Tag ";
+                else if (i != 0 && i != 1 && i != 2 && (i % 2) == 1)
+                    Cache[0,i] = " V ";
+            }
+            for (int i = 1; i < sets + 1; i++)
+            {
+                for (int j = 0; j < (cacheType * 2) + 3; j++)
+                {
+                    if (j == 0)
+                    {
+                        Cache[i, j] = $"set {i}:";
+                    }
+                    if (j == 1)
+                        Cache[i,j] = "                      ";
+                    if (j == 2)
+                        Cache[i, j] = "             ";
+                    else if (j != 0 && j != 1 && j != 2 && (j % 2) == 0)
+                        Cache[i, j] = "             ";
+                    else if (j != 0 && j != 1 && j != 2 && (j % 2) == 1)
+                        Cache[i, j] = "0";
+                }
+            }
+        }
+        #endregion
+        #region displayCache() Method
+        /// <summary>
+        /// Method for storing memory into single string for a textbox
+        /// </summary>
+        public void displayCache()
+        {
+            //Store all memory into single string
+            int sets = cacheEntries / (cacheLineSize * cacheType);
+            StringBuilder cacheBuild = new StringBuilder();
+            for (int k = 0; k < sets + 1; k++)
+            {
+                for (int j = 0; j < (cacheType * 2) + 3; j++)
+                {
+                    if (j == (cacheType * 2) + 2)
+                    {
+                        cacheBuild.Append(Cache[k, j]);
+                        cacheBuild.Append("\r\n");
+                    }
+                    else
+                    {
+                        cacheBuild.Append(Cache[k, j]);
+                    }
+                }
+            }
 
+            //Output memString to Textbox
+            cacheText.Text = Convert.ToString(cacheBuild);
+
+        }//end storeMemoryInString()
+        #endregion
         //GUIForm Button Methods
         #region Dropdown Menu Buttons
         /// <summary>
@@ -280,12 +348,13 @@ namespace Team4_Project4
 
             //Instantiate initial memory
             instantiateMemory();
-
+            initializeCache();
             //Display first 64th of memory to GUI
             displayMemoryInString64th(1);
 
             //Start dynamic pipeline simulation
             startSimulation();
+            displayCache();
         }
 
         /// <summary>
@@ -300,12 +369,13 @@ namespace Team4_Project4
 
             //Instantiate initial memory
             instantiateMemory();
-
+            initializeCache();
             //Display first 64th of memory to GUI
             displayMemoryInString64th(1);
 
             //Start static pipeline simulation
             startSimulation();
+            displayCache();
         }
 
         /// <summary>
@@ -1429,7 +1499,28 @@ namespace Team4_Project4
         }//end getReg()
         #endregion
 
-
+        #region getByte() Method
+        public string getByte(string mem)
+        {
+            string temp = mem;
+            string first = mem.Remove(4, 1);
+            string last = temp.Remove(0, 4);
+            int row = Convert.ToInt32(first, 16);
+            int col = Convert.ToInt32(last, 16);
+            return Memory[row, col];
+        }
+        #endregion
+        #region storeByte() Method
+        public void storeByte(string mem, string val)
+        {
+            string temp = mem;
+            string first = mem.Remove(4, 1);
+            string last = temp.Remove(0, 4);
+            int row = Convert.ToInt32(first, 16);
+            int col = Convert.ToInt32(last, 16);
+            Memory[row, col] = val;
+        }
+        #endregion
         //Memory Methods
         #region instantiateMemory() Method
         /// <summary>
@@ -1450,7 +1541,7 @@ namespace Team4_Project4
                     }
                     else
                     {
-                        Memory[i, j] = "0  ";
+                        Memory[i, j] = "00 ";
                     }
                 }
             }

@@ -140,16 +140,19 @@
             this.startStaticButton = new System.Windows.Forms.Button();
             this.executeLabel = new System.Windows.Forms.Label();
             this.outputPanel = new System.Windows.Forms.Panel();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabCache = new System.Windows.Forms.TabControl();
             this.memoryOutput = new System.Windows.Forms.TabPage();
             this.memOutputText = new System.Windows.Forms.TextBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.cacheText = new System.Windows.Forms.TextBox();
             this.memSlider = new System.Windows.Forms.TrackBar();
             this.menuStrip1.SuspendLayout();
             this.assemblyPanel.SuspendLayout();
             this.simulationPanel.SuspendLayout();
             this.outputPanel.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.tabCache.SuspendLayout();
             this.memoryOutput.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memSlider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -284,6 +287,7 @@
             this.assemblyTextBox.Location = new System.Drawing.Point(12, 37);
             this.assemblyTextBox.Multiline = true;
             this.assemblyTextBox.Name = "assemblyTextBox";
+            this.assemblyTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.assemblyTextBox.Size = new System.Drawing.Size(293, 527);
             this.assemblyTextBox.TabIndex = 6;
             this.assemblyTextBox.TextChanged += new System.EventHandler(this.assemblyTextBox_TextChanged);
@@ -1479,21 +1483,22 @@
             // outputPanel
             // 
             this.outputPanel.BackColor = System.Drawing.Color.Black;
-            this.outputPanel.Controls.Add(this.tabControl1);
+            this.outputPanel.Controls.Add(this.tabCache);
             this.outputPanel.Location = new System.Drawing.Point(1272, 80);
             this.outputPanel.Name = "outputPanel";
             this.outputPanel.Size = new System.Drawing.Size(312, 639);
             this.outputPanel.TabIndex = 17;
             // 
-            // tabControl1
+            // tabCache
             // 
-            this.tabControl1.Controls.Add(this.memoryOutput);
-            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(3, 3);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(312, 633);
-            this.tabControl1.TabIndex = 18;
+            this.tabCache.Controls.Add(this.memoryOutput);
+            this.tabCache.Controls.Add(this.tabPage1);
+            this.tabCache.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabCache.Location = new System.Drawing.Point(3, 3);
+            this.tabCache.Name = "tabCache";
+            this.tabCache.SelectedIndex = 0;
+            this.tabCache.Size = new System.Drawing.Size(312, 633);
+            this.tabCache.TabIndex = 18;
             // 
             // memoryOutput
             // 
@@ -1514,9 +1519,29 @@
             this.memOutputText.Multiline = true;
             this.memOutputText.Name = "memOutputText";
             this.memOutputText.ReadOnly = true;
-            this.memOutputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.memOutputText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.memOutputText.Size = new System.Drawing.Size(302, 608);
             this.memOutputText.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.cacheText);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(304, 604);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "Cache";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // cacheText
+            // 
+            this.cacheText.Location = new System.Drawing.Point(7, 9);
+            this.cacheText.Multiline = true;
+            this.cacheText.Name = "cacheText";
+            this.cacheText.ReadOnly = true;
+            this.cacheText.Size = new System.Drawing.Size(286, 587);
+            this.cacheText.TabIndex = 0;
             // 
             // memSlider
             // 
@@ -1555,9 +1580,11 @@
             this.simulationPanel.ResumeLayout(false);
             this.simulationPanel.PerformLayout();
             this.outputPanel.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
+            this.tabCache.ResumeLayout(false);
             this.memoryOutput.ResumeLayout(false);
             this.memoryOutput.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memSlider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1677,10 +1704,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox dynamicFExecTextBox;
         private System.Windows.Forms.TextBox dynamicLSExecTBox;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabCache;
         private System.Windows.Forms.TabPage memoryOutput;
         private System.Windows.Forms.TextBox memOutputText;
         private System.Windows.Forms.ToolStripMenuItem configToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TextBox cacheText;
     }
 }
 
