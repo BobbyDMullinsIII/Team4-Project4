@@ -169,6 +169,7 @@ namespace Team4_Project4
         }
         #endregion
 
+
         //Cache Methods
         #region InitializeCache() Method
         /// <summary>
@@ -493,7 +494,7 @@ namespace Team4_Project4
         {
             //Increase cycle counter by one
             incrementCycleCounter();
-            displayMemoryInString64th(1);
+            displayMemoryInString64th(memSlider.Value);
 
             //Create new list of currently fetched instructions and fetch instructions of queue count is less than 9
             if (stopFF != 1)
@@ -1533,28 +1534,42 @@ namespace Team4_Project4
         #endregion
 
         #region getByte() Method
+        /// <summary>
+        /// Method for getting byte from memory
+        /// </summary>
         public string getByte(string mem)
         { 
             string temp = mem;
+
             string first = mem.Remove(4, 1);
             string last = temp.Remove(0, 4);
+
             int row = Convert.ToInt32(first, 16);
             int col = Convert.ToInt32(last, 16)+1;
+
             return Memory[row, col];
-        }
+
+        }//end getByte()
         #endregion
 
         #region storeByte() Method
+        /// <summary>
+        /// Method for string byte in memory
+        /// </summary>
         public void storeByte(string mem, string val)
         {
 
             string temp = mem;
+
             string first = mem.Remove(4, 1);
             string last = temp.Remove(0, 4);
+
             int row = Convert.ToInt32(first, 16);
             int col = Convert.ToInt32(last, 16)+1;
+
             Memory[row, col] = $"{val} ";
-        }
+
+        }//end storebyte()
         #endregion
 
 
@@ -2137,10 +2152,12 @@ namespace Team4_Project4
             executeStallTextbox.Text = "0";
             storeStallTextbox.Text = "0";
 
-            //Reset Memory textbox
+            //Reset Memory and Cache textboxes
             memOutputText.Text = "";
+            cacheText.Text = "";
 
             //Re-enables Assembly textbox and Start Simulation buttons
+            assemblyTextBox.ReadOnly = false;
             assemblyTextBox.Enabled = true;
             startDynamicButton.Enabled = true;
             startStaticButton.Enabled = true;
