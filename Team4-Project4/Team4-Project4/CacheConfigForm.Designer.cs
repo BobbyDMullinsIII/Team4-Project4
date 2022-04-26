@@ -48,6 +48,7 @@
             this.optionsLabel = new System.Windows.Forms.Label();
             this.lineSizeLabel = new System.Windows.Forms.Label();
             this.entriesLabel = new System.Windows.Forms.Label();
+            this.directMapRadioButton = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.hitCyclesNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.missCyclesNumericUpDown)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -69,7 +70,7 @@
             // hitCyclesNumericUpDown
             // 
             this.hitCyclesNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hitCyclesNumericUpDown.Location = new System.Drawing.Point(143, 119);
+            this.hitCyclesNumericUpDown.Location = new System.Drawing.Point(146, 147);
             this.hitCyclesNumericUpDown.Maximum = new decimal(new int[] {
             5,
             0,
@@ -99,7 +100,7 @@
             0,
             0,
             0});
-            this.missCyclesNumericUpDown.Location = new System.Drawing.Point(143, 157);
+            this.missCyclesNumericUpDown.Location = new System.Drawing.Point(146, 185);
             this.missCyclesNumericUpDown.Maximum = new decimal(new int[] {
             500,
             0,
@@ -129,10 +130,9 @@
             this.twoSetAssocRadiobutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.twoSetAssocRadiobutton.Location = new System.Drawing.Point(180, 3);
             this.twoSetAssocRadiobutton.Name = "twoSetAssocRadiobutton";
-            this.twoSetAssocRadiobutton.Size = new System.Drawing.Size(249, 30);
+            this.twoSetAssocRadiobutton.Size = new System.Drawing.Size(250, 30);
             this.twoSetAssocRadiobutton.TabIndex = 115;
-            this.twoSetAssocRadiobutton.TabStop = true;
-            this.twoSetAssocRadiobutton.Text = "2-Way Set Associative";
+            this.twoSetAssocRadiobutton.Text = "2-Way Set-Associative";
             this.twoSetAssocRadiobutton.UseVisualStyleBackColor = false;
             // 
             // fourSetAssocRadiobutton
@@ -142,9 +142,9 @@
             this.fourSetAssocRadiobutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fourSetAssocRadiobutton.Location = new System.Drawing.Point(180, 39);
             this.fourSetAssocRadiobutton.Name = "fourSetAssocRadiobutton";
-            this.fourSetAssocRadiobutton.Size = new System.Drawing.Size(249, 30);
+            this.fourSetAssocRadiobutton.Size = new System.Drawing.Size(250, 30);
             this.fourSetAssocRadiobutton.TabIndex = 116;
-            this.fourSetAssocRadiobutton.Text = "4-Way Set Associative";
+            this.fourSetAssocRadiobutton.Text = "4-Way Set-Associative";
             this.fourSetAssocRadiobutton.UseVisualStyleBackColor = false;
             // 
             // closeButton
@@ -210,11 +210,10 @@
             this.entriesComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.entriesComboBox.FormattingEnabled = true;
             this.entriesComboBox.Items.AddRange(new object[] {
-            "2",
             "4",
             "8",
             "16"});
-            this.entriesComboBox.Location = new System.Drawing.Point(442, 119);
+            this.entriesComboBox.Location = new System.Drawing.Point(446, 142);
             this.entriesComboBox.Name = "entriesComboBox";
             this.entriesComboBox.Size = new System.Drawing.Size(121, 33);
             this.entriesComboBox.TabIndex = 122;
@@ -229,7 +228,7 @@
             "4",
             "8",
             "16"});
-            this.lineSizeComboBox.Location = new System.Drawing.Point(442, 162);
+            this.lineSizeComboBox.Location = new System.Drawing.Point(446, 185);
             this.lineSizeComboBox.Name = "lineSizeComboBox";
             this.lineSizeComboBox.Size = new System.Drawing.Size(121, 33);
             this.lineSizeComboBox.TabIndex = 123;
@@ -243,7 +242,7 @@
             this.hitCyclesLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.hitCyclesLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.hitCyclesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hitCyclesLabel.Location = new System.Drawing.Point(37, 119);
+            this.hitCyclesLabel.Location = new System.Drawing.Point(40, 147);
             this.hitCyclesLabel.Name = "hitCyclesLabel";
             this.hitCyclesLabel.Size = new System.Drawing.Size(100, 27);
             this.hitCyclesLabel.TabIndex = 124;
@@ -256,7 +255,7 @@
             this.missCycleslabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.missCycleslabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.missCycleslabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.missCycleslabel.Location = new System.Drawing.Point(19, 157);
+            this.missCycleslabel.Location = new System.Drawing.Point(22, 185);
             this.missCycleslabel.Name = "missCycleslabel";
             this.missCycleslabel.Size = new System.Drawing.Size(118, 27);
             this.missCycleslabel.TabIndex = 125;
@@ -269,7 +268,7 @@
             this.cyclesLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.cyclesLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cyclesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cyclesLabel.Location = new System.Drawing.Point(141, 89);
+            this.cyclesLabel.Location = new System.Drawing.Point(144, 117);
             this.cyclesLabel.Name = "cyclesLabel";
             this.cyclesLabel.Size = new System.Drawing.Size(74, 27);
             this.cyclesLabel.TabIndex = 126;
@@ -278,6 +277,7 @@
             // configPanel
             // 
             this.configPanel.BackColor = System.Drawing.Color.Black;
+            this.configPanel.Controls.Add(this.directMapRadioButton);
             this.configPanel.Controls.Add(this.optionsLabel);
             this.configPanel.Controls.Add(this.cyclesLabel);
             this.configPanel.Controls.Add(this.lineSizeLabel);
@@ -302,7 +302,7 @@
             this.optionsLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.optionsLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.optionsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.optionsLabel.Location = new System.Drawing.Point(461, 89);
+            this.optionsLabel.Location = new System.Drawing.Point(465, 112);
             this.optionsLabel.Name = "optionsLabel";
             this.optionsLabel.Size = new System.Drawing.Size(82, 27);
             this.optionsLabel.TabIndex = 130;
@@ -315,7 +315,7 @@
             this.lineSizeLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lineSizeLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lineSizeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lineSizeLabel.Location = new System.Drawing.Point(278, 162);
+            this.lineSizeLabel.Location = new System.Drawing.Point(282, 185);
             this.lineSizeLabel.Name = "lineSizeLabel";
             this.lineSizeLabel.Size = new System.Drawing.Size(158, 27);
             this.lineSizeLabel.TabIndex = 129;
@@ -328,11 +328,23 @@
             this.entriesLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.entriesLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.entriesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.entriesLabel.Location = new System.Drawing.Point(299, 119);
+            this.entriesLabel.Location = new System.Drawing.Point(303, 142);
             this.entriesLabel.Name = "entriesLabel";
             this.entriesLabel.Size = new System.Drawing.Size(137, 27);
             this.entriesLabel.TabIndex = 128;
             this.entriesLabel.Text = "Cache Entries";
+            // 
+            // directMapRadioButton
+            // 
+            this.directMapRadioButton.AutoSize = true;
+            this.directMapRadioButton.BackColor = System.Drawing.Color.Black;
+            this.directMapRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.directMapRadioButton.Location = new System.Drawing.Point(180, 75);
+            this.directMapRadioButton.Name = "directMapRadioButton";
+            this.directMapRadioButton.Size = new System.Drawing.Size(172, 30);
+            this.directMapRadioButton.TabIndex = 131;
+            this.directMapRadioButton.Text = "Direct-Mapped";
+            this.directMapRadioButton.UseVisualStyleBackColor = false;
             // 
             // CacheConfigForm
             // 
@@ -384,5 +396,6 @@
         private System.Windows.Forms.Label lineSizeLabel;
         private System.Windows.Forms.Label entriesLabel;
         private System.Windows.Forms.Label optionsLabel;
+        private System.Windows.Forms.RadioButton directMapRadioButton;
     }
 }

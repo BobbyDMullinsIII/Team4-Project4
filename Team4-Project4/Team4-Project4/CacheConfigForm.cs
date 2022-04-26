@@ -59,7 +59,7 @@ namespace Team4_Project4
         }
         #endregion
 
-        #region Save Buttony
+        #region Save Button
         /// <summary>
         /// Saves cache config values within CacheConfigForm to GUIForm
         /// </summary>
@@ -81,6 +81,10 @@ namespace Team4_Project4
             else if (fourSetAssocRadiobutton.Checked == true)
             {
                 ProgramController.guiForm.cacheType = 4;
+            }
+            else if (directMapRadioButton.Checked == true)
+            {
+                ProgramController.guiForm.cacheType = 1;
             }
 
             //total cache size = entries * size
