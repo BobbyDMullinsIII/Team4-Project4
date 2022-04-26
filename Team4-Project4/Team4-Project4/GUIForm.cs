@@ -150,13 +150,17 @@ namespace Team4_Project4
 
         //==Cache Variables==//
         //============================================================//
-        //Set associativity of cache
+        //Cache hits and miss counters
+        public int cacheHits = 0;
+        public int cacheMisses = 0;
 
-        public int cacheType=2;
+        //Set associativity of cache
+        public int cacheType = 2;
         public int hitCycles = 1;      //Cycles for cache hit
         public int missCycles = 50;    //Cycles for cache miss
         public int cacheEntries = 8;   //Number of entries on cache
         public int cacheLineSize = 4;  //Line word size of cache
+
 
         //GUIForm Constructor
         #region GUIForm Constructor
@@ -1374,7 +1378,33 @@ namespace Team4_Project4
             counterTextBox.Text = cycleCounter.ToString();
 
         }//end incrementCycleCounter()
-        #endregion    
+        #endregion
+
+
+        //Increment Cache Hits & Misses Methods
+        #region incrementCacheHits() Method
+        /// <summary>
+        /// Method for incrementing cache hits counter and updating gui to reflect it
+        /// </summary>
+        public void incrementCacheHits()
+        {
+            cacheHits++;
+            hitsTextBox.Text = cacheHits.ToString();
+
+        }//end incrementCacheHits()
+        #endregion
+
+        #region incrementCacheMisses() Method
+        /// <summary>
+        /// Method for incrementing cache hits counter and updating gui to reflect it
+        /// </summary>
+        public void incrementCacheMisses()
+        {
+            cacheMisses++;
+            missesTextBox.Text = cacheMisses.ToString();
+
+        }//end incrementCacheMisses()
+        #endregion 
 
 
         //Register Methods
@@ -2152,6 +2182,10 @@ namespace Team4_Project4
             executeStallTextbox.Text = "0";
             storeStallTextbox.Text = "0";
 
+            //Reset cache hits and misses textboxes
+            hitsTextBox.Text = "0";
+            missesTextBox.Text = "0";
+
             //Reset Memory and Cache textboxes
             memOutputText.Text = "";
             cacheText.Text = "";
@@ -2282,9 +2316,14 @@ namespace Team4_Project4
             intCounter = 0;
             fCounter = 0;
 
+            //==Cache Variables==//
+            //============================================================//
+            //Cache hits and miss counters
+            cacheHits = 0;
+            cacheMisses = 0;
+
         }//end resetAllVariables()
         #endregion
-
     }//end GUIForm class
 
 }//end Team4_Project4 namespace
