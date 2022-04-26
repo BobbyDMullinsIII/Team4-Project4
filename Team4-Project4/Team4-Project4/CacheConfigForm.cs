@@ -67,6 +67,8 @@ namespace Team4_Project4
         /// <param name="e">arguments for event (auto-generated, unused here)</param>
         private void saveButton_Click(object sender, EventArgs e)
         {
+            int totalSize, blockSize, offsetBits, tagBits, sets, setBits;
+
             ProgramController.guiForm.hitCycles = (int)hitCyclesNumericUpDown.Value;
             ProgramController.guiForm.missCycles = (int)missCyclesNumericUpDown.Value;
             ProgramController.guiForm.cacheEntries = Convert.ToInt32(entriesComboBox.Text);
@@ -80,6 +82,21 @@ namespace Team4_Project4
             {
                 ProgramController.guiForm.cacheType = 4;
             }
+
+            //total cache size = entries * size
+            //block size = cache line size
+            //offset bits = log2(cache block size)
+            //tag bits = address size - offset bits - sets
+            //sets = cache size / (cache block size/set associatice[1, 2 or 4])
+            //set/index bits = log2(sets)
+
+            totalSize = ProgramController.guiForm.cacheEntries * ProgramController.guiForm.cacheLineSize;
+            blockSize = ProgramController.guiForm.cacheLineSize;
+            offsetBits = (int)Math.Log(ProgramController.guiForm.cacheLineSize, 2);
+            sets = totalSize / (blockSize / ProgramController.guiForm.cacheType);
+            tagBits = 32 - offsetBits - sets;
+            setBits = (int)Math.Log(sets, 2);
+
         }
         #endregion
 
