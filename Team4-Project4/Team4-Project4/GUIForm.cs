@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace Team4_Project4
 {
@@ -377,12 +378,19 @@ namespace Team4_Project4
         /// <param name="e">arguments for event (auto-generated, unused here)</param>
         private void startDynamicButton_Click(object sender, EventArgs e)
         {
+            //Changes colors of corresponding dynamic labels to red
+            dynamicPipelineLabel.ForeColor = Color.Red;
+            delaysLabel.ForeColor = Color.Red;
+            hazardsLabel.ForeColor = Color.Red;
+            dependenciesLabel.ForeColor = Color.Red;
+
             //Tells program that current simulation is dynamic
             isDynamic = true;
 
             //Instantiate initial memory
             instantiateMemory();
             initializeCache();
+
             //Display first 64th of memory to GUI
             displayMemoryInString64th(1);
 
@@ -398,12 +406,19 @@ namespace Team4_Project4
         /// <param name="e">arguments for event (auto-generated, unused here)</param>
         private void startStaticButton_Click(object sender, EventArgs e)
         {
+            //Changes colors of corresponding static labels to red
+            staticPipelineLabel.ForeColor = Color.Red;
+            hazardsLabel.ForeColor = Color.Red;
+            dependenciesLabel.ForeColor = Color.Red;
+            stallsLabel.ForeColor = Color.Red;
+
             //Tells program that current simulation is static
             isDynamic = false;
 
             //Instantiate initial memory
             instantiateMemory();
             initializeCache();
+
             //Display first 64th of memory to GUI
             displayMemoryInString64th(1);
 
@@ -2124,6 +2139,14 @@ namespace Team4_Project4
             //Reset all variables within GUIForm
             resetAllVariables();
 
+            //Resets all label colors back to normal white color
+            dynamicPipelineLabel.ForeColor = Color.White;
+            staticPipelineLabel.ForeColor = Color.White;
+            delaysLabel.ForeColor = Color.White;
+            hazardsLabel.ForeColor = Color.White;
+            dependenciesLabel.ForeColor = Color.White;
+            stallsLabel.ForeColor = Color.White;
+
             //Reset Dynamic Phase textboxes
             issueTextBox.Text = string.Empty;
             dynamicIntExecuteTextBox.Text = string.Empty;
@@ -2324,6 +2347,7 @@ namespace Team4_Project4
 
         }//end resetAllVariables()
         #endregion
+
     }//end GUIForm class
 
 }//end Team4_Project4 namespace
