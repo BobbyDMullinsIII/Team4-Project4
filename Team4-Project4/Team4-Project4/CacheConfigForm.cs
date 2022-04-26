@@ -118,8 +118,9 @@ namespace Team4_Project4
             entriesComboBox.Text = 8.ToString();
             lineSizeComboBox.Text = 4.ToString();
 
-            twoSetAssocRadiobutton.Checked = false;
-            fourSetAssocRadiobutton.Checked = true;
+            twoSetAssocRadiobutton.Checked = true;
+            fourSetAssocRadiobutton.Checked = false;
+            directMapRadioButton.Checked = false;
 
         }
         #endregion
