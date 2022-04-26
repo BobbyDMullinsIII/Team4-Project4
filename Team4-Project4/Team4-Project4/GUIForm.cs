@@ -565,7 +565,7 @@ namespace Team4_Project4
                     {
                         case string n when (n == "LDRE"):
                             Instruction temp = instructionQueue.Peek();
-                            if (temp.P1Register[0] == '&')
+                            if (temp.P1Register[0] == '&' || temp.P1Register[0] == '#')
                             {
                                 if (resMem.Count == 2)
                                 {
@@ -602,7 +602,7 @@ namespace Team4_Project4
                             break;
 
                         case string n when (n == "STRE"):
-                            if (resLoadStoreExec1.Count == 2)
+                            if (resMem.Count == 2)
                             {
                                 //Increase structural hazard count and display update to GUI
                                 structHCount++;
@@ -614,7 +614,7 @@ namespace Team4_Project4
                                 loadCounter++;
                                 Station resStatLoadStoreExec1 = new Station($"Store{loadCounter}", true, returnOp(instructionQueue), setQj(instructionQueue.Peek()), setQk(instructionQueue.Peek()), setVj(instructionQueue.Peek()), setVk(instructionQueue.Peek()), "", instructionQueue.Dequeue(), destinationCounter, "00");
                                 resMem.Enqueue(resStatLoadStoreExec1);
-                                issueTextBox.Text = resLoadStoreExec1.Peek().instruction.InstLit;
+                                issueTextBox.Text = resMem.Peek().instruction.InstLit;
                             }
 
                             break;
@@ -716,14 +716,16 @@ namespace Team4_Project4
             {
                 if (resLoadStoreExec1.Peek().instruction.fetch == 0)
                 {
-                    if (string.IsNullOrEmpty(resLoadStoreExec1.Peek().Qj) == true && string.IsNullOrEmpty(Qi[Convert.ToInt32(resLoadStoreExec1.Peek().instruction.p1Register.Remove(0, 1))]) == true)
-                    {
-                        Qi[Convert.ToInt32(resLoadStoreExec1.Peek().instruction.sRegister.Remove(0, 1))] = resLoadStoreExec1.Peek().Name;
-                        resLoadStoreExec1.Peek().instruction.fetch++;
-                        loadStoreExec1.Enqueue(resLoadStoreExec1.Dequeue());
-                        dynamicLSExecTBox.Text = loadStoreExec1.Peek().instruction.InstLit;
+                   
+                        if (string.IsNullOrEmpty(resLoadStoreExec1.Peek().Qj) == true && string.IsNullOrEmpty(Qi[Convert.ToInt32(resLoadStoreExec1.Peek().instruction.p1Register.Remove(0, 1))]) == true)
+                        {
+                            Qi[Convert.ToInt32(resLoadStoreExec1.Peek().instruction.sRegister.Remove(0, 1))] = resLoadStoreExec1.Peek().Name;
+                            resLoadStoreExec1.Peek().instruction.fetch++;
+                            loadStoreExec1.Enqueue(resLoadStoreExec1.Dequeue());
+                            dynamicLSExecTBox.Text = loadStoreExec1.Peek().instruction.InstLit;
 
-                    }
+                        }
+                    
                     else if (Qj == resLoadStoreExec1.Peek().Qj)
                     {
                         dependenceD++;
@@ -777,6 +779,7 @@ namespace Team4_Project4
             {
                 if (resFExec1.Peek().instruction.fetch == 0)
                 {
+
                     if (string.IsNullOrEmpty(resFExec1.Peek().Qk) == true && string.IsNullOrEmpty(resFExec1.Peek().Qk) == true && string.IsNullOrEmpty(Qi[Convert.ToInt32(resFExec1.Peek().instruction.p1Register.Remove(0, 1))]) == true && string.IsNullOrEmpty(Qi[Convert.ToInt32(resFExec1.Peek().instruction.p2Register.Remove(0, 1))]) == true)
                     {
                         Qi[Convert.ToInt32(resFExec1.Peek().instruction.sRegister.Remove(0, 1))] = resFExec1.Peek().Name;
@@ -964,7 +967,7 @@ namespace Team4_Project4
         {
             if (stopFF != 1)
             {
-                if (ints.P1Register[0] != '&')
+                if (ints.P1Register[0] != '&' && ints.P1Register[0] != '#')
                 {
                     ints.P1Register.Remove(0, 1);
 
@@ -1530,12 +1533,12 @@ namespace Team4_Project4
 
         #region getByte() Method
         public string getByte(string mem)
-        {
+        { 
             string temp = mem;
             string first = mem.Remove(4, 1);
             string last = temp.Remove(0, 4);
             int row = Convert.ToInt32(first, 16);
-            int col = Convert.ToInt32(last, 16);
+            int col = Convert.ToInt32(last, 16)+1;
             return Memory[row, col];
         }
         #endregion
@@ -1543,11 +1546,12 @@ namespace Team4_Project4
         #region storeByte() Method
         public void storeByte(string mem, string val)
         {
+
             string temp = mem;
             string first = mem.Remove(4, 1);
             string last = temp.Remove(0, 4);
             int row = Convert.ToInt32(first, 16);
-            int col = Convert.ToInt32(last, 16);
+            int col = Convert.ToInt32(last, 16)+1;
             Memory[row, col] = val;
         }
         #endregion

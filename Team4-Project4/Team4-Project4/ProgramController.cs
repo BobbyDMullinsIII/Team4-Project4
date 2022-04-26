@@ -1375,7 +1375,16 @@ namespace Team4_Project4
         public static void LDREM(Instruction pipeInts)
         {
             float ret = guiForm.getReg(pipeInts.p1Register);
-
+            string retS= "";
+            pipeInts.p1Register = pipeInts.p1Register.Remove(0, 1);
+            int temp = Convert.ToInt32(pipeInts.p1Register, 16)+3;
+            for (int i = 0; i < 4; i ++)
+            {
+                pipeInts.P1Register=temp.ToString("X5");
+                temp--;
+                retS += guiForm.getByte(pipeInts.p1Register);
+            }
+            ret = Convert.ToInt32(retS.Replace(" ",""));
             guiForm.updateRegister(pipeInts.sRegister, ret);
 
         }//end LDREM()
@@ -1404,6 +1413,43 @@ namespace Team4_Project4
         /// <returns>Value to store in memory</returns>
         public static void STRE(Instruction pipeInts)
         {
+            int ret = Convert.ToInt32(guiForm.getReg(pipeInts.p1Register));
+            string retS = "";
+            pipeInts.sRegister = pipeInts.sRegister.Remove(0, 1);
+            string tempR = "";
+            string tempRS = ret.ToString();
+            for (int i = 0; i < 4; i++)
+            {
+
+                if (tempRS.Length >= 1)
+                {
+                    if (tempRS.Length == 1)
+                    {
+                        tempR = ($"{tempRS[tempRS.Length - 1]}");
+                        tempRS=tempRS.Remove(0, 1);
+                        if (i >= 1)
+                        {
+                            int temp = Convert.ToInt32(pipeInts.sRegister, 16);
+                            temp++;
+                            pipeInts.sRegister = temp.ToString("X5");
+                        }
+                        guiForm.storeByte(pipeInts.sRegister, tempR);
+                    }
+                    else
+                    {
+                        tempR = ($"{tempRS[tempRS.Length - 2]}{tempRS[tempRS.Length-1]}");
+                        tempRS = tempRS.Remove(0, 2);
+                        if (i >= 1)
+                        {
+                            int temp = Convert.ToInt32(pipeInts.sRegister, 16);
+                            temp++;
+                            pipeInts.sRegister = temp.ToString("X5");
+                        }
+                        guiForm.storeByte(pipeInts.sRegister, tempR);
+                    }
+                }
+                
+            }
 
 
         }//end STRE()
