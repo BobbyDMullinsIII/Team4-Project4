@@ -493,6 +493,7 @@ namespace Team4_Project4
         {
             //Increase cycle counter by one
             incrementCycleCounter();
+            displayMemoryInString64th(0);
 
             //Create new list of currently fetched instructions and fetch instructions of queue count is less than 9
             if (stopFF != 1)
@@ -1552,7 +1553,7 @@ namespace Team4_Project4
             string last = temp.Remove(0, 4);
             int row = Convert.ToInt32(first, 16);
             int col = Convert.ToInt32(last, 16)+1;
-            Memory[row, col] = val;
+            Memory[row, col] = $"{val} ";
         }
         #endregion
 
