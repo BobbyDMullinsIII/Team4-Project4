@@ -178,7 +178,7 @@
             this.filesToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1584, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1644, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -319,7 +319,7 @@
             this.outputPanel.Controls.Add(this.missesLabel);
             this.outputPanel.Location = new System.Drawing.Point(1272, 80);
             this.outputPanel.Name = "outputPanel";
-            this.outputPanel.Size = new System.Drawing.Size(312, 639);
+            this.outputPanel.Size = new System.Drawing.Size(380, 639);
             this.outputPanel.TabIndex = 17;
             // 
             // tabCache
@@ -330,7 +330,7 @@
             this.tabCache.Location = new System.Drawing.Point(3, 3);
             this.tabCache.Name = "tabCache";
             this.tabCache.SelectedIndex = 0;
-            this.tabCache.Size = new System.Drawing.Size(312, 596);
+            this.tabCache.Size = new System.Drawing.Size(369, 596);
             this.tabCache.TabIndex = 18;
             // 
             // memoryOutput
@@ -339,21 +339,21 @@
             this.memoryOutput.Location = new System.Drawing.Point(4, 25);
             this.memoryOutput.Name = "memoryOutput";
             this.memoryOutput.Padding = new System.Windows.Forms.Padding(3);
-            this.memoryOutput.Size = new System.Drawing.Size(304, 567);
+            this.memoryOutput.Size = new System.Drawing.Size(361, 567);
             this.memoryOutput.TabIndex = 1;
             this.memoryOutput.Text = " Memory Output";
             this.memoryOutput.UseVisualStyleBackColor = true;
             // 
             // memOutputText
             // 
-            this.memOutputText.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.memOutputText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.memOutputText.Location = new System.Drawing.Point(0, 0);
             this.memOutputText.MaxLength = 999999999;
             this.memOutputText.Multiline = true;
             this.memOutputText.Name = "memOutputText";
             this.memOutputText.ReadOnly = true;
             this.memOutputText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.memOutputText.Size = new System.Drawing.Size(302, 608);
+            this.memOutputText.Size = new System.Drawing.Size(361, 567);
             this.memOutputText.TabIndex = 0;
             // 
             // tabPage1
@@ -362,18 +362,18 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(304, 567);
+            this.tabPage1.Size = new System.Drawing.Size(361, 567);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Cache";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // cacheText
             // 
-            this.cacheText.Location = new System.Drawing.Point(7, 9);
+            this.cacheText.Location = new System.Drawing.Point(0, 0);
             this.cacheText.Multiline = true;
             this.cacheText.Name = "cacheText";
             this.cacheText.ReadOnly = true;
-            this.cacheText.Size = new System.Drawing.Size(286, 587);
+            this.cacheText.Size = new System.Drawing.Size(361, 567);
             this.cacheText.TabIndex = 0;
             // 
             // missesTextBox
@@ -426,7 +426,7 @@
             this.memSlider.Maximum = 64;
             this.memSlider.Minimum = 1;
             this.memSlider.Name = "memSlider";
-            this.memSlider.Size = new System.Drawing.Size(1584, 45);
+            this.memSlider.Size = new System.Drawing.Size(1644, 45);
             this.memSlider.TabIndex = 18;
             this.memSlider.Value = 1;
             this.memSlider.Scroll += new System.EventHandler(this.memSlider_Scroll);
@@ -1611,7 +1611,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1584, 761);
+            this.ClientSize = new System.Drawing.Size(1644, 761);
             this.Controls.Add(this.memSlider);
             this.Controls.Add(this.outputPanel);
             this.Controls.Add(this.simulationPanel);
