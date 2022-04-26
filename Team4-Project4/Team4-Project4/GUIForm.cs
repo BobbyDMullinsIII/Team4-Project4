@@ -493,7 +493,7 @@ namespace Team4_Project4
         {
             //Increase cycle counter by one
             incrementCycleCounter();
-            displayMemoryInString64th(0);
+            displayMemoryInString64th(1);
 
             //Create new list of currently fetched instructions and fetch instructions of queue count is less than 9
             if (stopFF != 1)

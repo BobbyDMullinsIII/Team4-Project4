@@ -1377,14 +1377,14 @@ namespace Team4_Project4
             float ret = guiForm.getReg(pipeInts.p1Register);
             string retS= "";
             pipeInts.p1Register = pipeInts.p1Register.Remove(0, 1);
-            int temp = Convert.ToInt32(pipeInts.p1Register, 16)+3;
+            int temp = Convert.ToInt32(pipeInts.p1Register, 16);
             for (int i = 0; i < 4; i ++)
             {
                 pipeInts.P1Register=temp.ToString("X5");
-                temp--;
+                temp++;
                 retS += guiForm.getByte(pipeInts.p1Register);
             }
-            ret = Convert.ToInt32(retS.Replace(" ",""));
+            ret = Convert.ToInt32(retS.Replace(" ",""),16);
             guiForm.updateRegister(pipeInts.sRegister, ret);
 
         }//end LDREM()
@@ -1417,7 +1417,7 @@ namespace Team4_Project4
             string retS = "";
             pipeInts.sRegister = pipeInts.sRegister.Remove(0, 1);
             string tempR = "";
-            string tempRS = ret.ToString();
+            string tempRS = Convert.ToString(ret,16);
             for (int i = 0; i < 4; i++)
             {
 
@@ -1425,7 +1425,7 @@ namespace Team4_Project4
                 {
                     if (tempRS.Length == 1)
                     {
-                        tempR = ($"{tempRS[tempRS.Length - 1]}");
+                        tempR = ($"{tempRS[0]}");
                         tempRS=tempRS.Remove(0, 1);
                         if (i >= 1)
                         {
@@ -1437,7 +1437,7 @@ namespace Team4_Project4
                     }
                     else
                     {
-                        tempR = ($"{tempRS[tempRS.Length - 2]}{tempRS[tempRS.Length-1]}");
+                        tempR = ($"{tempRS[0]}{tempRS[1]}");
                         tempRS = tempRS.Remove(0, 2);
                         if (i >= 1)
                         {
