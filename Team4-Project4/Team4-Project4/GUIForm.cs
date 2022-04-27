@@ -156,7 +156,11 @@ namespace Team4_Project4
         public int cacheMisses = 0;
 
         //Determines if pipeline should stall for cycles caused by hit or miss
-        public bool doStall = false;
+        //-1 no hit or miss
+        //0 miss
+        //1 hit
+        public int doStall = -1;
+        public int cacheCycleStallCounter = 0;
 
         //Set associativity of cache(Only resets in config form, not from GUIForm reset button)
         public int cacheType = 2;
@@ -287,7 +291,6 @@ namespace Team4_Project4
             dynamicPipelineLabel.ForeColor = Color.Red;
             delaysLabel.ForeColor = Color.Red;
             hazardsLabel.ForeColor = Color.Red;
-            dependenciesLabel.ForeColor = Color.Red;
 
             //Tells program that current simulation is dynamic
             isDynamic = true;
@@ -422,13 +425,43 @@ namespace Team4_Project4
             displayCache();
 
             //If stalling because of hit or miss is active, stall a certain set number of cycles
-            if (doStall == true)
+            //Between 50 - 500 for miss
+            //Between 1 - 5 for hit
+            if (doStall != -1)
             {
-
+                //Miss
+                if(doStall == 0)
+                {
+                    //Keeps incrementing until cycles passed equals number of set cycles for miss
+                    if (cacheCycleStallCounter > 0)
+                    {
+                        cacheCycleStallCounter--;
+                    }
+                    else
+                    {
+                        doStall = -1;    //Resets back to -1 if cycles has passed
+                    }
+                }
+                //Hit
+                else if (doStall == 1)
+                {
+                    //Keeps incrementing until cycles passed equals number of set cycles for hit
+                    if(cacheCycleStallCounter > 0)
+                    {
+                        cacheCycleStallCounter--;
+                    }
+                    else
+                    {
+                        doStall = -1;    //Resets back to -1 if cycles has passed
+                    }
+                }
             }
             //Else, do pipeline as normal
             else
             {
+                //Makes sure that cache stall resets so that pipeline will not stall until another cache hit or miss occurs
+                doStall = -1;
+
                 //Create new list of currently fetched instructions and fetch instructions of queue count is less than 9
                 if (stopFF != 1)
                 {
@@ -510,6 +543,7 @@ namespace Team4_Project4
                                     if (resMem.Count == 2)
                                     {
                                         //Increase structural hazard count and display update to GUI
+                                        stationD++;
                                         structHCount++;
                                         structHTextBox.Text = structHCount.ToString();
                                     }
@@ -527,6 +561,7 @@ namespace Team4_Project4
                                     if (resLoadStoreExec1.Count == 2)
                                     {
                                         //Increase structural hazard count and display update to GUI
+                                        stationD++;
                                         structHCount++;
                                         structHTextBox.Text = structHCount.ToString();
                                     }
@@ -545,6 +580,7 @@ namespace Team4_Project4
                                 if (resMem.Count == 2)
                                 {
                                     //Increase structural hazard count and display update to GUI
+                                    stationD++;
                                     structHCount++;
                                     structHTextBox.Text = structHCount.ToString();
                                 }
@@ -563,6 +599,7 @@ namespace Team4_Project4
                                 if (resFExec1.Count == 2)
                                 {
                                     //Increase structural hazard count and display update to GUI
+                                    stationD++;
                                     structHCount++;
                                     structHTextBox.Text = structHCount.ToString();
                                 }
@@ -580,6 +617,7 @@ namespace Team4_Project4
                                 if (resFExec1.Count == 2)
                                 {
                                     //Increase structural hazard count and display update to GUI
+                                    stationD++;
                                     structHCount++;
                                     structHTextBox.Text = structHCount.ToString();
                                 }
@@ -597,6 +635,7 @@ namespace Team4_Project4
                                 if (resFExec1.Count == 2)
                                 {
                                     //Increase structural hazard count and display update to GUI
+                                    stationD++;
                                     structHCount++;
                                     structHTextBox.Text = structHCount.ToString();
                                 }
@@ -614,6 +653,7 @@ namespace Team4_Project4
                                 if (resFExec1.Count == 2)
                                 {
                                     //Increase structural hazard count and display update to GUI
+                                    stationD++;
                                     structHCount++;
                                     structHTextBox.Text = structHCount.ToString();
                                 }
@@ -631,6 +671,7 @@ namespace Team4_Project4
                                 if (resIntExec1.Count == 2)
                                 {
                                     //Increase structural hazard count and display update to GUI
+                                    stationD++;
                                     structHCount++;
                                     structHTextBox.Text = structHCount.ToString();
                                 }
@@ -1438,6 +1479,28 @@ namespace Team4_Project4
             cacheText.Text = Convert.ToString(cacheBuild);
 
         }//end displayCache()
+        #endregion
+
+        #region cacheHitOrMiss() Method
+        /// <summary>
+        /// Method for determing if cache hit or miss and delaying pipeline from that
+        /// </summary>
+        public void cacheHitOrMiss(int hitormiss)
+        {
+            //Miss = 0
+            if(hitormiss == 0)
+            {
+                doStall = 0;
+                cacheCycleStallCounter = missCycles;
+            }
+            //Hit = 1
+            if(hitormiss == 1)
+            {
+                doStall = 1;
+                cacheCycleStallCounter = hitCycles;
+            }
+            
+        }//end cacheHitOrMiss()
         #endregion
 
 
@@ -2367,9 +2430,10 @@ namespace Team4_Project4
             cacheMisses = 0;
 
             //Determines if pipeline should stall for cycles caused by hit or miss
-            doStall = false;
+            doStall = -1;
+            cacheCycleStallCounter = 0;
 
-    }//end resetAllVariables()
+        }//end resetAllVariables()
         #endregion
 
 

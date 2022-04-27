@@ -1323,11 +1323,12 @@ namespace Team4_Project4
                     {
                         for (int j = 4; j < guiForm.cacheType * 2 + 3; j+=2)
                         {
-                            if (guiForm.Cache[i, j] == cacheStuff[2])
+                            if (guiForm.Cache[i, j] == cacheStuff[0])
                             {
                                 if (Convert.ToInt32(guiForm.Cache[i, j - 1]) != 0)
                                 flag = 1;
                                 guiForm.incrementCacheHits();
+                                guiForm.cacheHitOrMiss(1);
                             }
                         }
                     }
@@ -1336,9 +1337,10 @@ namespace Team4_Project4
                 if (flag == 0)
                 {
                     int tempa = lru();
-                    guiForm.Cache[Convert.ToInt32(cacheStuff[1], 16) + 1, tempa ] = cacheStuff[2];
+                    guiForm.Cache[Convert.ToInt32(cacheStuff[1], 16) + 1, tempa ] = cacheStuff[0];
                     guiForm.Cache[Convert.ToInt32(cacheStuff[1], 16) + 1, tempa - 1] = "1";
                     guiForm.incrementCacheMisses();
+                    guiForm.cacheHitOrMiss(0);
                 }
             }
             else
@@ -1349,15 +1351,17 @@ namespace Team4_Project4
                     {
                         flag = 1;
                         guiForm.incrementCacheHits();
+                        guiForm.cacheHitOrMiss(1);
                     }
                 }
 
                 if(flag==0)
                 {
                     int tempa = lru();
-                    guiForm.Cache[Convert.ToInt32(1) + 1, tempa] = cacheStuff[2];
+                    guiForm.Cache[Convert.ToInt32(1) + 1, tempa] = cacheStuff[0];
                     guiForm.Cache[Convert.ToInt32(1) + 1, tempa - 1] = "1";
                     guiForm.incrementCacheMisses();
+                    guiForm.cacheHitOrMiss(0);
                 }
 
             }
@@ -1461,44 +1465,53 @@ namespace Team4_Project4
             {
                 if (LRU == 1)
                 {
-                    return 6;
                     LRU = 0;
+                    return 6;
+
                 }
                 else
                 {
-                    return 4;
                     LRU = 1;
+                    return 4;
+
                 }
             }
             else 
             {
+                
                 if (LRULRU == 1)
                 {
                     if (LRU == 1)
                     {
-                        return 10;
                         LRU = 0;
+                        return 10;
+
                     }
                     else
                     {
-                        return 8;
+                        LRULRU = 0;
                         LRU = 1;
+                        return 8;
+
                     }
-                    LRULRU = 0;
+
                 }
                 else
                 {
                     if (LRU == 1)
                     {
-                        return 6;
                         LRU = 0;
+                        return 6;
+
                     }
                     else
                     {
-                        return 4;
+                        LRULRU = 1;
                         LRU = 1;
+                        return 4;
+
                     }
-                    LRULRU = 1;
+
                 }
             }
         }//end lru()
@@ -1585,7 +1598,7 @@ namespace Team4_Project4
             else if (block == 8)
             {
                 string temp = Convert.ToString(addr & 7, 16);
-                ret[1] = temp;
+                ret[2] = temp;
                 blockbit = 3;
                 if (ways == 4)
                 {
@@ -1648,7 +1661,7 @@ namespace Team4_Project4
             else
             {
                 string temp = Convert.ToString(addr & 15, 16);
-                ret[1] = temp;
+                ret[2] = temp;
                 blockbit = 4;
                 if (ways == 4)
                 {
