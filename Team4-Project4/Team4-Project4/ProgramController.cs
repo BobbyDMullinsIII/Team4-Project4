@@ -31,6 +31,7 @@ namespace Team4_Project4
     {
         public static GUIForm guiForm;    //GUIForm instance to open program to
         public static int LRULRU, LRU = 0;
+
         //General Function Methods
         #region startProgram() Method
         /// <summary>
