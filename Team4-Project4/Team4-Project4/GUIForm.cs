@@ -2221,87 +2221,6 @@ namespace Team4_Project4
         {
             //Reset all variables within GUIForm
             resetAllVariables();
-
-            //Resets all label colors back to normal white color
-            dynamicPipelineLabel.ForeColor = Color.White;
-            staticPipelineLabel.ForeColor = Color.White;
-            delaysLabel.ForeColor = Color.White;
-            hazardsLabel.ForeColor = Color.White;
-            dependenciesLabel.ForeColor = Color.White;
-            stallsLabel.ForeColor = Color.White;
-
-            //Reset Dynamic Phase textboxes
-            issueTextBox.Text = string.Empty;
-            dynamicIntExecuteTextBox.Text = string.Empty;
-            dynamicMemExecTBox.Text = string.Empty;
-            dynamicLSExecTBox.Text = string.Empty;
-            dynamicFExecTextBox.Text = string.Empty;
-            writeTextBox.Text = string.Empty;
-            commitTextBox.Text = string.Empty;
-
-            //Reset Static Phase textboxes
-            fetchTextBox.Text = string.Empty;
-            decodeTextBox.Text = string.Empty;
-            executeTextBox.Text = string.Empty;
-            storeTextBox.Text = string.Empty;
-
-            //Reset Register textboxes
-            r0TextBox.Text = "0";
-            r1TextBox.Text = "0";
-            r2TextBox.Text = "0";
-            r3TextBox.Text = "0";
-            r4TextBox.Text = "0";
-            r5TextBox.Text = "0";
-            r6TextBox.Text = "0";
-            r7TextBox.Text = "0";
-            r8TextBox.Text = "0";
-            r9TextBox.Text = "0";
-            r10TextBox.Text = "0";
-            r11TextBox.Text = "0";
-            f12TextBox.Text = "0.0";
-            f13TextBox.Text = "0.0";
-            f14TextBox.Text = "0.0";
-            f15TextBox.Text = "0.0";
-
-            //Reset Cycle Counter textbox
-            counterTextBox.Text = "0";
-
-            //Reset Delays textboxes
-            reorderBufferTextBox.Text = "0";
-            resStationTextBox.Text = "0";
-            memConflictTextBox.Text = "0";
-            trueDependenceTextBox.Text = "0";
-
-            //Reset Hazards textboxes
-            structHTextBox.Text = "0";
-            dataHTextBox.Text = "0";
-            controlHTextBox.Text = "0";
-
-            //Reset Dependencies textboxes
-            rawTextBox.Text = "0";
-            warTextBox.Text = "0";
-            wawTextBox.Text = "0";
-
-            //Reset Stalls textboxes
-            fetchStallTextbox.Text = "0";
-            decodeStallTextbox.Text = "0";
-            executeStallTextbox.Text = "0";
-            storeStallTextbox.Text = "0";
-
-            //Reset cache hits and misses textboxes
-            hitsTextBox.Text = "0";
-            missesTextBox.Text = "0";
-
-            //Reset Memory and Cache textboxes
-            memOutputText.Text = "";
-            cacheText.Text = "";
-
-            //Re-enables Assembly textbox and Start Simulation buttons
-            assemblyTextBox.ReadOnly = false;
-            assemblyTextBox.Enabled = true;
-            startDynamicButton.Enabled = true;
-            startStaticButton.Enabled = true;
-            nextCycleButton.Enabled = false;
         }
         #endregion
 
@@ -2434,10 +2353,114 @@ namespace Team4_Project4
             doStall = -1;
             cacheCycleStallCounter = 0;
 
+            //Resets all label colors back to normal white color
+            dynamicPipelineLabel.ForeColor = Color.White;
+            staticPipelineLabel.ForeColor = Color.White;
+            delaysLabel.ForeColor = Color.White;
+            hazardsLabel.ForeColor = Color.White;
+            dependenciesLabel.ForeColor = Color.White;
+            stallsLabel.ForeColor = Color.White;
+
+            //Reset Dynamic Phase textboxes
+            issueTextBox.Text = string.Empty;
+            dynamicIntExecuteTextBox.Text = string.Empty;
+            dynamicMemExecTBox.Text = string.Empty;
+            dynamicLSExecTBox.Text = string.Empty;
+            dynamicFExecTextBox.Text = string.Empty;
+            writeTextBox.Text = string.Empty;
+            commitTextBox.Text = string.Empty;
+
+            //Reset Static Phase textboxes
+            fetchTextBox.Text = string.Empty;
+            decodeTextBox.Text = string.Empty;
+            executeTextBox.Text = string.Empty;
+            storeTextBox.Text = string.Empty;
+
+            //Reset Register textboxes
+            r0TextBox.Text = "0";
+            r1TextBox.Text = "0";
+            r2TextBox.Text = "0";
+            r3TextBox.Text = "0";
+            r4TextBox.Text = "0";
+            r5TextBox.Text = "0";
+            r6TextBox.Text = "0";
+            r7TextBox.Text = "0";
+            r8TextBox.Text = "0";
+            r9TextBox.Text = "0";
+            r10TextBox.Text = "0";
+            r11TextBox.Text = "0";
+            f12TextBox.Text = "0.0";
+            f13TextBox.Text = "0.0";
+            f14TextBox.Text = "0.0";
+            f15TextBox.Text = "0.0";
+
+            //Reset Cycle Counter textbox
+            counterTextBox.Text = "0";
+
+            //Reset Delays textboxes
+            reorderBufferTextBox.Text = "0";
+            resStationTextBox.Text = "0";
+            memConflictTextBox.Text = "0";
+            trueDependenceTextBox.Text = "0";
+
+            //Reset Hazards textboxes
+            structHTextBox.Text = "0";
+            dataHTextBox.Text = "0";
+            controlHTextBox.Text = "0";
+
+            //Reset Dependencies textboxes
+            rawTextBox.Text = "0";
+            warTextBox.Text = "0";
+            wawTextBox.Text = "0";
+
+            //Reset Stalls textboxes
+            fetchStallTextbox.Text = "0";
+            decodeStallTextbox.Text = "0";
+            executeStallTextbox.Text = "0";
+            storeStallTextbox.Text = "0";
+
+            //Reset cache hits and misses textboxes
+            hitsTextBox.Text = "0";
+            missesTextBox.Text = "0";
+
+            //Reset Memory and Cache textboxes
+            memOutputText.Text = "";
+            cacheText.Text = "";
+
+            //Re-enables Assembly textbox and Start Simulation buttons
+            assemblyTextBox.ReadOnly = false;
+            assemblyTextBox.Enabled = true;
+            startDynamicButton.Enabled = true;
+            startStaticButton.Enabled = true;
+            nextCycleButton.Enabled = false;
+
         }//end resetAllVariables()
         #endregion
 
-
+        #region runToolStringMenuItem_Click Method
+        /// <summary>
+        /// Automatically executes program until finished
+        /// </summary>
+        /// <param name="sender">object that raised the event (auto-generated, unused here)</param>
+        /// <param name="e">arguments for event (auto-generated, unused here)</param>
+        private void runToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (isDynamic == true)
+            {
+                while (nextCycleButton.Enabled)
+                {
+                    nextDynamicCycle();
+                }
+            }
+            else
+            {
+                while (nextCycleButton.Enabled)
+                { 
+                    nextStaticCycle();
+                }
+            }
+        }
+        #endregion
     }//end GUIForm class
 
 }//end Team4_Project4 namespace

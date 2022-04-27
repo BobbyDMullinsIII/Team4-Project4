@@ -751,6 +751,10 @@ namespace Team4_Project4
                                             "There was no branch found with that name.",
                                             MessageBoxButtons.OK,
                                             MessageBoxIcon.Error);
+                            instLit = "STOP";
+                            stopF = 1;
+                            Instruction STOPBRAN = new Instruction(progCount += 4, 1, 1, 1, 1, String.Empty, String.Empty, instLit);
+                            pipeInts.Add(STOPBRAN);
                         }
                         else
                         {
@@ -788,6 +792,10 @@ namespace Team4_Project4
                                             "There was no branch found with that name.",
                                             MessageBoxButtons.OK,
                                             MessageBoxIcon.Error);
+                            instLit = "STOP";
+                            stopF = 1;
+                            Instruction STOPBRAN = new Instruction(progCount += 4, 1, 1, 1, 1, String.Empty, String.Empty, instLit);
+                            pipeInts.Add(STOPBRAN);
                         }
                         else
                         {
@@ -826,6 +834,10 @@ namespace Team4_Project4
                                             "There was no branch found with that name.",
                                             MessageBoxButtons.OK,
                                             MessageBoxIcon.Error);
+                            instLit = "STOP";
+                            stopF = 1;
+                            Instruction STOPBRAN = new Instruction(progCount += 4, 1, 1, 1, 1, String.Empty, String.Empty, instLit);
+                            pipeInts.Add(STOPBRAN);
                         }
                         else
                         {
@@ -863,6 +875,12 @@ namespace Team4_Project4
                                         "There was no branch found with that name.",
                                         MessageBoxButtons.OK,
                                         MessageBoxIcon.Error);
+                        instLit = "STOP";
+                        stopF = 1;
+                        Instruction STOPBRAN = new Instruction(progCount += 4, 1, 1, 1, 1, String.Empty, String.Empty, instLit);
+                        pipeInts.Add(STOPBRAN);
+                        break;
+                        
                     }
 
                     else
