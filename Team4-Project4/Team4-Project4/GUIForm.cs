@@ -91,7 +91,7 @@ namespace Team4_Project4
         //==1MB Memory Array==//
         //============================================================//
         String[,] Memory = new String[65536, 17];
-        String[,] Cache; 
+        String[,] Cache;
 
         //List of all assembly instructions
         List<string> instructions = new List<string>();
@@ -639,16 +639,16 @@ namespace Team4_Project4
             {
                 if (resLoadStoreExec1.Peek().instruction.fetch == 0)
                 {
-                   
-                        if (string.IsNullOrEmpty(resLoadStoreExec1.Peek().Qj) == true && string.IsNullOrEmpty(Qi[Convert.ToInt32(resLoadStoreExec1.Peek().instruction.p1Register.Remove(0, 1))]) == true)
-                        {
-                            Qi[Convert.ToInt32(resLoadStoreExec1.Peek().instruction.sRegister.Remove(0, 1))] = resLoadStoreExec1.Peek().Name;
-                            resLoadStoreExec1.Peek().instruction.fetch++;
-                            loadStoreExec1.Enqueue(resLoadStoreExec1.Dequeue());
-                            dynamicLSExecTBox.Text = loadStoreExec1.Peek().instruction.InstLit;
 
-                        }
-                    
+                    if (string.IsNullOrEmpty(resLoadStoreExec1.Peek().Qj) == true && string.IsNullOrEmpty(Qi[Convert.ToInt32(resLoadStoreExec1.Peek().instruction.p1Register.Remove(0, 1))]) == true)
+                    {
+                        Qi[Convert.ToInt32(resLoadStoreExec1.Peek().instruction.sRegister.Remove(0, 1))] = resLoadStoreExec1.Peek().Name;
+                        resLoadStoreExec1.Peek().instruction.fetch++;
+                        loadStoreExec1.Enqueue(resLoadStoreExec1.Dequeue());
+                        dynamicLSExecTBox.Text = loadStoreExec1.Peek().instruction.InstLit;
+
+                    }
+
                     else if (Qj == resLoadStoreExec1.Peek().Qj)
                     {
                         dependenceD++;
@@ -1584,14 +1584,14 @@ namespace Team4_Project4
         /// Method for getting byte from memory
         /// </summary>
         public string getByte(string mem)
-        { 
+        {
             string temp = mem;
 
             string first = mem.Remove(4, 1);
             string last = temp.Remove(0, 4);
 
             int row = Convert.ToInt32(first, 16);
-            int col = Convert.ToInt32(last, 16)+1;
+            int col = Convert.ToInt32(last, 16) + 1;
 
             return Memory[row, col];
 
@@ -1611,7 +1611,7 @@ namespace Team4_Project4
             string last = temp.Remove(0, 4);
 
             int row = Convert.ToInt32(first, 16);
-            int col = Convert.ToInt32(last, 16)+1;
+            int col = Convert.ToInt32(last, 16) + 1;
 
             Memory[row, col] = $"{val} ";
 

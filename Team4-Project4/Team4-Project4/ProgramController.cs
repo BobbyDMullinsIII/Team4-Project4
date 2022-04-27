@@ -620,96 +620,6 @@ namespace Team4_Project4
         }
         #endregion
 
-        //Dynamic Pipeline Phase Methods
-        #region issue() Method
-        /// <summary>
-        /// Method for issue phase in dynamic pipeline
-        /// </summary>
-        /// <returns></returns>
-        public static string issue()
-        {
-            string issueOutput = "";
-
-            //======================================//
-            //INSERT CODE FOR ISSUING HERE//
-            //======================================//
-
-            return issueOutput;
-
-        }//end issue()
-        #endregion
-
-        #region dynamicExecute() Method
-        /// <summary>
-        /// Method for execute phase in dynamic pipeline
-        /// </summary>
-        /// <returns></returns>
-        public static string dynamicExecute()
-        {
-            string executeOutput = "";
-
-            //======================================//
-            //INSERT CODE FOR DYNAMIC EXECUTING HERE//
-            //======================================//
-
-            return executeOutput;
-
-        }//end dynamicExecute()
-        #endregion
-
-        #region memoryRead() Method
-        /// <summary>
-        /// Method for memory read phase in dynamic pipeline
-        /// </summary>
-        /// <returns></returns>
-        public static string memoryRead()
-        {
-            string executeOutput = "";
-
-            //===================================//
-            //INSERT CODE FOR MEMORY READING HERE//
-            //===================================//
-
-            return executeOutput;
-
-        }//end memoryRead()
-        #endregion
-
-        #region write() Method
-        /// <summary>
-        /// Method for write phase in dynamic pipeline
-        /// </summary>
-        /// <returns></returns>
-        public static string write()
-        {
-            string writeOutput = "";
-
-            //======================================//
-            //INSERT CODE FOR WRITING HERE//
-            //======================================//
-
-            return writeOutput;
-
-        }//end write()
-        #endregion
-
-        #region commit() Method
-        /// <summary>
-        /// Method for write phase in dynamic pipeline
-        /// </summary>
-        /// <returns></returns>
-        public static string commit()
-        {
-            string commitOutput = "";
-
-            //======================================//
-            //INSERT CODE FOR COMMITTING HERE//
-            //======================================//
-
-            return commitOutput;
-
-        }//end commit()
-        #endregion
 
         //Static Pipeline Phase Methods
         #region fetch() Method
@@ -824,8 +734,10 @@ namespace Team4_Project4
                     break;
 
                 case string n when (n == "BRLT"):
+                    //checks zero flag to take branch
                     if (guiForm.getReg("R0") == 1)
                     {
+                        //gets branch instruction
                         instLit += instructions[i];
                         instLit += instructions[i + 1];
 
@@ -834,18 +746,23 @@ namespace Team4_Project4
                         if (stringLoc == -1)
                         {
                             //error
+                            MessageBox.Show("Title",
+                                        "Message",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
                         }
                         else
                         {
+                            //creates brlt instruction and adds to pipeline
                             Instruction BRLT = new Instruction(progCount += 4, 1, 1, 1, 1, instructions[i + 1], instLit);
                             pipeInts.Add(BRLT);
                             i = stringLoc + 2;          //set jump point as next instruction
                         }
-
+                        //grabs next instruction after branch location label then removes branch from pipeline
                         (pipeInts, progCount, i, stopF) = ProgramController.fetch(instructions, pipeInts, progCount, i);
                         pipeInts.RemoveAt(0);
                     }
-
+                    //does not take branch and gets next instruction
                     else
                     {
                         i += 3;
@@ -854,8 +771,10 @@ namespace Team4_Project4
                     break;
 
                 case string n when (n == "BRGT"):
+                    //if zero flag set
                     if (guiForm.getReg("R0") == 1)
                     {
+                        //gets branch instruction
                         instLit += instructions[i];
                         instLit += instructions[i + 1];
 
@@ -864,18 +783,24 @@ namespace Team4_Project4
                         if (stringLoc == -1)
                         {
                             //error
+                            MessageBox.Show("Title",
+                                        "Message",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
                         }
                         else
                         {
+                            //creates brgt instruction
                             Instruction BRGT = new Instruction(progCount += 4, 1, 1, 1, 1, instructions[i + 1], instLit);
                             pipeInts.Add(BRGT);
                             i = stringLoc + 2;          //set jump point as next instruction
                         }
 
+                        //gets next instruction and removes brgt
                         (pipeInts, progCount, i, stopF) = ProgramController.fetch(instructions, pipeInts, progCount, i);
                         pipeInts.RemoveAt(0);
                     }
-
+                    //skips branch and goes to next instruction
                     else
                     {
                         i += 3;
@@ -884,8 +809,10 @@ namespace Team4_Project4
                     break;
 
                 case string n when (n == "BREQ"):
+                    //enter if zero flag is set 
                     if (guiForm.getReg("R0") == 1)
                     {
+                        //gets branch instruction and locaiton to branch to
                         instLit += instructions[i];
                         instLit += instructions[i + 1];
 
@@ -894,17 +821,24 @@ namespace Team4_Project4
                         if (stringLoc == -1)
                         {
                             //error
+                            MessageBox.Show("Title",
+                                        "Message",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
                         }
                         else
                         {
+                            //creates nreq instructino
                             Instruction BREQ = new Instruction(progCount += 4, 1, 1, 1, 1, instructions[i + 1], instLit);
                             pipeInts.Add(BREQ);
                             i = stringLoc + 2;          //set jump point as next instruction
                         }
-
+                        
+                        //grabs next instruction then removes breq instruction
                         (pipeInts, progCount, i, stopF) = ProgramController.fetch(instructions, pipeInts, progCount, i);
                         pipeInts.RemoveAt(0);
                     }
+                    //skips branch and grabs next instruction
                     else
                     {
                         i += 3;
@@ -914,23 +848,33 @@ namespace Team4_Project4
                     break;
 
                 case string n when (n == "BRAN"):
+                    //gets branch instruction and location to branch to
                     instLit += instructions[i];
                     instLit += instructions[i + 1];
 
                     stringLoc = instructions.IndexOf(instructions[i + 1] + ":");    //looks for jump point
 
+                    //error if branch point
                     if (stringLoc == -1)
                     {
                         //error
+                        MessageBox.Show("Title",
+                                        "Message",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
                     }
+
                     else
                     {
+                        //creates bran instruction
                         Instruction BRAN = new Instruction(progCount += 4, 1, 1, 1, 1, instructions[i + 1], instLit);
                         pipeInts.Add(BRAN);
                         i = stringLoc + 2;          //set jump point as next instruction
                     }
 
+                    //gets next intsruction after branch
                     (pipeInts, progCount, i, stopF) = ProgramController.fetch(instructions, pipeInts, progCount, i);
+                    //removes bran instruction from pipeline
                     pipeInts.RemoveAt(0);
 
                     break;
@@ -1105,7 +1049,7 @@ namespace Team4_Project4
                     break;
 
                 case string n when (n == "COMP"):
-                    //COMP(pipeInts);
+                    COMP(pipeInts);
                     break;
 
                 case string n when (n == "ANDD"):
@@ -1117,27 +1061,27 @@ namespace Team4_Project4
                     break;
 
                 case string n when (n == "BRLT"):
-
+                    //Dont need???
                     break;
 
                 case string n when (n == "BRGT"):
-
+                    //Dont need???
                     break;
 
                 case string n when (n == "BREQ"):
-
+                    //Dont need???
                     break;
 
                 case string n when (n == "BRAN"):
-
+                    //Dont need???
                     break;
 
                 case string n when (n == "ADDI"):
-
+                    ADDI(pipeInts);
                     break;
 
                 case string n when (n == "SUBT"):
-
+                    SUBT(pipeInts);
                     break;
 
                 case string n when (n == "FADD"):
@@ -1157,14 +1101,12 @@ namespace Team4_Project4
                     break;
 
                 case string n when (n == "NOOP"):
-
+                    //No method needed for NOOP
                     break;
 
                 case string n when (n == "STOP"):
-
+                    //No method needed for STOP
                     break;
-
-
             }
 
         }//end execute()
@@ -1370,17 +1312,37 @@ namespace Team4_Project4
         /// <returns>Value to store in sRegister</returns>
         public static void LDREM(Instruction pipeInts)
         {
+            string[] cacheStuff = cacheInfo(pipeInts.p1Register.Remove(0,1));
+
+            if(string.IsNullOrEmpty(cacheStuff[1]) == false)
+            {
+                for (int i = 0; i < Convert.ToInt32(cacheStuff[1], 16) + 1; i++)
+                {
+                    if (Convert.ToInt32(cacheStuff[1], 16) + 1 == i)
+                    {
+                        for(int i =0; )
+                    }
+                }
+            }
+            else
+            {
+
+            }
+
             float ret = guiForm.getReg(pipeInts.p1Register);
-            string retS= "";
+            string retS = "";
+
             pipeInts.p1Register = pipeInts.p1Register.Remove(0, 1);
             int temp = Convert.ToInt32(pipeInts.p1Register, 16);
-            for (int i = 0; i < 4; i ++)
+
+            for (int i = 0; i < 4; i++)
             {
-                pipeInts.P1Register=temp.ToString("X5");
+                pipeInts.P1Register = temp.ToString("X5");
                 temp++;
                 retS += guiForm.getByte(pipeInts.p1Register);
             }
-            ret = Convert.ToInt32(retS.Replace(" ",""),16);
+
+            ret = Convert.ToInt32(retS.Replace(" ", ""), 16);
             guiForm.updateRegister(pipeInts.sRegister, ret);
 
         }//end LDREM()
@@ -1410,10 +1372,9 @@ namespace Team4_Project4
         public static void STRE(Instruction pipeInts)
         {
             int ret = Convert.ToInt32(guiForm.getReg(pipeInts.p1Register));
-            string retS = "";
             pipeInts.sRegister = pipeInts.sRegister.Remove(0, 1);
             string tempR = "";
-            string tempRS = Convert.ToString(ret,16);
+            string tempRS = Convert.ToString(ret, 16);
             for (int i = 0; i < 4; i++)
             {
 
@@ -1422,7 +1383,7 @@ namespace Team4_Project4
                     if (tempRS.Length == 1)
                     {
                         tempR = ($"{tempRS[0]}");
-                        tempRS=tempRS.Remove(0, 1);
+                        tempRS = tempRS.Remove(0, 1);
                         if (i >= 1)
                         {
                             int temp = Convert.ToInt32(pipeInts.sRegister, 16);
@@ -1444,11 +1405,256 @@ namespace Team4_Project4
                         guiForm.storeByte(pipeInts.sRegister, tempR);
                     }
                 }
-                
+
             }
 
 
         }//end STRE()
+        #endregion
+
+        #region cacheInfo() Method
+        /// <summary>
+        /// Method for determining cache information
+        /// </summary>
+        /// <param name="address">Address of </param>
+        /// <returns>String array </returns>
+        public static string[] cacheInfo(string address)
+        {
+            int block, entries, ways, blockbit, setbit = 0;
+            block = guiForm.cacheLineSize;
+            entries = guiForm.cacheEntries;
+            ways = guiForm.cacheType;
+            int addr = Convert.ToInt32(address, 16);
+            string[] ret = new string[3];
+            if (block == 4)
+            {
+                string temp = Convert.ToString(addr & 3, 16);
+                ret[2] = temp;
+                blockbit = 2;
+                if (ways == 4)
+                {
+                    if (entries == 8)
+                    {
+                        string tempa = Convert.ToString((addr & 4)>>2, 16);
+                        ret[1] = tempa;
+                        setbit = 1;
+                    }
+                    else
+                    {
+                        string tempa = Convert.ToString((addr & 12) >> 2, 16);
+                        ret[1] = tempa;
+                        setbit = 2;
+                    }
+                }
+                else if (ways == 2)
+                {
+                    if (entries == 4)
+                    {
+                        string tempa = Convert.ToString((addr & 4) >> 2, 16);
+                        ret[1] = tempa;
+                        setbit = 1;
+                    }
+                    else if (entries == 8)
+                    {
+                        string tempa = Convert.ToString((addr & 12) >> 2, 16);
+                        ret[1] = tempa;
+                        setbit = 2;
+                    }
+                    else
+                    {
+                        string tempa = Convert.ToString((addr & 28) >> 2, 16);
+                        ret[1] = tempa;
+                        setbit = 3;
+                    }
+                }
+                else
+                {
+                    if (entries == 4)
+                    {
+                        string tempa = Convert.ToString((addr & 12) >> 2, 16);
+                        ret[1] = tempa;
+                        setbit = 2;
+                    }
+                    else if (entries == 8)
+                    {
+                        string tempa = Convert.ToString((addr & 28) >> 2, 16);
+                        ret[1] = tempa;
+                        setbit = 3;
+                    }
+                    else
+                    {
+                        string tempa = Convert.ToString((addr & 60) >> 2, 16);
+                        ret[1] = tempa;
+                        setbit = 4;
+                    }
+                }
+
+            }
+            else if (block == 8)
+            {
+                string temp = Convert.ToString(addr & 7, 16);
+                ret[1] = temp;
+                blockbit = 3;
+                if (ways == 4)
+                {
+                    if (entries == 8)
+                    {
+                        string tempa = Convert.ToString((addr & 8) >> 3, 16);
+                        ret[1] = tempa;
+                        setbit = 1;
+                    }
+                    else
+                    {
+                        string tempa = Convert.ToString((addr & 24) >> 3, 16);
+                        ret[1] = tempa;
+                        setbit = 2;
+                    }
+                }
+                else if (ways == 2)
+                {
+                    if (entries == 4)
+                    {
+                        string tempa = Convert.ToString((addr & 8) >> 3, 16);
+                        ret[1] = tempa;
+                        setbit = 1;
+                    }
+                    else if (entries == 8)
+                    {
+                        string tempa = Convert.ToString((addr & 24) >> 3, 16);
+                        ret[1] = tempa;
+                        setbit = 2;
+                    }
+                    else
+                    {
+                        string tempa = Convert.ToString((addr & 56) >> 3, 16);
+                        ret[1] = tempa;
+                        setbit = 3;
+                    }
+                }
+                else
+                {
+                    if (entries == 4)
+                    {
+                        string tempa = Convert.ToString((addr & 24) >> 3, 16);
+                        ret[1] = tempa;
+                        setbit = 2;
+                    }
+                    else if (entries == 8)
+                    {
+                        string tempa = Convert.ToString((addr & 56) >> 3, 16);
+                        ret[1] = tempa;
+                        setbit = 3;
+                    }
+                    else
+                    {
+                        string tempa = Convert.ToString((addr & 120) >> 3, 16);
+                        ret[1] = tempa;
+                        setbit = 4;
+                    }
+                }
+            }
+            else
+            {
+                string temp = Convert.ToString(addr & 15, 16);
+                ret[1] = temp;
+                blockbit = 4;
+                if (ways == 4)
+                {
+                    if (entries == 8)
+                    {
+                        string tempa = Convert.ToString((addr & 16) >> 4, 16);
+                        ret[1] = tempa;
+                        setbit = 1;
+                    }
+                    else
+                    {
+                        string tempa = Convert.ToString((addr & 48) >> 4, 16);
+                        ret[1] = tempa;
+                        setbit = 2;
+                    }
+                }
+                else if (ways == 2)
+                {
+                    if (entries == 4)
+                    {
+                        string tempa = Convert.ToString((addr & 16) >> 4, 16);
+                        ret[1] = tempa;
+                        setbit = 1;
+                    }
+                    else if (entries == 8)
+                    {
+                        string tempa = Convert.ToString((addr & 48) >> 4, 16);
+                        ret[1] = tempa;
+                        setbit = 2;
+                    }
+                    else
+                    {
+                        string tempa = Convert.ToString((addr & 112) >> 4, 16);
+                        ret[1] = tempa;
+                        setbit = 3;
+                    }
+                }
+                else
+                {
+                    if (entries == 4)
+                    {
+                        string tempa = Convert.ToString((addr & 48) >> 4, 16);
+                        ret[1] = tempa;
+                        setbit = 2;
+                    }
+                    else if (entries == 8)
+                    {
+                        string tempa = Convert.ToString((addr & 112) >> 4, 16);
+                        ret[1] = tempa;
+                        setbit = 3;
+                    }
+                    else
+                    {
+                        string tempa = Convert.ToString((addr & 240) >> 4, 16);
+                        ret[1] = tempa;
+                        setbit = 4;
+                    }
+                }
+            }
+
+            int tagOffSet = setbit + blockbit;
+
+            switch (tagOffSet)
+            {
+                case 3:
+                    string tempa = Convert.ToString(addr & 1048568, 16);
+                    ret[0] = tempa;
+                    break;
+
+                case 4:
+                    string tempb = Convert.ToString(addr & 1048560, 16);
+                    ret[0] = tempb;
+                    break;
+
+                case 5:
+                    string tempc = Convert.ToString(addr & 1048544, 16);
+                    ret[0] = tempc;
+                    break;
+
+                case 6:
+                    string tempd = Convert.ToString(addr & 1048512, 16);
+                    ret[0] = tempd;
+                    break;
+
+                case 7:
+                    string tempe = Convert.ToString(addr & 1048448, 16);
+                    ret[0] = tempe;
+                    break;
+
+                case 8:
+                    string tempf = Convert.ToString(addr & 1048320, 16);
+                    ret[0] = tempf;
+                    break;
+            }
+
+            return ret;
+
+        }//end cacheInfo()
         #endregion
 
         #region COMP() Method
@@ -1713,7 +1919,6 @@ namespace Team4_Project4
 
         }//end STOP()
         #endregion
-
 
     }//end ProgramController class
 
