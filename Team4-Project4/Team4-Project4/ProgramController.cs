@@ -746,10 +746,10 @@ namespace Team4_Project4
                         if (stringLoc == -1)
                         {
                             //error
-                            MessageBox.Show("Title",
-                                        "Message",
-                                        MessageBoxButtons.OK,
-                                        MessageBoxIcon.Error);
+                            MessageBox.Show("Invalid Branch",
+                                            "There was no branch found with that name.",
+                                            MessageBoxButtons.OK,
+                                            MessageBoxIcon.Error);
                         }
                         else
                         {
@@ -783,10 +783,10 @@ namespace Team4_Project4
                         if (stringLoc == -1)
                         {
                             //error
-                            MessageBox.Show("Title",
-                                        "Message",
-                                        MessageBoxButtons.OK,
-                                        MessageBoxIcon.Error);
+                            MessageBox.Show("Invalid Branch",
+                                            "There was no branch found with that name.",
+                                            MessageBoxButtons.OK,
+                                            MessageBoxIcon.Error);
                         }
                         else
                         {
@@ -821,10 +821,10 @@ namespace Team4_Project4
                         if (stringLoc == -1)
                         {
                             //error
-                            MessageBox.Show("Title",
-                                        "Message",
-                                        MessageBoxButtons.OK,
-                                        MessageBoxIcon.Error);
+                            MessageBox.Show("Invalid Branch",
+                                            "There was no branch found with that name.",
+                                            MessageBoxButtons.OK,
+                                            MessageBoxIcon.Error);
                         }
                         else
                         {
@@ -858,8 +858,8 @@ namespace Team4_Project4
                     if (stringLoc == -1)
                     {
                         //error
-                        MessageBox.Show("Title",
-                                        "Message",
+                        MessageBox.Show("Invalid Branch",
+                                        "There was no branch found with that name.",
                                         MessageBoxButtons.OK,
                                         MessageBoxIcon.Error);
                     }
@@ -1327,6 +1327,7 @@ namespace Team4_Project4
                             {
                                 if (Convert.ToInt32(guiForm.Cache[i, j - 1]) != 0)
                                 flag = 1;
+                                guiForm.incrementCacheHits();
                             }
                         }
                     }
@@ -1337,6 +1338,7 @@ namespace Team4_Project4
                     int tempa = lru();
                     guiForm.Cache[Convert.ToInt32(cacheStuff[1], 16) + 1, tempa ] = cacheStuff[2];
                     guiForm.Cache[Convert.ToInt32(cacheStuff[1], 16) + 1, tempa - 1] = "1";
+                    guiForm.incrementCacheMisses();
                 }
             }
             else
@@ -1346,6 +1348,7 @@ namespace Team4_Project4
                     if (guiForm.Cache[1, j] == cacheStuff[2])
                     {
                         flag = 1;
+                        guiForm.incrementCacheHits();
                     }
                 }
 
@@ -1354,6 +1357,7 @@ namespace Team4_Project4
                     int tempa = lru();
                     guiForm.Cache[Convert.ToInt32(1) + 1, tempa] = cacheStuff[2];
                     guiForm.Cache[Convert.ToInt32(1) + 1, tempa - 1] = "1";
+                    guiForm.incrementCacheMisses();
                 }
 
             }
@@ -1400,8 +1404,8 @@ namespace Team4_Project4
         /// <returns>Value to store in memory</returns>
         public static void STRE(Instruction pipeInts)
         {
-            int ret = Convert.ToInt32(guiForm.getReg(pipeInts.p1Register));
-            pipeInts.sRegister = pipeInts.sRegister.Remove(0, 1);
+            int ret = Convert.ToInt32(guiForm.getReg(pipeInts.sRegister));//
+            pipeInts.p1Register = pipeInts.p1Register.Remove(0, 1);
             string tempR = "";
             string tempRS = Convert.ToString(ret, 16);
             for (int i = 0; i < 4; i++)
@@ -1415,11 +1419,11 @@ namespace Team4_Project4
                         tempRS = tempRS.Remove(0, 1);
                         if (i >= 1)
                         {
-                            int temp = Convert.ToInt32(pipeInts.sRegister, 16);
+                            int temp = Convert.ToInt32(pipeInts.p1Register, 16);
                             temp++;
-                            pipeInts.sRegister = temp.ToString("X5");
+                            pipeInts.p1Register = temp.ToString("X5");
                         }
-                        guiForm.storeByte(pipeInts.sRegister, tempR);
+                        guiForm.storeByte(pipeInts.p1Register, tempR);
                     }
                     else
                     {
@@ -1427,11 +1431,11 @@ namespace Team4_Project4
                         tempRS = tempRS.Remove(0, 2);
                         if (i >= 1)
                         {
-                            int temp = Convert.ToInt32(pipeInts.sRegister, 16);
+                            int temp = Convert.ToInt32(pipeInts.p1Register, 16);
                             temp++;
-                            pipeInts.sRegister = temp.ToString("X5");
+                            pipeInts.p1Register = temp.ToString("X5");
                         }
-                        guiForm.storeByte(pipeInts.sRegister, tempR);
+                        guiForm.storeByte(pipeInts.p1Register, tempR);
                     }
                 }
 
