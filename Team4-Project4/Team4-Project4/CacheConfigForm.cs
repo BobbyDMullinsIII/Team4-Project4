@@ -46,6 +46,7 @@ namespace Team4_Project4
         }
         #endregion
 
+
         //Buttons
         #region Close Button
         /// <summary>
@@ -124,6 +125,7 @@ namespace Team4_Project4
 
         }
         #endregion
+
 
         //Event handlers to prevent user from typing inside boxes
         #region KeyPress Event Handlers
