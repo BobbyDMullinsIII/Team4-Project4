@@ -497,7 +497,7 @@ namespace Team4_Project4
 
                             //Calculated cache hit ratio and adds it to cache output text
                             double hitRatio = (double)cacheHits / ((double)cacheHits + (double)cacheMisses);
-                            cacheText.Text += $"\n\nHit Ratio: {hitRatio}";
+                            cacheText.Text += $"\r\n\r\nHit Ratio: {hitRatio}";
                         }
                         else
                         {
