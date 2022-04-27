@@ -430,7 +430,7 @@ namespace Team4_Project4
             if (doStall != -1)
             {
                 //Miss
-                if(doStall == 0)
+                if (doStall == 0)
                 {
                     //Keeps incrementing until cycles passed equals number of set cycles for miss
                     if (cacheCycleStallCounter > 0)
@@ -446,7 +446,7 @@ namespace Team4_Project4
                 else if (doStall == 1)
                 {
                     //Keeps incrementing until cycles passed equals number of set cycles for hit
-                    if(cacheCycleStallCounter > 0)
+                    if (cacheCycleStallCounter > 0)
                     {
                         cacheCycleStallCounter--;
                     }
@@ -1384,6 +1384,7 @@ namespace Team4_Project4
         }//end incrementCacheMisses()
         #endregion
 
+
         //Cache Methods
         #region InitializeCache() Method
         /// <summary>
@@ -1488,18 +1489,18 @@ namespace Team4_Project4
         public void cacheHitOrMiss(int hitormiss)
         {
             //Miss = 0
-            if(hitormiss == 0)
+            if (hitormiss == 0)
             {
                 doStall = 0;
                 cacheCycleStallCounter = missCycles;
             }
             //Hit = 1
-            if(hitormiss == 1)
+            if (hitormiss == 1)
             {
                 doStall = 1;
                 cacheCycleStallCounter = hitCycles;
             }
-            
+
         }//end cacheHitOrMiss()
         #endregion
 

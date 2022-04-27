@@ -1322,12 +1322,12 @@ namespace Team4_Project4
                 {
                     if (Convert.ToInt32(cacheStuff[1], 16) + 1 == i)
                     {
-                        for (int j = 4; j < guiForm.cacheType * 2 + 3; j+=2)
+                        for (int j = 4; j < guiForm.cacheType * 2 + 3; j += 2)
                         {
                             if (guiForm.Cache[i, j] == cacheStuff[0])
                             {
                                 if (Convert.ToInt32(guiForm.Cache[i, j - 1]) != 0)
-                                flag = 1;
+                                    flag = 1;
                                 guiForm.incrementCacheHits();
                                 guiForm.cacheHitOrMiss(1);
                             }
@@ -1338,7 +1338,7 @@ namespace Team4_Project4
                 if (flag == 0)
                 {
                     int tempa = lru();
-                    guiForm.Cache[Convert.ToInt32(cacheStuff[1], 16) + 1, tempa ] = cacheStuff[0];
+                    guiForm.Cache[Convert.ToInt32(cacheStuff[1], 16) + 1, tempa] = cacheStuff[0];
                     guiForm.Cache[Convert.ToInt32(cacheStuff[1], 16) + 1, tempa - 1] = "1";
                     guiForm.incrementCacheMisses();
                     guiForm.cacheHitOrMiss(0);
@@ -1356,7 +1356,7 @@ namespace Team4_Project4
                     }
                 }
 
-                if(flag==0)
+                if (flag == 0)
                 {
                     int tempa = lru();
                     guiForm.Cache[Convert.ToInt32(1) + 1, tempa] = cacheStuff[0];
@@ -1477,9 +1477,9 @@ namespace Team4_Project4
 
                 }
             }
-            else 
+            else
             {
-                
+
                 if (LRULRU == 1)
                 {
                     if (LRU == 1)
