@@ -30,7 +30,7 @@ namespace Team4_Project4
     public class ProgramController
     {
         public static GUIForm guiForm;    //GUIForm instance to open program to
-
+        public static int LRULRU, LRU = 0;
         //General Function Methods
         #region startProgram() Method
         /// <summary>
@@ -833,7 +833,7 @@ namespace Team4_Project4
                             pipeInts.Add(BREQ);
                             i = stringLoc + 2;          //set jump point as next instruction
                         }
-                        
+
                         //grabs next instruction then removes breq instruction
                         (pipeInts, progCount, i, stopF) = ProgramController.fetch(instructions, pipeInts, progCount, i);
                         pipeInts.RemoveAt(0);
@@ -1312,20 +1312,49 @@ namespace Team4_Project4
         /// <returns>Value to store in sRegister</returns>
         public static void LDREM(Instruction pipeInts)
         {
-            string[] cacheStuff = cacheInfo(pipeInts.p1Register.Remove(0,1));
+            string[] cacheStuff = cacheInfo(pipeInts.p1Register.Remove(0, 1));
+            int flag = 0;
 
-            if(string.IsNullOrEmpty(cacheStuff[1]) == false)
+            if (string.IsNullOrEmpty(cacheStuff[1]) == false)
             {
-                for (int i = 0; i < Convert.ToInt32(cacheStuff[1], 16) + 1; i++)
+                for (int i = 0; i <= Convert.ToInt32(cacheStuff[1], 16) + 1; i++)
                 {
                     if (Convert.ToInt32(cacheStuff[1], 16) + 1 == i)
                     {
-                        for(int i =0; )
+                        for (int j = 4; j < guiForm.cacheType * 2 + 3; j+=2)
+                        {
+                            if (guiForm.Cache[i, j] == cacheStuff[2])
+                            {
+                                if (Convert.ToInt32(guiForm.Cache[i, j - 1]) != 0)
+                                flag = 1;
+                            }
+                        }
                     }
+                }
+
+                if (flag == 0)
+                {
+                    int tempa = lru();
+                    guiForm.Cache[Convert.ToInt32(cacheStuff[1], 16) + 1, tempa ] = cacheStuff[2];
+                    guiForm.Cache[Convert.ToInt32(cacheStuff[1], 16) + 1, tempa - 1] = "1";
                 }
             }
             else
             {
+                for (int j = 0; j < guiForm.cacheType * 2 + 3; j++)
+                {
+                    if (guiForm.Cache[1, j] == cacheStuff[2])
+                    {
+                        flag = 1;
+                    }
+                }
+
+                if(flag==0)
+                {
+                    int tempa = lru();
+                    guiForm.Cache[Convert.ToInt32(1) + 1, tempa] = cacheStuff[2];
+                    guiForm.Cache[Convert.ToInt32(1) + 1, tempa - 1] = "1";
+                }
 
             }
 
@@ -1412,12 +1441,71 @@ namespace Team4_Project4
         }//end STRE()
         #endregion
 
+        #region lru() Method
+        /// <summary>
+        /// Method for lru
+        /// </summary>
+        /// <returns></returns>
+        public static int lru()
+        {
+
+            if (guiForm.cacheType == 1)
+            {
+                return 4;
+            }
+            else if (guiForm.cacheType == 2)
+            {
+                if (LRU == 1)
+                {
+                    return 6;
+                    LRU = 0;
+                }
+                else
+                {
+                    return 4;
+                    LRU = 1;
+                }
+            }
+            else 
+            {
+                if (LRULRU == 1)
+                {
+                    if (LRU == 1)
+                    {
+                        return 10;
+                        LRU = 0;
+                    }
+                    else
+                    {
+                        return 8;
+                        LRU = 1;
+                    }
+                    LRULRU = 0;
+                }
+                else
+                {
+                    if (LRU == 1)
+                    {
+                        return 6;
+                        LRU = 0;
+                    }
+                    else
+                    {
+                        return 4;
+                        LRU = 1;
+                    }
+                    LRULRU = 1;
+                }
+            }
+        }//end lru()
+        #endregion
+
         #region cacheInfo() Method
         /// <summary>
-        /// Method for determining cache information
+        /// Method for determining cache information and returning it
         /// </summary>
         /// <param name="address">Address of </param>
-        /// <returns>String array </returns>
+        /// <returns>String array of cache info</returns>
         public static string[] cacheInfo(string address)
         {
             int block, entries, ways, blockbit, setbit = 0;
@@ -1435,7 +1523,7 @@ namespace Team4_Project4
                 {
                     if (entries == 8)
                     {
-                        string tempa = Convert.ToString((addr & 4)>>2, 16);
+                        string tempa = Convert.ToString((addr & 4) >> 2, 16);
                         ret[1] = tempa;
                         setbit = 1;
                     }
