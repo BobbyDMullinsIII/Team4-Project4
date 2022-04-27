@@ -1274,182 +1274,7 @@ namespace Team4_Project4
         #endregion
 
 
-        //Instruction Control Logic Methods
-        #region LDRER() Method
-        /// <summary>
-        /// Method for LDRE R,R | LDRE R,Immediate | LDRE R,Memory for ints
-        /// </summary>
-        /// <param name="pipeInts">Instruction ints</param>
-        /// <returns>Value to store in sRegister</returns>
-        public static void LDRER(Instruction pipeInts)
-        {
-            float ret = guiForm.getReg(pipeInts.p1Register);
-
-            guiForm.updateRegister(pipeInts.sRegister, ret);
-
-        }//end LDRER()
-        #endregion
-
-        #region LDREI() Method
-        /// <summary>
-        /// Method for LDRE R,R | LDRE R,Immediate | LDRE R,Memory for ints
-        /// </summary>
-        /// <param name="pipeInts">Instruction to currently execute</param>
-        /// <returns>Value to store in sRegister</returns>
-        public static void LDREI(Instruction pipeInts)
-        {
-            float ret = float.Parse(pipeInts.p1Register.Remove(0, 1));
-
-            guiForm.updateRegister(pipeInts.sRegister, ret);
-
-        }//end LDREI()
-        #endregion
-
-        #region LDREM() Method
-        /// <summary>
-        /// Method for LDRE R,R | LDRE R,Immediate | LDRE R,Memory for ints
-        /// </summary>
-        /// <param name="pipeInts">Instruction to currently execute</param>
-        /// <returns>Value to store in sRegister</returns>
-        public static void LDREM(Instruction pipeInts)
-        {
-            string[] cacheStuff = cacheInfo(pipeInts.p1Register.Remove(0, 1));
-            int flag = 0;
-
-            if (string.IsNullOrEmpty(cacheStuff[1]) == false)
-            {
-                for (int i = 0; i <= Convert.ToInt32(cacheStuff[1], 16) + 1; i++)
-                {
-                    if (Convert.ToInt32(cacheStuff[1], 16) + 1 == i)
-                    {
-                        for (int j = 4; j < guiForm.cacheType * 2 + 3; j += 2)
-                        {
-                            if (guiForm.Cache[i, j] == cacheStuff[0])
-                            {
-                                if (Convert.ToInt32(guiForm.Cache[i, j - 1]) != 0)
-                                    flag = 1;
-                                guiForm.incrementCacheHits();
-                                guiForm.cacheHitOrMiss(1);
-                            }
-                        }
-                    }
-                }
-
-                if (flag == 0)
-                {
-                    int tempa = lru();
-                    guiForm.Cache[Convert.ToInt32(cacheStuff[1], 16) + 1, tempa] = cacheStuff[0];
-                    guiForm.Cache[Convert.ToInt32(cacheStuff[1], 16) + 1, tempa - 1] = "1";
-                    guiForm.incrementCacheMisses();
-                    guiForm.cacheHitOrMiss(0);
-                }
-            }
-            else
-            {
-                for (int j = 0; j < guiForm.cacheType * 2 + 3; j++)
-                {
-                    if (guiForm.Cache[1, j] == cacheStuff[2])
-                    {
-                        flag = 1;
-                        guiForm.incrementCacheHits();
-                        guiForm.cacheHitOrMiss(1);
-                    }
-                }
-
-                if (flag == 0)
-                {
-                    int tempa = lru();
-                    guiForm.Cache[Convert.ToInt32(1) + 1, tempa] = cacheStuff[0];
-                    guiForm.Cache[Convert.ToInt32(1) + 1, tempa - 1] = "1";
-                    guiForm.incrementCacheMisses();
-                    guiForm.cacheHitOrMiss(0);
-                }
-
-            }
-
-            float ret = guiForm.getReg(pipeInts.p1Register);
-            string retS = "";
-
-            pipeInts.p1Register = pipeInts.p1Register.Remove(0, 1);
-            int temp = Convert.ToInt32(pipeInts.p1Register, 16);
-
-            for (int i = 0; i < 4; i++)
-            {
-                pipeInts.P1Register = temp.ToString("X5");
-                temp++;
-                retS += guiForm.getByte(pipeInts.p1Register);
-            }
-
-            ret = Convert.ToInt32(retS.Replace(" ", ""), 16);
-            guiForm.updateRegister(pipeInts.sRegister, ret);
-
-        }//end LDREM()
-        #endregion
-
-        #region LDREfloat() Method
-        /// <summary>
-        /// Method for LDRE R,R | LDRE R,Immediate | LDRE R,Memory for floats
-        /// </summary>
-        /// <param name="pipeInts">Instruction to currently execute</param>
-        /// <returns>Value to store in sRegister</returns>
-        public static void LDREfloat(Instruction pipeInts)
-        {
-            float ret = guiForm.getReg(pipeInts.p1Register);
-
-            guiForm.updateRegister(pipeInts.sRegister, ret);
-
-        }//end LDREfloat()
-        #endregion
-
-        #region STRE() Method
-        /// <summary>
-        /// Method for STRE &R,R instruction
-        /// </summary>
-        /// <param name="pipeInts">Instruction to currently execute</param>
-        /// <returns>Value to store in memory</returns>
-        public static void STRE(Instruction pipeInts)
-        {
-            int ret = Convert.ToInt32(guiForm.getReg(pipeInts.sRegister));//
-            pipeInts.p1Register = pipeInts.p1Register.Remove(0, 1);
-            string tempR = "";
-            string tempRS = Convert.ToString(ret, 16);
-            for (int i = 0; i < 4; i++)
-            {
-
-                if (tempRS.Length >= 1)
-                {
-                    if (tempRS.Length == 1)
-                    {
-                        tempR = ($"{tempRS[0]}");
-                        tempRS = tempRS.Remove(0, 1);
-                        if (i >= 1)
-                        {
-                            int temp = Convert.ToInt32(pipeInts.p1Register, 16);
-                            temp++;
-                            pipeInts.p1Register = temp.ToString("X5");
-                        }
-                        guiForm.storeByte(pipeInts.p1Register, tempR);
-                    }
-                    else
-                    {
-                        tempR = ($"{tempRS[0]}{tempRS[1]}");
-                        tempRS = tempRS.Remove(0, 2);
-                        if (i >= 1)
-                        {
-                            int temp = Convert.ToInt32(pipeInts.p1Register, 16);
-                            temp++;
-                            pipeInts.p1Register = temp.ToString("X5");
-                        }
-                        guiForm.storeByte(pipeInts.p1Register, tempR);
-                    }
-                }
-
-            }
-
-
-        }//end STRE()
-        #endregion
-
+        //Cache Methods
         #region lru() Method
         /// <summary>
         /// Method for lru
@@ -1761,6 +1586,183 @@ namespace Team4_Project4
             return ret;
 
         }//end cacheInfo()
+        #endregion
+
+
+        //Instruction Control Logic Methods
+        #region LDRER() Method
+        /// <summary>
+        /// Method for LDRE R,R | LDRE R,Immediate | LDRE R,Memory for ints
+        /// </summary>
+        /// <param name="pipeInts">Instruction ints</param>
+        /// <returns>Value to store in sRegister</returns>
+        public static void LDRER(Instruction pipeInts)
+        {
+            float ret = guiForm.getReg(pipeInts.p1Register);
+
+            guiForm.updateRegister(pipeInts.sRegister, ret);
+
+        }//end LDRER()
+        #endregion
+
+        #region LDREI() Method
+        /// <summary>
+        /// Method for LDRE R,R | LDRE R,Immediate | LDRE R,Memory for ints
+        /// </summary>
+        /// <param name="pipeInts">Instruction to currently execute</param>
+        /// <returns>Value to store in sRegister</returns>
+        public static void LDREI(Instruction pipeInts)
+        {
+            float ret = float.Parse(pipeInts.p1Register.Remove(0, 1));
+
+            guiForm.updateRegister(pipeInts.sRegister, ret);
+
+        }//end LDREI()
+        #endregion
+
+        #region LDREM() Method
+        /// <summary>
+        /// Method for LDRE R,R | LDRE R,Immediate | LDRE R,Memory for ints
+        /// </summary>
+        /// <param name="pipeInts">Instruction to currently execute</param>
+        /// <returns>Value to store in sRegister</returns>
+        public static void LDREM(Instruction pipeInts)
+        {
+            string[] cacheStuff = cacheInfo(pipeInts.p1Register.Remove(0, 1));
+            int flag = 0;
+
+            if (string.IsNullOrEmpty(cacheStuff[1]) == false)
+            {
+                for (int i = 0; i <= Convert.ToInt32(cacheStuff[1], 16) + 1; i++)
+                {
+                    if (Convert.ToInt32(cacheStuff[1], 16) + 1 == i)
+                    {
+                        for (int j = 4; j < guiForm.cacheType * 2 + 3; j += 2)
+                        {
+                            if (guiForm.Cache[i, j] == cacheStuff[0])
+                            {
+                                if (Convert.ToInt32(guiForm.Cache[i, j - 1]) != 0)
+                                    flag = 1;
+                                guiForm.incrementCacheHits();
+                                guiForm.cacheHitOrMiss(1);
+                            }
+                        }
+                    }
+                }
+
+                if (flag == 0)
+                {
+                    int tempa = lru();
+                    guiForm.Cache[Convert.ToInt32(cacheStuff[1], 16) + 1, tempa] = cacheStuff[0];
+                    guiForm.Cache[Convert.ToInt32(cacheStuff[1], 16) + 1, tempa - 1] = "1";
+                    guiForm.incrementCacheMisses();
+                    guiForm.cacheHitOrMiss(0);
+                }
+            }
+            else
+            {
+                for (int j = 0; j < guiForm.cacheType * 2 + 3; j++)
+                {
+                    if (guiForm.Cache[1, j] == cacheStuff[2])
+                    {
+                        flag = 1;
+                        guiForm.incrementCacheHits();
+                        guiForm.cacheHitOrMiss(1);
+                    }
+                }
+
+                if (flag == 0)
+                {
+                    int tempa = lru();
+                    guiForm.Cache[Convert.ToInt32(1) + 1, tempa] = cacheStuff[0];
+                    guiForm.Cache[Convert.ToInt32(1) + 1, tempa - 1] = "1";
+                    guiForm.incrementCacheMisses();
+                    guiForm.cacheHitOrMiss(0);
+                }
+
+            }
+
+            float ret = guiForm.getReg(pipeInts.p1Register);
+            string retS = "";
+
+            pipeInts.p1Register = pipeInts.p1Register.Remove(0, 1);
+            int temp = Convert.ToInt32(pipeInts.p1Register, 16);
+
+            for (int i = 0; i < 4; i++)
+            {
+                pipeInts.P1Register = temp.ToString("X5");
+                temp++;
+                retS += guiForm.getByte(pipeInts.p1Register);
+            }
+
+            ret = Convert.ToInt32(retS.Replace(" ", ""), 16);
+            guiForm.updateRegister(pipeInts.sRegister, ret);
+
+        }//end LDREM()
+        #endregion
+
+        #region LDREfloat() Method
+        /// <summary>
+        /// Method for LDRE R,R | LDRE R,Immediate | LDRE R,Memory for floats
+        /// </summary>
+        /// <param name="pipeInts">Instruction to currently execute</param>
+        /// <returns>Value to store in sRegister</returns>
+        public static void LDREfloat(Instruction pipeInts)
+        {
+            float ret = guiForm.getReg(pipeInts.p1Register);
+
+            guiForm.updateRegister(pipeInts.sRegister, ret);
+
+        }//end LDREfloat()
+        #endregion
+
+        #region STRE() Method
+        /// <summary>
+        /// Method for STRE &R,R instruction
+        /// </summary>
+        /// <param name="pipeInts">Instruction to currently execute</param>
+        /// <returns>Value to store in memory</returns>
+        public static void STRE(Instruction pipeInts)
+        {
+            int ret = Convert.ToInt32(guiForm.getReg(pipeInts.sRegister));//
+            pipeInts.p1Register = pipeInts.p1Register.Remove(0, 1);
+            string tempR = "";
+            string tempRS = Convert.ToString(ret, 16);
+            for (int i = 0; i < 4; i++)
+            {
+
+                if (tempRS.Length >= 1)
+                {
+                    if (tempRS.Length == 1)
+                    {
+                        tempR = ($"{tempRS[0]}");
+                        tempRS = tempRS.Remove(0, 1);
+                        if (i >= 1)
+                        {
+                            int temp = Convert.ToInt32(pipeInts.p1Register, 16);
+                            temp++;
+                            pipeInts.p1Register = temp.ToString("X5");
+                        }
+                        guiForm.storeByte(pipeInts.p1Register, tempR);
+                    }
+                    else
+                    {
+                        tempR = ($"{tempRS[0]}{tempRS[1]}");
+                        tempRS = tempRS.Remove(0, 2);
+                        if (i >= 1)
+                        {
+                            int temp = Convert.ToInt32(pipeInts.p1Register, 16);
+                            temp++;
+                            pipeInts.p1Register = temp.ToString("X5");
+                        }
+                        guiForm.storeByte(pipeInts.p1Register, tempR);
+                    }
+                }
+
+            }
+
+
+        }//end STRE()
         #endregion
 
         #region COMP() Method
