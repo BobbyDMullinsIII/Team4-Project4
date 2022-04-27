@@ -1,4 +1,12 @@
-﻿//8 Misses, 1 Hit
+﻿//1 Miss, 1 Hit
+LDRE R7 #5
+STRE R7 &00000
+LDRE R5 &00000
+LDRE R5 &00000
+STOP
+
+
+//8 Misses, 1 Hit
 LDRE R7 #5
 STRE R7 &FFFFF
 LDRE R5 &FFFFC
@@ -17,6 +25,7 @@ LDRE R5 &000F0
 LDRE R5 &FFFAC
 LDRE R5 &FFFBC
 STOP
+
 
 //Does not hit cache, but demonstrates arithmetic logic
 LDRE R6 #6
