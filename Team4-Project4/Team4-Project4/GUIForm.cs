@@ -175,104 +175,6 @@ namespace Team4_Project4
         #endregion
 
 
-        //Cache Methods
-        #region InitializeCache() Method
-        /// <summary>
-        /// Method for initializing cache
-        /// </summary>
-        public void initializeCache()
-        {
-            int sets = (cacheLineSize * cacheEntries) / (cacheLineSize * cacheType);
-            Math.Log(cacheLineSize, 2);
-            Cache = new String[sets + 1, (cacheType * 2) + 3];
-
-            for (int i = 0; i < (cacheType * 2) + 3; i++)
-            {
-                if (i == 0)
-                {
-                    Cache[0, i] = "            ";
-                }
-
-                if (i == 1)
-                {
-                    Cache[0, i] = " LRU(LRU)";
-                }
-
-                if (i == 2)
-                {
-                    Cache[0, i] = " LRU";
-                }
-                else if (i != 0 && i != 1 && i != 2 && (i % 2) == 0)
-                {
-                    Cache[0, i] = " Tag ";
-                }
-                else if (i != 0 && i != 1 && i != 2 && (i % 2) == 1)
-                {
-                    Cache[0, i] = " V ";
-                }
-            }
-            for (int i = 1; i < sets + 1; i++)
-            {
-                for (int j = 0; j < (cacheType * 2) + 3; j++)
-                {
-                    if (j == 0)
-                    {
-                        Cache[i, j] = $"set {i}:";
-                    }
-                    if (j == 1)
-                    {
-                        Cache[i, j] = "                      ";
-                    }
-                    if (j == 2)
-                    {
-                        Cache[i, j] = "             ";
-                    }
-                    else if (j != 0 && j != 1 && j != 2 && (j % 2) == 0)
-                    {
-                        Cache[i, j] = "             ";
-                    }
-                    else if (j != 0 && j != 1 && j != 2 && (j % 2) == 1)
-                    {
-                        Cache[i, j] = "0";
-                    }
-                }
-            }
-
-        }//end initializeCache()
-        #endregion
-
-        #region displayCache() Method
-        /// <summary>
-        /// Method for storing cache into single string for a cache textbox
-        /// </summary>
-        public void displayCache()
-        {
-            //Store cache into single string
-            int sets = (cacheLineSize * cacheEntries) / (cacheLineSize * cacheType);
-            StringBuilder cacheBuild = new StringBuilder();
-            for (int k = 0; k < sets + 1; k++)
-            {
-                for (int j = 0; j < (cacheType * 2) + 3; j++)
-                {
-                    if (j == (cacheType * 2) + 2)
-                    {
-                        cacheBuild.Append(Cache[k, j]);
-                        cacheBuild.Append("\r\n");
-                    }
-                    else
-                    {
-                        cacheBuild.Append(Cache[k, j]);
-                    }
-                }
-            }
-
-            //Output cacheBuild to Textbox
-            cacheText.Text = Convert.ToString(cacheBuild);
-
-        }//end displayCache()
-        #endregion
-
-
         //GUIForm Button Methods
         #region Dropdown Menu Buttons
         /// <summary>
@@ -967,123 +869,6 @@ namespace Team4_Project4
         }//end nextDynamicCycle()
         #endregion
 
-        #region returnOp() Method
-        /// <summary>
-        /// Method for returning the operation to perform on source operands
-        /// </summary>
-        private string returnOp(Queue<Instruction> ints)
-        {
-            Instruction temp = ints.Peek();
-
-            return $"{temp.InstLit[0]}{temp.InstLit[1]}{temp.InstLit[2]}{temp.InstLit[3]}";
-
-        }//end returnOp()
-        #endregion
-
-        #region setQj() Method
-        /// <summary>
-        /// Method for setting Qj reservation station
-        /// </summary>
-        private string setQj(Instruction ints)
-        {
-            if (stopFF != 1)
-            {
-                if (ints.P1Register[0] != '&' && ints.P1Register[0] != '#')
-                {
-                    ints.P1Register.Remove(0, 1);
-
-                    if (string.IsNullOrEmpty(Qi[Convert.ToInt32(ints.P1Register.Remove(0, 1))]) == false)
-                    {
-                        return Qi[Convert.ToInt32(ints.P1Register.Remove(0, 1))];
-                    }
-                    else
-                    {
-                        return "";
-                    }
-                }
-                return "";
-            }
-            return "";
-
-        }//end setQj()
-        #endregion
-
-        #region setQk() Method
-        /// <summary>
-        /// Method for setting Qk reservation station
-        /// </summary> 
-        private string setQk(Instruction ints)
-        {
-            if (string.IsNullOrEmpty(ints.P2Register) == false)
-            {
-                ints.P2Register.Remove(0, 1);
-
-                if (string.IsNullOrEmpty(Qi[Convert.ToInt32(ints.P2Register.Remove(0, 1))]) == false)
-                {
-                    return Qi[Convert.ToInt32(ints.P2Register.Remove(0, 1))];
-                }
-                else
-                {
-                    return "";
-                }
-            }
-            else
-            {
-                return "";
-            }
-
-        }//end setQk()
-        #endregion
-
-        #region setVj() Method
-        /// <summary>
-        /// Method for setting Vj 
-        /// </summary> 
-        private float setVj(Instruction ints)
-        {
-            if (stopFF != 1)
-            {
-                if (ints.P1Register[0] != '&')
-                {
-                    if (string.IsNullOrEmpty(setQj(ints)) == false)
-                    {
-                        ints.P1Register.Remove(0, 1);
-                        return regArray[Convert.ToInt32(ints.P1Register.Remove(0, 1))];
-                    }
-                    else
-                    {
-                        return 0;
-                    }
-                }
-                else
-                    return 0;
-            }
-            else
-                return 0;
-
-        }//end setVj()
-        #endregion
-
-        #region setVk() Method
-        /// <summary>
-        /// Method for setting Vk 
-        /// </summary> 
-        private float setVk(Instruction ints)
-        {
-            if (string.IsNullOrEmpty(setQk(ints)) == false)
-            {
-                ints.P2Register.Remove(0, 1);
-                return regArray[Convert.ToInt32(ints.P2Register.Remove(0, 1))];
-            }
-            else
-            {
-                return 0;
-            }
-
-
-        }//end setVk()
-        #endregion
-
         #region nextStaticCycle() Method
         /// <summary>
         /// Method for going to next cycle in static pipeline simulation
@@ -1383,6 +1168,127 @@ namespace Team4_Project4
         }//end nextStaticCycle()
         #endregion
 
+        #region returnOp() Method
+        /// <summary>
+        /// Method for returning the operation to perform on source operands
+        /// </summary>
+        private string returnOp(Queue<Instruction> ints)
+        {
+            Instruction temp = ints.Peek();
+
+            return $"{temp.InstLit[0]}{temp.InstLit[1]}{temp.InstLit[2]}{temp.InstLit[3]}";
+
+        }//end returnOp()
+        #endregion
+
+
+        //Common Data Bus Methods Methods
+        #region setQj() Method
+        /// <summary>
+        /// Method for setting Qj reservation station
+        /// </summary>
+        private string setQj(Instruction ints)
+        {
+            if (stopFF != 1)
+            {
+                if (ints.P1Register[0] != '&' && ints.P1Register[0] != '#')
+                {
+                    ints.P1Register.Remove(0, 1);
+
+                    if (string.IsNullOrEmpty(Qi[Convert.ToInt32(ints.P1Register.Remove(0, 1))]) == false)
+                    {
+                        return Qi[Convert.ToInt32(ints.P1Register.Remove(0, 1))];
+                    }
+                    else
+                    {
+                        return "";
+                    }
+                }
+                return "";
+            }
+            return "";
+
+        }//end setQj()
+        #endregion
+
+        #region setQk() Method
+        /// <summary>
+        /// Method for setting Qk reservation station
+        /// </summary> 
+        private string setQk(Instruction ints)
+        {
+            if (string.IsNullOrEmpty(ints.P2Register) == false)
+            {
+                ints.P2Register.Remove(0, 1);
+
+                if (string.IsNullOrEmpty(Qi[Convert.ToInt32(ints.P2Register.Remove(0, 1))]) == false)
+                {
+                    return Qi[Convert.ToInt32(ints.P2Register.Remove(0, 1))];
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            else
+            {
+                return "";
+            }
+
+        }//end setQk()
+        #endregion
+
+        #region setVj() Method
+        /// <summary>
+        /// Method for setting Vj 
+        /// </summary> 
+        private float setVj(Instruction ints)
+        {
+            if (stopFF != 1)
+            {
+                if (ints.P1Register[0] != '&')
+                {
+                    if (string.IsNullOrEmpty(setQj(ints)) == false)
+                    {
+                        ints.P1Register.Remove(0, 1);
+                        return regArray[Convert.ToInt32(ints.P1Register.Remove(0, 1))];
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                    return 0;
+            }
+            else
+                return 0;
+
+        }//end setVj()
+        #endregion
+
+        #region setVk() Method
+        /// <summary>
+        /// Method for setting Vk 
+        /// </summary> 
+        private float setVk(Instruction ints)
+        {
+            if (string.IsNullOrEmpty(setQk(ints)) == false)
+            {
+                ints.P2Register.Remove(0, 1);
+                return regArray[Convert.ToInt32(ints.P2Register.Remove(0, 1))];
+            }
+            else
+            {
+                return 0;
+            }
+
+
+        }//end setVk()
+        #endregion
+
+
+        //Increment Methods
         #region incrementCycleCounter() Method
         /// <summary>
         /// Method for incrementing cycle counter and updating gui to reflect it
@@ -1395,8 +1301,6 @@ namespace Team4_Project4
         }//end incrementCycleCounter()
         #endregion
 
-
-        //Increment Cache Hits & Misses Methods
         #region incrementCacheHits() Method
         /// <summary>
         /// Method for incrementing cache hits counter and updating gui to reflect it
@@ -1419,7 +1323,104 @@ namespace Team4_Project4
             missesTextBox.Text = cacheMisses.ToString();
 
         }//end incrementCacheMisses()
-        #endregion 
+        #endregion
+
+        //Cache Methods
+        #region InitializeCache() Method
+        /// <summary>
+        /// Method for initializing cache
+        /// </summary>
+        public void initializeCache()
+        {
+            int sets = (cacheLineSize * cacheEntries) / (cacheLineSize * cacheType);
+            Math.Log(cacheLineSize, 2);
+            Cache = new String[sets + 1, (cacheType * 2) + 3];
+
+            for (int i = 0; i < (cacheType * 2) + 3; i++)
+            {
+                if (i == 0)
+                {
+                    Cache[0, i] = "            ";
+                }
+
+                if (i == 1)
+                {
+                    Cache[0, i] = " LRU(LRU)";
+                }
+
+                if (i == 2)
+                {
+                    Cache[0, i] = " LRU";
+                }
+                else if (i != 0 && i != 1 && i != 2 && (i % 2) == 0)
+                {
+                    Cache[0, i] = " Tag ";
+                }
+                else if (i != 0 && i != 1 && i != 2 && (i % 2) == 1)
+                {
+                    Cache[0, i] = " V ";
+                }
+            }
+            for (int i = 1; i < sets + 1; i++)
+            {
+                for (int j = 0; j < (cacheType * 2) + 3; j++)
+                {
+                    if (j == 0)
+                    {
+                        Cache[i, j] = $"set {i}:";
+                    }
+                    if (j == 1)
+                    {
+                        Cache[i, j] = "                      ";
+                    }
+                    if (j == 2)
+                    {
+                        Cache[i, j] = "             ";
+                    }
+                    else if (j != 0 && j != 1 && j != 2 && (j % 2) == 0)
+                    {
+                        Cache[i, j] = "             ";
+                    }
+                    else if (j != 0 && j != 1 && j != 2 && (j % 2) == 1)
+                    {
+                        Cache[i, j] = "0";
+                    }
+                }
+            }
+
+        }//end initializeCache()
+        #endregion
+
+        #region displayCache() Method
+        /// <summary>
+        /// Method for storing cache into single string for a cache textbox
+        /// </summary>
+        public void displayCache()
+        {
+            //Store cache into single string
+            int sets = (cacheLineSize * cacheEntries) / (cacheLineSize * cacheType);
+            StringBuilder cacheBuild = new StringBuilder();
+            for (int k = 0; k < sets + 1; k++)
+            {
+                for (int j = 0; j < (cacheType * 2) + 3; j++)
+                {
+                    if (j == (cacheType * 2) + 2)
+                    {
+                        cacheBuild.Append(Cache[k, j]);
+                        cacheBuild.Append("\r\n");
+                    }
+                    else
+                    {
+                        cacheBuild.Append(Cache[k, j]);
+                    }
+                }
+            }
+
+            //Output cacheBuild to Textbox
+            cacheText.Text = Convert.ToString(cacheBuild);
+
+        }//end displayCache()
+        #endregion
 
 
         //Register Methods
@@ -2128,7 +2129,7 @@ namespace Team4_Project4
 
 
         //Reset Methods
-        #region Reset Methods
+        #region resetToolStripMenuItem_Click()
         /// <summary>
         /// Resets everything for new simulation
         /// </summary>
@@ -2220,7 +2221,9 @@ namespace Team4_Project4
             startStaticButton.Enabled = true;
             nextCycleButton.Enabled = false;
         }
+        #endregion
 
+        #region resetAllVariables() Method
         /// <summary>
         /// Method for resetting all variables in GUIForm to start another simulation without closing program
         /// </summary>
@@ -2347,6 +2350,7 @@ namespace Team4_Project4
 
         }//end resetAllVariables()
         #endregion
+
 
     }//end GUIForm class
 

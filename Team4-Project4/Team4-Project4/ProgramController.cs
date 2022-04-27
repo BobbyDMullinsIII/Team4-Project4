@@ -133,7 +133,7 @@ namespace Team4_Project4
         #endregion
 
 
-        //Assemble to Machine Code Methods
+        //Assemble & Disassemble Methods
         #region assemble() Method
         /// <summary>
         /// Master Method for assembling custom assembly language instruction set into machine code
@@ -428,8 +428,6 @@ namespace Team4_Project4
         }//end assemble()
         #endregion
 
-
-        //Disassemble to Assembly Code Methods
         #region disassemble() Method
         /// <summary>
         /// Master Method for disassembling machine code into assembly
@@ -622,6 +620,96 @@ namespace Team4_Project4
         }
         #endregion
 
+        //Dynamic Pipeline Phase Methods
+        #region issue() Method
+        /// <summary>
+        /// Method for issue phase in dynamic pipeline
+        /// </summary>
+        /// <returns></returns>
+        public static string issue()
+        {
+            string issueOutput = "";
+
+            //======================================//
+            //INSERT CODE FOR ISSUING HERE//
+            //======================================//
+
+            return issueOutput;
+
+        }//end issue()
+        #endregion
+
+        #region dynamicExecute() Method
+        /// <summary>
+        /// Method for execute phase in dynamic pipeline
+        /// </summary>
+        /// <returns></returns>
+        public static string dynamicExecute()
+        {
+            string executeOutput = "";
+
+            //======================================//
+            //INSERT CODE FOR DYNAMIC EXECUTING HERE//
+            //======================================//
+
+            return executeOutput;
+
+        }//end dynamicExecute()
+        #endregion
+
+        #region memoryRead() Method
+        /// <summary>
+        /// Method for memory read phase in dynamic pipeline
+        /// </summary>
+        /// <returns></returns>
+        public static string memoryRead()
+        {
+            string executeOutput = "";
+
+            //===================================//
+            //INSERT CODE FOR MEMORY READING HERE//
+            //===================================//
+
+            return executeOutput;
+
+        }//end memoryRead()
+        #endregion
+
+        #region write() Method
+        /// <summary>
+        /// Method for write phase in dynamic pipeline
+        /// </summary>
+        /// <returns></returns>
+        public static string write()
+        {
+            string writeOutput = "";
+
+            //======================================//
+            //INSERT CODE FOR WRITING HERE//
+            //======================================//
+
+            return writeOutput;
+
+        }//end write()
+        #endregion
+
+        #region commit() Method
+        /// <summary>
+        /// Method for write phase in dynamic pipeline
+        /// </summary>
+        /// <returns></returns>
+        public static string commit()
+        {
+            string commitOutput = "";
+
+            //======================================//
+            //INSERT CODE FOR COMMITTING HERE//
+            //======================================//
+
+            return commitOutput;
+
+        }//end commit()
+        #endregion
 
         //Static Pipeline Phase Methods
         #region fetch() Method
@@ -1127,98 +1215,6 @@ namespace Team4_Project4
         #endregion
 
 
-        //Dynamic Pipeline Phase Methods
-        #region issue() Method
-        /// <summary>
-        /// Method for issue phase in dynamic pipeline
-        /// </summary>
-        /// <returns></returns>
-        public static string issue()
-        {
-            string issueOutput = "";
-
-            //======================================//
-            //INSERT CODE FOR ISSUING HERE//
-            //======================================//
-
-            return issueOutput;
-
-        }//end issue()
-        #endregion
-
-        #region dynamicExecute() Method
-        /// <summary>
-        /// Method for execute phase in dynamic pipeline
-        /// </summary>
-        /// <returns></returns>
-        public static string dynamicExecute()
-        {
-            string executeOutput = "";
-
-            //======================================//
-            //INSERT CODE FOR DYNAMIC EXECUTING HERE//
-            //======================================//
-
-            return executeOutput;
-
-        }//end dynamicExecute()
-        #endregion
-
-        #region memoryRead() Method
-        /// <summary>
-        /// Method for memory read phase in dynamic pipeline
-        /// </summary>
-        /// <returns></returns>
-        public static string memoryRead()
-        {
-            string executeOutput = "";
-
-            //===================================//
-            //INSERT CODE FOR MEMORY READING HERE//
-            //===================================//
-
-            return executeOutput;
-
-        }//end memoryRead()
-        #endregion
-
-        #region write() Method
-        /// <summary>
-        /// Method for write phase in dynamic pipeline
-        /// </summary>
-        /// <returns></returns>
-        public static string write()
-        {
-            string writeOutput = "";
-
-            //======================================//
-            //INSERT CODE FOR WRITING HERE//
-            //======================================//
-
-            return writeOutput;
-
-        }//end write()
-        #endregion
-
-        #region commit() Method
-        /// <summary>
-        /// Method for write phase in dynamic pipeline
-        /// </summary>
-        /// <returns></returns>
-        public static string commit()
-        {
-            string commitOutput = "";
-
-            //======================================//
-            //INSERT CODE FOR COMMITTING HERE//
-            //======================================//
-
-            return commitOutput;
-
-        }//end commit()
-        #endregion
-
-
         //Pipeline Output Methods
         #region outputDynamicPipelineStats() Method
         /// <summary>
@@ -1717,6 +1713,7 @@ namespace Team4_Project4
 
         }//end STOP()
         #endregion
+
 
     }//end ProgramController class
 
