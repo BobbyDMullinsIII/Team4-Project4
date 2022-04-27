@@ -155,15 +155,15 @@ namespace Team4_Project4
         public int cacheHits = 0;
         public int cacheMisses = 0;
 
-        //Set associativity of cache
+        //Determines if pipeline should stall for cycles caused by hit or miss
+        public bool doStall = false;
+
+        //Set associativity of cache(Only resets in config form, not from GUIForm reset button)
         public int cacheType = 2;
         public int hitCycles = 1;      //Cycles for cache hit
         public int missCycles = 50;    //Cycles for cache miss
         public int cacheEntries = 8;   //Number of entries on cache
         public int cacheLineSize = 4;  //Line word size of cache
-
-        //Determines if pipeline should stall for cycles caused by hit or miss
-        public bool doStall = false;
 
 
         //GUIForm Constructor
@@ -459,7 +459,12 @@ namespace Team4_Project4
                     {
                         if ($"{reorderBuffer[0].instruction.InstLit[0]}{reorderBuffer[0].instruction.InstLit[1]}{reorderBuffer[0].instruction.InstLit[2]}{reorderBuffer[0].instruction.InstLit[3]}" == "STOP")
                         {
+                            //Disabled next cycle button if STOP instruction is encountered
                             nextCycleButton.Enabled = false;
+
+                            //Calculated cache hit ratio and adds it to cache output text
+                            double hitRatio = (double)cacheHits / ((double)cacheHits + (double)cacheMisses);
+                            cacheText.Text += $"\n\nHit Ratio: {hitRatio}";
                         }
                         else
                         {
@@ -2361,7 +2366,10 @@ namespace Team4_Project4
             cacheHits = 0;
             cacheMisses = 0;
 
-        }//end resetAllVariables()
+            //Determines if pipeline should stall for cycles caused by hit or miss
+            doStall = false;
+
+    }//end resetAllVariables()
         #endregion
 
 
