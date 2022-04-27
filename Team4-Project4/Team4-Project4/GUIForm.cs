@@ -424,6 +424,7 @@ namespace Team4_Project4
             displayMemoryInString64th(memSlider.Value);
             displayCache();
 
+
             //If stalling because of hit or miss is active, stall a certain set number of cycles
             //Between 50 - 500 for miss
             //Between 1 - 5 for hit
@@ -514,6 +515,8 @@ namespace Team4_Project4
                     else
                     {
                         bufferD++;
+                        structHCount++;
+                        structHTextBox.Text = structHCount.ToString();
                         reorderBufferTextBox.Text = bufferD.ToString();
                     }
                     //switch (reorderBuffer[0].addressingMode)
@@ -544,6 +547,7 @@ namespace Team4_Project4
                                     {
                                         //Increase structural hazard count and display update to GUI
                                         stationD++;
+                                        resStationTextBox.Text = stationD.ToString();
                                         structHCount++;
                                         structHTextBox.Text = structHCount.ToString();
                                     }
@@ -562,6 +566,7 @@ namespace Team4_Project4
                                     {
                                         //Increase structural hazard count and display update to GUI
                                         stationD++;
+                                        resStationTextBox.Text = stationD.ToString();
                                         structHCount++;
                                         structHTextBox.Text = structHCount.ToString();
                                     }
@@ -581,6 +586,7 @@ namespace Team4_Project4
                                 {
                                     //Increase structural hazard count and display update to GUI
                                     stationD++;
+                                    resStationTextBox.Text = stationD.ToString();
                                     structHCount++;
                                     structHTextBox.Text = structHCount.ToString();
                                 }
@@ -600,6 +606,7 @@ namespace Team4_Project4
                                 {
                                     //Increase structural hazard count and display update to GUI
                                     stationD++;
+                                    resStationTextBox.Text = stationD.ToString();
                                     structHCount++;
                                     structHTextBox.Text = structHCount.ToString();
                                 }
@@ -618,6 +625,7 @@ namespace Team4_Project4
                                 {
                                     //Increase structural hazard count and display update to GUI
                                     stationD++;
+                                    resStationTextBox.Text = stationD.ToString();
                                     structHCount++;
                                     structHTextBox.Text = structHCount.ToString();
                                 }
@@ -636,6 +644,7 @@ namespace Team4_Project4
                                 {
                                     //Increase structural hazard count and display update to GUI
                                     stationD++;
+                                    resStationTextBox.Text = stationD.ToString();
                                     structHCount++;
                                     structHTextBox.Text = structHCount.ToString();
                                 }
@@ -654,6 +663,7 @@ namespace Team4_Project4
                                 {
                                     //Increase structural hazard count and display update to GUI
                                     stationD++;
+                                    resStationTextBox.Text = stationD.ToString();
                                     structHCount++;
                                     structHTextBox.Text = structHCount.ToString();
                                 }
@@ -672,6 +682,7 @@ namespace Team4_Project4
                                 {
                                     //Increase structural hazard count and display update to GUI
                                     stationD++;
+                                    resStationTextBox.Text = stationD.ToString();
                                     structHCount++;
                                     structHTextBox.Text = structHCount.ToString();
                                 }
@@ -923,6 +934,8 @@ namespace Team4_Project4
 
                 //Sort ROB (Reorder Buffer)
                 reorderBuffer.Sort((x, y) => x.dest.CompareTo(y.dest));
+
+                r0TextBox.Text = ((int)regArray[0]).ToString();
             }
 
         }//end nextDynamicCycle()
